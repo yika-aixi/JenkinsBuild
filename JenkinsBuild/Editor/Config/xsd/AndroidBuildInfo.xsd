@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="BuildInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Scences">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Scence">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="explain" type="xs:string" use="optional" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="explain" type="xs:string" use="optional" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PackName">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Version">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="BundleVersionCode">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:unsignedByte">
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SdkVersions">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:unsignedByte">
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="min" type="xs:unsignedByte" use="required" />
+                <xs:attribute name="max" type="xs:unsignedByte" use="required" />
+                <xs:attribute name="default" type="xs:unsignedByte" use="required" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TargetSdkVersion">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:unsignedByte">
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="min" type="xs:unsignedByte" use="required" />
+                <xs:attribute name="max" type="xs:unsignedByte" use="required" />
+                <xs:attribute name="default" type="xs:unsignedByte" use="required" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TargetDevices">
+          <xs:complexType>
+            <xs:attribute name="explain" type="xs:string" use="optional" />
+            <xs:attribute name="default" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Scriptingimplementation">
+          <xs:complexType>
+            <xs:attribute name="explain" type="xs:string" use="optional" />
+            <xs:attribute name="default" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ApiCompatibilityLevel">
+          <xs:complexType>
+            <xs:attribute name="explain" type="xs:string" use="optional" />
+            <xs:attribute name="default" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="InternetAccess">
+          <xs:complexType>
+            <xs:attribute name="explain" type="xs:string" use="optional" />
+            <xs:attribute name="default" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Development">
+          <xs:complexType>
+            <xs:attribute name="explain" type="xs:string" use="optional" />
+            <xs:attribute name="default" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ConnectProfiler">
+          <xs:complexType>
+            <xs:attribute name="explain" type="xs:string" use="optional" />
+            <xs:attribute name="default" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ScriptsDebuggers">
+          <xs:complexType>
+            <xs:attribute name="explain" type="xs:string" use="optional" />
+            <xs:attribute name="default" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
