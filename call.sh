@@ -19,6 +19,6 @@ main(){
 	find $findPath -name executePy.sh -print -exec sh -c 'call $(dirname $0)' {} \;
 }
 
-export -f call # 导出函数,需要在函数之后
-export -f main # 导出函数,需要在函数之后
+export -f call # 声明函数,需要在函数之后
+export -f main # 声明函数,需要在函数之后
 
