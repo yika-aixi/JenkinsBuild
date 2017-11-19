@@ -11,5 +11,8 @@ Jenkins打包
   xml -- 进行中
   
   json -- 编写了py
+  
+  使用方法:
+    吧call.sh中的代码复制到Jenkis中,修改 configPath 变量为Jenkins获取的配置路径 -- 待补充
  
 
