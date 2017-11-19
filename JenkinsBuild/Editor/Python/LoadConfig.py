@@ -15,5 +15,5 @@ def loadxml(path):
     xml_str = ET.parse(path)
     # 将解析内容输出为字符串
     xml_str = ET.tostring(xml_str.getroot(),encoding="utf-8").decode("utf-8")
-    print("xml解析完成:"+xml_str)
+    print("xml解析完成:\n"+xml_str)
     return xml_str
