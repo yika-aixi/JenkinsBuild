@@ -112,6 +112,12 @@
             <xs:attribute name="default" type="xs:boolean" use="required" />
           </xs:complexType>
         </xs:element>
+		<xs:element name="Path">
+          <xs:complexType>
+            <xs:attribute name="explain" type="xs:string" use="optional" />
+            <xs:attribute name="default" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

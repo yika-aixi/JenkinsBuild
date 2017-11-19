@@ -10,6 +10,10 @@
         /// </summary>
         public const string Root = "BuildInfo";
         /// <summary>
+        /// 输出路径
+        /// </summary>
+        public const string Path = "Path";
+        /// <summary>
         /// 场景集合
         /// </summary>
         public const string Scences = "Scences";

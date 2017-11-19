@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Xml;
-using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,6 +14,18 @@ namespace Jenkins
             UnityEngine.Debug.Log(Application.dataPath);
 //            var buildInfo = JsonConvert.DeserializeObject<BuildSettingInfo>("{\"Scences\":\"Assets/Scence/main_scence_android.unity,Assets/Services/MaJiang/MajiangClientCore/Scenes/MajiangSuzhou.unity\",\"PackName\":\"com.fangqingsong.suzhoumajiang\",\"Version\":\"53\",\"BundleVersionCode\":\"1\",\"AndroidSdkVersions\":\"16\",\"TargetSdkVersion\":\"0\",\"TargetDevice\":\"ARMv7\",\"Scriptingimplementation\":\"Mono2x\",\"ApiCompatibilityLevel\":\"NET_2_0_Subset\",\"InternetAccess\":true,\"Development\":false,\"ConnectProfiler\":false,\"ScriptsDebuggers\":false}");
 //            _setBuildAndroidInfo(buildInfo);
+        }
+
+        public static void XmlBuild()
+        {
+            XmlDocument xml = new XmlDocument();
+
+            Console.WriteLine("命令行参数个数:"+ Environment.GetCommandLineArgs().Length);
+            foreach (var arg in Environment.GetCommandLineArgs())
+            {
+                Console.WriteLine("参数:"+arg);
+            }
+//            xml.LoadXml();
         }
 
         [MenuItem("Jenkins/JenkinsBuildAndroid")]
@@ -98,26 +109,27 @@ namespace Jenkins
         /// <returns></returns>
         static BuildSettingInfo _analysisLineArgs()
         {
-            Regex _regex = new Regex(@"{.*}");
-
-            var match = _regex.Match(Environment.CommandLine);
-
-            XmlDocument xml = new XmlDocument();
-
-
-            var json = match.Value;
-
-            if (string.IsNullOrEmpty(json))
-            {
-                throw new Exception("在命令行中没有发现符合对象结构的json数据，结构为{json数据},不要树状的，不能换行，命令行：\n"+ Environment.CommandLine);
-            }
-
-            Console.WriteLine("Json数据:"+json);
-
-            var info = JsonConvert.DeserializeObject<BuildSettingInfo>(json);
-
-            Console.WriteLine(info);
-            return info;
+//            Regex _regex = new Regex(@"{.*}");
+//
+//            var match = _regex.Match(Environment.CommandLine);
+//
+//            XmlDocument xml = new XmlDocument();
+//
+//
+//            var json = match.Value;
+//
+//            if (string.IsNullOrEmpty(json))
+//            {
+//                throw new Exception("在命令行中没有发现符合对象结构的json数据，结构为{json数据},不要树状的，不能换行，命令行：\n"+ Environment.CommandLine);
+//            }
+//
+//            Console.WriteLine("Json数据:"+json);
+//
+//            var info = JsonConvert.DeserializeObject<BuildSettingInfo>(json);
+//
+//            Console.WriteLine(info);
+//            return info;
+            return null;
         }
 
         #region Get Build Path 
