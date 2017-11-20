@@ -1,3 +1,4 @@
+#!/usr/bin/python
 loadxml(){
 	echo "xml路径: $1"
 	config=$(python -c "import LoadConfig; LoadConfig.loadxml($1)") 
