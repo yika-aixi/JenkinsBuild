@@ -43,19 +43,49 @@ namespace Jenkins
         {
             XmlDocument xml = new XmlDocument();
             xml.Load(path);
+            var root = xml.DocumentElement;
+            _getScene(root);
+            _getOther(root);
+        }
+
+        private static void _getOther(XmlElement xml)
+        {
+            foreach (XmlElement node in xml.GetElementsByTagName(XmlNodeConst.Root))
+            {
+                if (node.Name == XmlNodeConst.Scences)
+                {
+                    continue;
+                }
+                if (node.Attributes.GetNamedItem(XmlAttributeConst.Min) != null)
+                {
+                    _getSdkVersions(node);
+                }
+            }
+        }
+
+        private static void _getSdkVersions(XmlElement node)
+        {
+            //todo sdk 版本处理,需要判断是否大于,小于最大,然后进行设置
+            int versions = 0;
+            int.TryParse(node.InnerText,out versions);
+
+        }
+
+        private static void _getScene(XmlElement xml)
+        {
             var scences = xml.GetElementsByTagName(XmlNodeConst.Scences);
             foreach (XmlNode childNode in scences[0].ChildNodes)
             {
                 //explain="入口场景"
                 var attributes = childNode.Attributes;
-                Debug.Log("场景:"+childNode.InnerText+"描述:"+
-                    ( 
-                    attributes != null 
-                        ? 
-                        attributes.GetNamedItem(XmlAttributeConst.Explain) != null 
-                            ? 
-                        attributes.GetNamedItem(XmlAttributeConst.Explain).InnerText : "没有描述" 
-                   :"没有描述"));
+                Debug.Log("场景:" + childNode.InnerText + "描述:" +
+                    (
+                    attributes != null
+                        ?
+                        attributes.GetNamedItem(XmlAttributeConst.Explain) != null
+                            ?
+                        attributes.GetNamedItem(XmlAttributeConst.Explain).InnerText : "没有描述"
+                   : "没有描述"));
                 Scenes.Add(childNode.InnerText);
             }
         }
