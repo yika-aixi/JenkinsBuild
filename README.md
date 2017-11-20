@@ -1,18 +1,23 @@
 # JenkinsBuild
 Jenkins打包
-目前想法是支持:json,xml配置打包
-  json设置打包已经实现过,但是因为命令行拼接,然后正则获取的,对格式有严格要求,使用起来不是很方便
- 
- 现在是想吧这些配置抽成文件配置法(xml,json),然后上传文件,shell调用py解析,然后将解析结果存放在shell变量中,Unity编译命令行中,使用这个变量
-  目前测试:前面都测试ok,使用变量还未测试,等后面安装了Jenkins在做测试
  
  配置优先级:xml->json
  
-  xml -- 进行中
+  xml -- 完成
+  
+  json -- 未开始
   
-  json -- 编写了py
-  
-  使用方法:
-    吧call.sh中的代码复制到Jenkis中,修改 configPath 变量为Jenkins获取的配置路径 -- 待补充
+Jenkisn所需插件  	
+   Unity3d plugin
+   
+使用方法:
+    在Jnekins中的	Global Tool Configuration 中配置好Unity路径后创建项目,勾上参数化构建->选择File Parameter,设置	File location 为 config
+    然后就可以使用~
+
+命令行为:
+   -quit -batchmode -executeMethod Jenkins.JenkinsAdapter.CommandLineXmlBuildAndroid ${WORKSPACE}\config
+   说明:
+      命令行中的"config"为File Parameter参数的File location值
+     
  
 
