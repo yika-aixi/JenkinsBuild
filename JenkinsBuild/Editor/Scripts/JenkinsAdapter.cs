@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Xml;
+using Jenkins.XmlConst;
 using UnityEditor;
 using UnityEngine;
 
@@ -25,7 +26,18 @@ namespace Jenkins
             {
                 Console.WriteLine("参数:"+arg);
             }
-//            xml.LoadXml();
+            var count = Environment.GetCommandLineArgs().Length;
+            xml.LoadXml(Environment.GetCommandLineArgs()[count-1]);
+            _getXmlVale(xml);
+        }
+
+        private static void _getXmlVale(XmlDocument xml)
+        {
+            var scences = xml.GetElementsByTagName(XmlNodeConst.Scences);
+            foreach (var scence in scences)
+            {
+                Console.WriteLine("场景："+scence);
+            }
         }
 
         [MenuItem("Jenkins/JenkinsBuildAndroid")]
