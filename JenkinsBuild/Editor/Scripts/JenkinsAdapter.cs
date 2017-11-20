@@ -34,9 +34,9 @@ namespace Jenkins
         private static void _getXmlVale(XmlDocument xml)
         {
             var scences = xml.GetElementsByTagName(XmlNodeConst.Scences);
-            foreach (var scence in scences)
+            foreach (XmlNode childNode in scences[0].ChildNodes)
             {
-                Console.WriteLine("场景："+scence);
+                Console.WriteLine("场景:"+childNode.Value);
             }
         }
 
