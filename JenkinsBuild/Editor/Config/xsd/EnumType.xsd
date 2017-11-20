@@ -1,0 +1,24 @@
+﻿<xsd:schema xmlns:xsd = "http://www.w3.org/2001/XMLSchema" version = "1.0" elementFormDefault = "qualified">
+  <!--Api 兼容等级 枚举-->
+  <xsd:simpleType name="ApiCompatibilityLevelEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="NET_2_0" />
+      <xsd:enumeration value="NET_2_0_Subset" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <!--脚本运行环境 枚举-->
+  <xsd:simpleType name="ScriptingImplementationEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Mono2x" />
+      <xsd:enumeration value="IL2CPP" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <!--设备架构 枚举-->
+  <xsd:simpleType name="AndroidTargetDeviceEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="FAT" />
+      <xsd:enumeration value="ARMv7" />
+      <xsd:enumeration value="x86" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="EnumType.xsd"/>
+  <xs:simpleType name="ApiCompatibilityLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NET_2_0"/>
+      <xs:enumeration value="NET_2_0_Subset"/>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:element name="BuildInfo">
     <xs:complexType>
       <xs:sequence>
@@ -46,7 +53,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SdkVersions">
+        <xs:element name="SdkVersions" default="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:int">
@@ -58,7 +65,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TargetSdkVersion">
+        <xs:element name="TargetSdkVersion" default="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:int">
@@ -70,47 +77,37 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TargetDevices">
+        <xs:element name="TargetDevices" default="ARMv7">
           <xs:complexType>
             <xs:simpleContent>
-              <xs:extension base="xs:string">
+              <xs:extension base="AndroidTargetDeviceEnum">
                 <xs:attribute name="explain" type="xs:string" use="required" />
-                <xs:attribute name="default" type="xs:string" use="required" />
+                <xs:attribute name="default" type="AndroidTargetDeviceEnum" use="optional" default="ARMv7" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Scriptingimplementation">
+        <xs:element name="Scriptingimplementation" default="IL2CPP">
           <xs:complexType>
             <xs:simpleContent>
-              <xs:extension base="xs:string">
+              <xs:extension base="ScriptingImplementationEnum">
                 <xs:attribute name="explain" type="xs:string" use="required" />
-                <xs:attribute name="default" type="xs:string" use="required" />
+                <xs:attribute name="default" type="ScriptingImplementationEnum" use="optional" default="IL2CPP" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ApiCompatibilityLevel">
+        <xs:element name="ApiCompatibilityLevel" default="NET_2_0_Subset">
           <xs:complexType>
             <xs:simpleContent>
-              <xs:extension base="xs:string">
+              <xs:extension base="ApiCompatibilityLevelEnum">
                 <xs:attribute name="explain" type="xs:string" use="required" />
-                <xs:attribute name="default" type="xs:string" use="required" />
+                <xs:attribute name="default" type="ApiCompatibilityLevelEnum" use="optional" default="NET_2_0_Subset" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="InternetAccess">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:boolean">
-                <xs:attribute name="explain" type="xs:string" use="required" />
-                <xs:attribute name="default" type="xs:boolean" use="required" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="Development">
+        <xs:element name="InternetAccess" default="true">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:boolean">
@@ -120,7 +117,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ConnectProfiler">
+        <xs:element name="Development" default="false">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:boolean">
@@ -130,7 +127,17 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ScriptsDebuggers">
+        <xs:element name="ConnectProfiler" default="false">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:boolean">
+                <xs:attribute name="explain" type="xs:string" use="required" />
+                <xs:attribute name="default" type="xs:boolean" use="required" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ScriptsDebuggers" default="false">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:boolean">
