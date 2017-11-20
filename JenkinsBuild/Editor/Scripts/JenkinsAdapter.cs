@@ -27,7 +27,7 @@ namespace Jenkins
                 Console.WriteLine("参数:"+arg);
             }
             var count = Environment.GetCommandLineArgs().Length;
-            xml.LoadXml(Environment.GetCommandLineArgs()[count-1]);
+            xml.Load(Environment.GetCommandLineArgs()[count-1]);
             _getXmlVale(xml);
         }
 
