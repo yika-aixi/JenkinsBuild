@@ -3,7 +3,7 @@
     /// <summary>
     /// 个平台共有的标签
     /// </summary>
-    public class XmlNodeConst
+    public class ConfigNodeConst
     {
         /// <summary>
         /// 根
@@ -59,7 +59,7 @@
     /// <summary>
     /// 安卓和ios共有的标签
     /// </summary>
-    public class AndroidAndIosXmlNodeXml : XmlNodeConst
+    public class AndroidAndIosConfigNodeConfig : ConfigNodeConst
     {
         /// <summary>
         /// 设备架构
@@ -79,7 +79,7 @@
     /// <summary>
     /// 安卓的标签
     /// </summary>
-    public class AndroidXmlNodeConst: AndroidAndIosXmlNodeXml
+    public class AndroidConfigNodeConst: AndroidAndIosConfigNodeConfig
     {
         /// <summary>
         /// 联网
@@ -91,7 +91,7 @@
     /// <summary>
     /// ios的标签
     /// </summary>
-    public class IosXmlNodeConst: AndroidAndIosXmlNodeXml
+    public class IosConfigNodeConst: AndroidAndIosConfigNodeConfig
     {
 
     }
