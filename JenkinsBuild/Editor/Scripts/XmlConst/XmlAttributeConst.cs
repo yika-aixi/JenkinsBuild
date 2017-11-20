@@ -3,7 +3,7 @@
     /// <summary>
     /// 标签属性
     /// </summary>
-    public class XmlAttribute
+    public class XmlAttributeConst
     {
         public const string Explain = "explain";
         public const string Default = "default";

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Xml;
 using Jenkins.XmlConst;
@@ -9,6 +10,8 @@ namespace Jenkins
 {
     public class JenkinsAdapter
     {
+        public static List<string> Scenes = new List<string>();
+        public static Dictionary<string,string> XmlConfig = new Dictionary<string, string>();
         [MenuItem("Jenkins/Test")]
         public static void _test()
         {
@@ -17,26 +20,43 @@ namespace Jenkins
 //            _setBuildAndroidInfo(buildInfo);
         }
 
-        public static void XmlBuild()
+        [MenuItem("Jenkins/Test Xml")]
+        public static void _TestXml()
         {
-            XmlDocument xml = new XmlDocument();
-
-            Console.WriteLine("命令行参数个数:"+ Environment.GetCommandLineArgs().Length);
-            foreach (var arg in Environment.GetCommandLineArgs())
-            {
-                Console.WriteLine("参数:"+arg);
-            }
-            var count = Environment.GetCommandLineArgs().Length;
-            xml.Load(Environment.GetCommandLineArgs()[count-1]);
-            _getXmlVale(xml);
+            _getXmlVale(
+                @"E:\Project\JenkinsBuildTest\Assets\Plugins\JenkinsBuild\JenkinsBuild\Editor\Config\AndroidBuildInfo.config");
         }
 
-        private static void _getXmlVale(XmlDocument xml)
+        public static void XmlBuild()
         {
+
+            Debug.Log("命令行参数个数:"+ Environment.GetCommandLineArgs().Length);
+            foreach (var arg in Environment.GetCommandLineArgs())
+            {
+                Debug.Log("参数:"+arg);
+            }
+            var count = Environment.GetCommandLineArgs().Length;
+            _getXmlVale(Environment.GetCommandLineArgs()[count - 1]);
+        }
+
+        private static void _getXmlVale(string path)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(path);
             var scences = xml.GetElementsByTagName(XmlNodeConst.Scences);
             foreach (XmlNode childNode in scences[0].ChildNodes)
             {
-                Console.WriteLine("场景:"+childNode.Value);
+                //explain="入口场景"
+                var attributes = childNode.Attributes;
+                Debug.Log("场景:"+childNode.InnerText+"描述:"+
+                    ( 
+                    attributes != null 
+                        ? 
+                        attributes.GetNamedItem(XmlAttributeConst.Explain) != null 
+                            ? 
+                        attributes.GetNamedItem(XmlAttributeConst.Explain).InnerText : "没有描述" 
+                   :"没有描述"));
+                Scenes.Add(childNode.InnerText);
             }
         }
 
@@ -47,7 +67,7 @@ namespace Jenkins
             _setBuildAndroidInfo(buildInfo);
             //todo 输出路径需要需改为读取配置而不是写死
             var path = BuildPipeline.BuildPlayer(_getScenes(buildInfo.Scences), GetAndroidPath(), BuildTarget.Android, BuildOptions.None);
-            Console.WriteLine("Build Complete Path:" + path);
+            Debug.Log("Build Complete Path:" + path);
         }
 
         private static void _setBuildAndroidInfo(BuildSettingInfo buildInfo)
@@ -95,14 +115,14 @@ namespace Jenkins
         public static void CommandLineBuildIos()
         {
 //            BuildPipeline.BuildPlayer(_analysisLineArgs(), GetIosBuildPath(), BuildTarget.iOS, BuildOptions.None);
-            Console.WriteLine("Build Complete Path:" + GetIosBuildPath());
+            Debug.Log("Build Complete Path:" + GetIosBuildPath());
         }
 
         [MenuItem("Jenkins/JenkinsBuildWindows")]
         public static void CommandLineBuildWin()
         {
 //            BuildPipeline.BuildPlayer(_analysisLineArgs(), GetWindowsPath(), BuildTarget.StandaloneWindows, BuildOptions.None);
-            Console.WriteLine("Build Complete Path:" + GetWindowsPath());
+            Debug.Log("Build Complete Path:" + GetWindowsPath());
         }
 
         /// <summary>
@@ -135,11 +155,11 @@ namespace Jenkins
 //                throw new Exception("在命令行中没有发现符合对象结构的json数据，结构为{json数据},不要树状的，不能换行，命令行：\n"+ Environment.CommandLine);
 //            }
 //
-//            Console.WriteLine("Json数据:"+json);
+//            Debug.Log("Json数据:"+json);
 //
 //            var info = JsonConvert.DeserializeObject<BuildSettingInfo>(json);
 //
-//            Console.WriteLine(info);
+//            Debug.Log(info);
 //            return info;
             return null;
         }
