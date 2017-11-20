@@ -11,22 +11,18 @@ namespace Jenkins
     public class JenkinsAdapter
     {
         public static List<string> Scenes = new List<string>();
-        public static Dictionary<string,string> XmlConfig = new Dictionary<string, string>();
-        [MenuItem("Jenkins/Test")]
-        public static void _test()
-        {
-            UnityEngine.Debug.Log(Application.dataPath);
-//            var buildInfo = JsonConvert.DeserializeObject<BuildSettingInfo>("{\"Scences\":\"Assets/Scence/main_scence_android.unity,Assets/Services/MaJiang/MajiangClientCore/Scenes/MajiangSuzhou.unity\",\"PackName\":\"com.fangqingsong.suzhoumajiang\",\"Version\":\"53\",\"BundleVersionCode\":\"1\",\"AndroidSdkVersions\":\"16\",\"TargetSdkVersion\":\"0\",\"TargetDevice\":\"ARMv7\",\"Scriptingimplementation\":\"Mono2x\",\"ApiCompatibilityLevel\":\"NET_2_0_Subset\",\"InternetAccess\":true,\"Development\":false,\"ConnectProfiler\":false,\"ScriptsDebuggers\":false}");
-//            _setBuildAndroidInfo(buildInfo);
-        }
+        public static Dictionary<string,string> Config = new Dictionary<string, string>();
 
-        [MenuItem("Jenkins/Test Xml")]
-        public static void _TestXml()
-        {
-            _getXmlVale(
-                @"E:\Project\JenkinsBuildTest\Assets\Plugins\JenkinsBuild\JenkinsBuild\Editor\Config\AndroidBuildInfo.config");
-        }
+//        [MenuItem("Jenkins/Test Xml")]
+//        public static void _TestXml()
+//        {
+//            _getXmlVale(
+//                @"I:\GitHubProject\JenkinsBuildTest\Assets\Plugins\JenkinsBuild\JenkinsBuild\Editor\Config\AndroidBuildInfo.config");
+//        }
 
+        /// <summary>
+        /// 解析命令行传过来的xml
+        /// </summary>
         public static void XmlBuild()
         {
 
@@ -37,8 +33,13 @@ namespace Jenkins
             }
             var count = Environment.GetCommandLineArgs().Length;
             _getXmlVale(Environment.GetCommandLineArgs()[count - 1]);
+
         }
 
+        /// <summary>
+        /// 获取xml的值
+        /// </summary>
+        /// <param name="path">xml所在路径</param>
         private static void _getXmlVale(string path)
         {
             XmlDocument xml = new XmlDocument();
@@ -46,34 +47,82 @@ namespace Jenkins
             var root = xml.DocumentElement;
             _getScene(root);
             _getOther(root);
-        }
-
-        private static void _getOther(XmlElement xml)
-        {
-            foreach (XmlElement node in xml.GetElementsByTagName(XmlNodeConst.Root))
+            foreach (var pair in Config)
             {
-                if (node.Name == XmlNodeConst.Scences)
-                {
-                    continue;
-                }
-                if (node.Attributes.GetNamedItem(XmlAttributeConst.Min) != null)
-                {
-                    _getSdkVersions(node);
-                }
+                Debug.Log("xml配置:key=" + pair.Key + ", Value=" + pair.Value);
             }
         }
 
-        private static void _getSdkVersions(XmlElement node)
+        /// <summary>
+        /// 获取除了场景外的所有配置
+        /// </summary>
+        /// <param name="xml"></param>
+        private static void _getOther(XmlElement xml)
         {
-            //todo sdk 版本处理,需要判断是否大于,小于最大,然后进行设置
-            int versions = 0;
-            int.TryParse(node.InnerText,out versions);
+            Config.Clear();
+            foreach (XmlElement node in xml)
+            {
+                //因为场景是单独处理所以跳过
+                if (node.Name == ConfigNodeConst.Scences)
+                {
+                    continue;
+                }
 
+                if (node.Attributes.GetNamedItem(XmlAttributeConst.Min) != null)
+                {
+                    _getSdkVersions(node);
+                    continue;
+                }
+                string value = node.InnerText;
+                if (string.IsNullOrEmpty(node.InnerText))
+                {
+                    value = node.GetAttribute(XmlAttributeConst.Default);
+                }
+                Config.Add(node.Name, value);
+            }
         }
 
+        /// <summary>
+        /// 特殊处理的sdk版本
+        /// </summary>
+        /// <param name="node"></param>
+        private static void _getSdkVersions(XmlElement node)
+        {
+            int minVersions = int.Parse(node.GetAttribute(XmlAttributeConst.Min));
+            int maxVersions = int.Parse(node.GetAttribute(XmlAttributeConst.Max));
+            int defaultVersions = int.Parse(node.GetAttribute(XmlAttributeConst.Default));
+
+            int currenVersions = 0;
+
+            if (string.IsNullOrEmpty(node.InnerText))
+            {
+                currenVersions = int.Parse(node.GetAttribute(XmlAttributeConst.Default));
+            }
+            //如果不是等于默认值的话就进行判断
+            if (currenVersions != defaultVersions)
+            {
+                //如果大于最大的版本设置为最大
+                if (currenVersions > maxVersions)
+                {
+                    currenVersions = maxVersions;
+                }
+
+                //如果小于最小版本设置成最小
+                if (currenVersions < minVersions)
+                {
+                    currenVersions = minVersions;
+                }
+            }
+            Config.Add(node.Name,currenVersions.ToString());
+        }
+
+        /// <summary>
+        /// 特殊处理的场景信息获取
+        /// </summary>
+        /// <param name="xml"></param>
         private static void _getScene(XmlElement xml)
         {
-            var scences = xml.GetElementsByTagName(XmlNodeConst.Scences);
+            var scences = xml.GetElementsByTagName(ConfigNodeConst.Scences);
             foreach (XmlNode childNode in scences[0].ChildNodes)
             {
                 //explain="入口场景"
@@ -91,171 +140,79 @@ namespace Jenkins
         }
 
         [MenuItem("Jenkins/JenkinsBuildAndroid")]
-        public static void CommandLineBuildAndroid()
+        public static void CommandLineXmlBuildAndroid()
         {
-            var buildInfo = _analysisLineArgs();
-            _setBuildAndroidInfo(buildInfo);
+            //解析XML
+            XmlBuild();
+            _setBuildAndroidInfo();
             //todo 输出路径需要需改为读取配置而不是写死
-            var path = BuildPipeline.BuildPlayer(_getScenes(buildInfo.Scences), GetAndroidPath(), BuildTarget.Android, BuildOptions.None);
+            var path = BuildPipeline.BuildPlayer(Scenes.ToArray(), Config[ConfigNodeConst.Path], BuildTarget.Android, BuildOptions.None);
             Debug.Log("Build Complete Path:" + path);
         }
 
-        private static void _setBuildAndroidInfo(BuildSettingInfo buildInfo)
+        /// <summary>
+        /// 安卓打包设置
+        /// </summary>
+        private static void _setBuildAndroidInfo()
         {
-            PlayerSettings.Android.bundleVersionCode = int.Parse(buildInfo.BundleVersionCode);
-            PlayerSettings.Android.minSdkVersion = _stringToEnum<AndroidSdkVersions>(buildInfo.AndroidSdkVersions);
-            PlayerSettings.Android.targetSdkVersion = _stringToEnum<AndroidSdkVersions>(buildInfo.TargetSdkVersion);
-            PlayerSettings.Android.targetDevice = _stringToEnum<AndroidTargetDevice>(buildInfo.TargetDevice);
-            PlayerSettings.Android.forceInternetPermission = buildInfo.InternetAccess;
-            _setBuildInfo(BuildTargetGroup.Android, buildInfo);
+            PlayerSettings.Android.bundleVersionCode = int.Parse(Config[ConfigNodeConst.BundleVersionCode]);
+            PlayerSettings.Android.minSdkVersion = _stringToEnum<AndroidSdkVersions>(Config[AndroidAndIosConfigNodeConfig.SdkVersions]);
+            PlayerSettings.Android.targetSdkVersion = _stringToEnum<AndroidSdkVersions>(Config[AndroidAndIosConfigNodeConfig.TargetSdkVersion]);
+            PlayerSettings.Android.targetDevice = _stringToEnum<AndroidTargetDevice>(Config[AndroidAndIosConfigNodeConfig.TargetDevice]);
+            PlayerSettings.Android.forceInternetPermission = bool.Parse(Config[AndroidConfigNodeConst.InternetAccess]);
+            _setBuildInfo(BuildTargetGroup.Android);
         }
 
-        private static void _setBuildIosInfo(BuildSettingInfo buildInfo)
-        {
-            PlayerSettings.iOS.buildNumber = buildInfo.BundleVersionCode;
-            PlayerSettings.iOS.targetDevice = _stringToEnum<iOSTargetDevice>(buildInfo.TargetDevice);
-            PlayerSettings.iOS.targetOSVersionString = buildInfo.TargetSdkVersion;
-//            PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK
-           //            PlayerSettings.Android.minSdkVersion = _stringToEnum<AndroidSdkVersions>(buildInfo.AndroidSdkVersions);
-           //            PlayerSettings.Android.targetSdkVersion = _stringToEnum<AndroidSdkVersions>(buildInfo.TargetSdkVersion);
-           //            PlayerSettings.Android.targetDevice = _stringToEnum<AndroidTargetDevice>(buildInfo.TargetDevice);
-            PlayerSettings.Android.forceInternetPermission = buildInfo.InternetAccess;
-            _setBuildInfo(BuildTargetGroup.Android, buildInfo);
-        }
+//        private static void _setBuildIosInfo(BuildSettingInfo buildInfo)
+//        {
+//            PlayerSettings.iOS.buildNumber = buildInfo.BundleVersionCode;
+//            PlayerSettings.iOS.targetDevice = _stringToEnum<iOSTargetDevice>(buildInfo.TargetDevice);
+//            PlayerSettings.iOS.targetOSVersionString = buildInfo.TargetSdkVersion;
+////            PlayerSettings.iOS.sdkVersion = iOSSdkVersion.DeviceSDK
+//           //            PlayerSettings.Android.minSdkVersion = _stringToEnum<AndroidSdkVersions>(buildInfo.AndroidSdkVersions);
+//           //            PlayerSettings.Android.targetSdkVersion = _stringToEnum<AndroidSdkVersions>(buildInfo.TargetSdkVersion);
+//           //            PlayerSettings.Android.targetDevice = _stringToEnum<AndroidTargetDevice>(buildInfo.TargetDevice);
+//            PlayerSettings.Android.forceInternetPermission = buildInfo.InternetAccess;
+//            _setBuildInfo(BuildTargetGroup.Android, buildInfo);
+//        }
 
-        private static void _setBuildInfo(BuildTargetGroup target,BuildSettingInfo buildInfo)
+        /// <summary>
+        /// 平台共有设置
+        /// </summary>
+        /// <param name="target"></param>
+        private static void _setBuildInfo(BuildTargetGroup target)
         {
-            PlayerSettings.bundleVersion = buildInfo.Version;
-            PlayerSettings.applicationIdentifier = buildInfo.PackName;
-            PlayerSettings.SetScriptingBackend(target, _stringToEnum<ScriptingImplementation>(buildInfo.Scriptingimplementation));
-            PlayerSettings.SetApiCompatibilityLevel(target, _stringToEnum<ApiCompatibilityLevel>(buildInfo.ApiCompatibilityLevel));
+            PlayerSettings.bundleVersion = Config[ConfigNodeConst.Version];
+            PlayerSettings.applicationIdentifier = Config[ConfigNodeConst.PackName];
+            PlayerSettings.SetScriptingBackend(target, _stringToEnum<ScriptingImplementation>(Config[ConfigNodeConst.Scriptingimplementation]));
+            PlayerSettings.SetApiCompatibilityLevel(target, _stringToEnum<ApiCompatibilityLevel>(Config[ConfigNodeConst.ApiCompatibilityLevel]));
             
-            EditorUserBuildSettings.development = buildInfo.Development;
-            EditorUserBuildSettings.connectProfiler = buildInfo.ConnectProfiler;
-            EditorUserBuildSettings.allowDebugging = buildInfo.ScriptsDebuggers;
+            EditorUserBuildSettings.development = bool.Parse(Config[ConfigNodeConst.Development]);
+            EditorUserBuildSettings.connectProfiler = bool.Parse(Config[ConfigNodeConst.ConnectProfiler]);
+            EditorUserBuildSettings.allowDebugging = bool.Parse(Config[ConfigNodeConst.ScriptsDebuggers]);
 
         }
 
+       
         static T _stringToEnum<T>(string value)
         {
             return (T)Enum.Parse(typeof(T), value);
         }
 
-        [MenuItem("Jenkins/JenkinsBuildIos")]
-        public static void CommandLineBuildIos()
-        {
-//            BuildPipeline.BuildPlayer(_analysisLineArgs(), GetIosBuildPath(), BuildTarget.iOS, BuildOptions.None);
-            Debug.Log("Build Complete Path:" + GetIosBuildPath());
-        }
+//        [MenuItem("Jenkins/JenkinsBuildIos")]
+//        public static void CommandLineBuildIos()
+//        {
+////            BuildPipeline.BuildPlayer(_analysisLineArgs(), GetIosBuildPath(), BuildTarget.iOS, BuildOptions.None);
+//            Debug.Log("Build Complete Path:" + GetIosBuildPath());
+//        }
 
-        [MenuItem("Jenkins/JenkinsBuildWindows")]
-        public static void CommandLineBuildWin()
-        {
-//            BuildPipeline.BuildPlayer(_analysisLineArgs(), GetWindowsPath(), BuildTarget.StandaloneWindows, BuildOptions.None);
-            Debug.Log("Build Complete Path:" + GetWindowsPath());
-        }
+//        [MenuItem("Jenkins/JenkinsBuildWindows")]
+//        public static void CommandLineBuildWin()
+//        {
+////            BuildPipeline.BuildPlayer(_analysisLineArgs(), GetWindowsPath(), BuildTarget.StandaloneWindows, BuildOptions.None);
+//            Debug.Log("Build Complete Path:" + GetWindowsPath());
+//        }
 
-        /// <summary>
-        /// 切割场景路径信息
-        /// </summary>
-        /// <param name="scenes"></param>
-        /// <returns></returns>
-        static string[] _getScenes(string scenes)
-        {
-            return scenes.Split(',');
-        }
-        /// <summary>
-        /// 解析命令行参数，获取json数据
-        /// 只会使用第一个json，因为不是我要的 (❤ ω ❤)
-        /// </summary>
-        /// <returns></returns>
-        static BuildSettingInfo _analysisLineArgs()
-        {
-//            Regex _regex = new Regex(@"{.*}");
-//
-//            var match = _regex.Match(Environment.CommandLine);
-//
-//            XmlDocument xml = new XmlDocument();
-//
-//
-//            var json = match.Value;
-//
-//            if (string.IsNullOrEmpty(json))
-//            {
-//                throw new Exception("在命令行中没有发现符合对象结构的json数据，结构为{json数据},不要树状的，不能换行，命令行：\n"+ Environment.CommandLine);
-//            }
-//
-//            Debug.Log("Json数据:"+json);
-//
-//            var info = JsonConvert.DeserializeObject<BuildSettingInfo>(json);
-//
-//            Debug.Log(info);
-//            return info;
-            return null;
-        }
-
-        #region Get Build Path 
-
-        static string GetIosBuildPath()
-        {
-            return "build/Ios";
-        }
-
-        static string GetAndroidPath()
-
-        {
-            return "build/Android.apk";
-        }
-
-        static string GetWindowsPath()
-        {
-            return "build/Win/Win.exe";
-        }
-
-        static string GetMacPath()
-        {
-            return "build/mac";
-        }
-
-        #endregion
-
-    }
-
-    public class BuildSettingInfo
-    {
-        public string Scences { get; set; }
-        public string PackName { get; set; }
-        public string Version { get; set; }
-        public string BundleVersionCode { get; set; }
-        public string AndroidSdkVersions { get; set; }
-        public string TargetSdkVersion { get; set; }
-        public string TargetDevice { get; set; }
-        public string Scriptingimplementation { get; set; }
-        public string ApiCompatibilityLevel { get; set; }
-        public bool InternetAccess { get; set; }
-        public bool Development { get; set; }
-        public bool ConnectProfiler { get; set; }
-        public bool ScriptsDebuggers { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("打包信息：\n" +
-                                 "构建场景：{0}\n" +
-                                 "包名：{1}\n" +
-                                 "版本：{2}\n" +
-                                 "代码版本：{3}\n" +
-                                 "Sdk版本：{4}\n" +
-                                 "目标sdk版本：{5}\n" +
-                                 "设备架构：{6}\n" +
-                                 "脚本运行环境：{7}\n" +
-                                 "APi兼容等级：{8}\n" +
-                                 "是否联网：{9}\n" +
-                                 "开发者模式：{10}\n" +
-                                 "使用性能分析器：{11}\n" +
-                                 "使用脚本调试器：{12}",Scences,PackName,Version,BundleVersionCode,
-                                 AndroidSdkVersions,TargetSdkVersion,TargetDevice,Scriptingimplementation,ApiCompatibilityLevel
-                                 ,InternetAccess,Development,ConnectProfiler,ScriptsDebuggers);
-        }
     }
 
 }
