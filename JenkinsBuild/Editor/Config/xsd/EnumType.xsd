@@ -15,6 +15,25 @@
   </xsd:simpleType>
 
   <xsd:complexType name="TargetDeviceEnum">
+    <xsd:choice>
+      <xsd:element name="AndroidTargetDevice" default="FAT">
+        <xsd:simpleType>
+          <xsd:restriction base="AndroidTargetDeviceEnum"/>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="IOSTargetDevice" default="iPhoneOnly">
+        <xsd:simpleType>
+          <xsd:restriction base="IOSTargetDeviceEnum"/>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:choice>
+  </xsd:complexType>
+  <!--注释的代码，"~%?…,# *'☆&℃$︿★?"-->
+<!--  <xsd:attributeGroup name="TargetDeviceEnumAttributeGroup">
+    <xsd:attribute name="Android" type="AndroidTargetDeviceEnum" default="FAT"/>
+    <xsd:attribute name="IOS" type="IOSTargetDeviceEnum" default="iPhoneOnly" />
+  </xsd:attributeGroup>
+  <xsd:group name="TargetDeviceEnum">
     <xsd:all>
       <xsd:element name="AndroidTargetDevice">
         <xsd:simpleType>
@@ -27,26 +46,13 @@
         </xsd:simpleType>
       </xsd:element>
     </xsd:all>
-  </xsd:complexType>
-  <xsd:attributeGroup name="TargetDeviceEnumAttributeGroup">
-    <xsd:attribute name="Android" type="AndroidTargetDeviceEnum" default="FAT"/>
-    <xsd:attribute name="IOS" type="IOSTargetDeviceEnum" default="iPhoneOnly"/>
-  </xsd:attributeGroup>
-<!--  <xsd:group name="TargetDeviceEnum">-->
-<!--    <xsd:all>-->
-<!--      <xsd:element name="AndroidTargetDevice">-->
-<!--        <xsd:simpleType>-->
-<!--          <xsd:restriction base="AndroidTargetDeviceEnum"/>-->
-<!--        </xsd:simpleType>-->
-<!--      </xsd:element>-->
-<!--      <xsd:element name="IOSTargetDevice">-->
-<!--        <xsd:simpleType>-->
-<!--          <xsd:restriction base="IOSTargetDeviceEnum"/>-->
-<!--        </xsd:simpleType>-->
-<!--      </xsd:element>-->
-<!--    </xsd:all>-->
-<!--  </xsd:group>-->
-  
+  </xsd:group>
+  <xsd:complexType name="TargetDeviceEnum">
+    <xsd:choice>
+      <xsd:element name="Android" type="AndroidTargetDeviceEnum" default="FAT"/>
+      <xsd:element name="IOS" type="IOSTargetDeviceEnum" default="iPhoneOnly"/>
+    </xsd:choice>
+  </xsd:complexType>-->
   <!--安卓设备架构 枚举-->
   <xsd:simpleType name="AndroidTargetDeviceEnum">
     <xsd:restriction base="xsd:string">

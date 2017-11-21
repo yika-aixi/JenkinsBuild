@@ -78,16 +78,23 @@
           </xs:complexType>
         </xs:element>
         
+        <!--<xs:element name="TargetDevices">
+          <xs:complexType>
+            <xs:attribute name="explain" type="xs:string" use="optional" />
+            <xs:attributeGroup ref="TargetDeviceEnumAttributeGroup"/>
+          </xs:complexType>
+        </xs:element>-->
+
         <xs:element name="TargetDevices">
           <xs:complexType>
             <xs:complexContent>
               <xs:extension base="TargetDeviceEnum">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attributeGroup ref="TargetDeviceEnumAttributeGroup"/>
+                <xs:attribute name="explain" type="xs:string" use="optional"/>
               </xs:extension>
             </xs:complexContent>
           </xs:complexType>
         </xs:element>
+        
         
         <xs:element name="Scriptingimplementation" default="IL2CPP">
           <xs:complexType>
