@@ -13,12 +13,13 @@ namespace Jenkins
         public static List<string> Scenes = new List<string>();
         public static Dictionary<string,string> Config = new Dictionary<string, string>();
 
-//        [MenuItem("Jenkins/Test Xml")]
-//        public static void _TestXml()
-//        {
-//            _getXmlVale(
-//                @"I:\GitHubProject\JenkinsBuildTest\Assets\Plugins\JenkinsBuild\JenkinsBuild\Editor\Config\AndroidBuildInfo.config");
-//        }
+        [MenuItem("Jenkins/Test Xml")]
+        public static void _TestXml()
+        {
+            _getXmlVale(
+                @"E:\Project\JenkinsBuildTest\Assets\Plugins\JenkinsBuild\JenkinsBuild\Editor\Config\AndroidBuildInfo.config");
+            _setBuildAndroidInfo();
+        }
 
         /// <summary>
         /// 解析命令行传过来的xml
@@ -137,6 +138,11 @@ namespace Jenkins
                    : "没有描述"));
                 Scenes.Add(childNode.InnerText);
             }
+
+            if (Scenes.Count == 0)
+            {
+                throw new Exception("配置中没有发现场景配置项，打包失败！");
+            }
         }
 
         [MenuItem("Jenkins/JenkinsBuildAndroid")]
@@ -145,8 +151,13 @@ namespace Jenkins
             //解析XML
             XmlBuild();
             _setBuildAndroidInfo();
-            //todo 输出路径需要需改为读取配置而不是写死
-            var path = BuildPipeline.BuildPlayer(Scenes.ToArray(), Config[ConfigNodeConst.Path], BuildTarget.Android, BuildOptions.None);
+            string outPath;
+            Config.TryGetValue(ConfigNodeConst.Path, out outPath);
+            if(string.IsNullOrEmpty(outPath))
+            {
+                outPath = GetAndroidPath();
+            }
+            var path = BuildPipeline.BuildPlayer(Scenes.ToArray(), outPath, BuildTarget.Android, BuildOptions.None);
             Debug.Log("Build Complete Path:" + path);
         }
 
@@ -155,11 +166,29 @@ namespace Jenkins
         /// </summary>
         private static void _setBuildAndroidInfo()
         {
-            PlayerSettings.Android.bundleVersionCode = int.Parse(Config[ConfigNodeConst.BundleVersionCode]);
-            PlayerSettings.Android.minSdkVersion = _stringToEnum<AndroidSdkVersions>(Config[AndroidAndIosConfigNodeConfig.SdkVersions]);
-            PlayerSettings.Android.targetSdkVersion = _stringToEnum<AndroidSdkVersions>(Config[AndroidAndIosConfigNodeConfig.TargetSdkVersion]);
-            PlayerSettings.Android.targetDevice = _stringToEnum<AndroidTargetDevice>(Config[AndroidAndIosConfigNodeConfig.TargetDevice]);
-            PlayerSettings.Android.forceInternetPermission = bool.Parse(Config[AndroidConfigNodeConst.InternetAccess]);
+            if (Config.ContainsKey(AndroidConfigNodeConst.BundleVersionCode))
+            {
+                PlayerSettings.Android.bundleVersionCode = int.Parse(Config[ConfigNodeConst.BundleVersionCode]);
+            }
+            if (Config.ContainsKey(AndroidConfigNodeConst.SdkVersions))
+            {
+                PlayerSettings.Android.minSdkVersion = _stringToEnum<AndroidSdkVersions>(Config[AndroidAndIosConfigNodeConfig.SdkVersions]);
+            }
+            if (Config.ContainsKey(AndroidConfigNodeConst.TargetSdkVersion))
+            {
+                PlayerSettings.Android.targetSdkVersion =
+                    _stringToEnum<AndroidSdkVersions>(Config[AndroidAndIosConfigNodeConfig.TargetSdkVersion]);
+            }
+            if (Config.ContainsKey(AndroidConfigNodeConst.TargetDevice))
+            {
+                PlayerSettings.Android.targetDevice =
+                    _stringToEnum<AndroidTargetDevice>(Config[AndroidAndIosConfigNodeConfig.TargetDevice]);
+            }
+            if (Config.ContainsKey(AndroidConfigNodeConst.InternetAccess))
+            {
+                PlayerSettings.Android.forceInternetPermission = bool.Parse(Config[AndroidConfigNodeConst.InternetAccess]);
+            }
+
             _setBuildInfo(BuildTargetGroup.Android);
         }
 
@@ -182,15 +211,43 @@ namespace Jenkins
         /// <param name="target"></param>
         private static void _setBuildInfo(BuildTargetGroup target)
         {
-            PlayerSettings.bundleVersion = Config[ConfigNodeConst.Version];
-            PlayerSettings.applicationIdentifier = Config[ConfigNodeConst.PackName];
-            PlayerSettings.SetScriptingBackend(target, _stringToEnum<ScriptingImplementation>(Config[ConfigNodeConst.Scriptingimplementation]));
-            PlayerSettings.SetApiCompatibilityLevel(target, _stringToEnum<ApiCompatibilityLevel>(Config[ConfigNodeConst.ApiCompatibilityLevel]));
-            
-            EditorUserBuildSettings.development = bool.Parse(Config[ConfigNodeConst.Development]);
-            EditorUserBuildSettings.connectProfiler = bool.Parse(Config[ConfigNodeConst.ConnectProfiler]);
-            EditorUserBuildSettings.allowDebugging = bool.Parse(Config[ConfigNodeConst.ScriptsDebuggers]);
+            if (Config.ContainsKey(ConfigNodeConst.Version))
+            {
+                PlayerSettings.bundleVersion = Config[ConfigNodeConst.Version];
+            }
 
+            if (Config.ContainsKey(ConfigNodeConst.PackName))
+            {
+                PlayerSettings.applicationIdentifier = Config[ConfigNodeConst.PackName];
+            }
+
+            if (Config.ContainsKey(ConfigNodeConst.Scriptingimplementation))
+            {
+                PlayerSettings.SetScriptingBackend(target,
+                    _stringToEnum<ScriptingImplementation>(Config[ConfigNodeConst.Scriptingimplementation]));
+
+            }
+
+            if (Config.ContainsKey(ConfigNodeConst.ApiCompatibilityLevel))
+            {
+                PlayerSettings.SetApiCompatibilityLevel(target,
+                    _stringToEnum<ApiCompatibilityLevel>(Config[ConfigNodeConst.ApiCompatibilityLevel]));
+            }
+
+            if (Config.ContainsKey(ConfigNodeConst.Development))
+            {
+                EditorUserBuildSettings.development = bool.Parse(Config[ConfigNodeConst.Development]);
+            }
+
+            if (Config.ContainsKey(ConfigNodeConst.ConnectProfiler))
+            {
+                EditorUserBuildSettings.connectProfiler = bool.Parse(Config[ConfigNodeConst.ConnectProfiler]);
+            }
+
+            if (Config.ContainsKey(ConfigNodeConst.ScriptsDebuggers))
+            {
+                EditorUserBuildSettings.allowDebugging = bool.Parse(Config[ConfigNodeConst.ScriptsDebuggers]);
+            }
         }
 
        
@@ -199,19 +256,44 @@ namespace Jenkins
             return (T)Enum.Parse(typeof(T), value);
         }
 
-//        [MenuItem("Jenkins/JenkinsBuildIos")]
-//        public static void CommandLineBuildIos()
-//        {
-////            BuildPipeline.BuildPlayer(_analysisLineArgs(), GetIosBuildPath(), BuildTarget.iOS, BuildOptions.None);
-//            Debug.Log("Build Complete Path:" + GetIosBuildPath());
-//        }
+        //        [MenuItem("Jenkins/JenkinsBuildIos")]
+        //        public static void CommandLineBuildIos()
+        //        {
+        ////            BuildPipeline.BuildPlayer(_analysisLineArgs(), GetIosBuildPath(), BuildTarget.iOS, BuildOptions.None);
+        //            Debug.Log("Build Complete Path:" + GetIosBuildPath());
+        //        }
 
-//        [MenuItem("Jenkins/JenkinsBuildWindows")]
-//        public static void CommandLineBuildWin()
-//        {
-////            BuildPipeline.BuildPlayer(_analysisLineArgs(), GetWindowsPath(), BuildTarget.StandaloneWindows, BuildOptions.None);
-//            Debug.Log("Build Complete Path:" + GetWindowsPath());
-//        }
+        //        [MenuItem("Jenkins/JenkinsBuildWindows")]
+        //        public static void CommandLineBuildWin()
+        //        {
+        ////            BuildPipeline.BuildPlayer(_analysisLineArgs(), GetWindowsPath(), BuildTarget.StandaloneWindows, BuildOptions.None);
+        //            Debug.Log("Build Complete Path:" + GetWindowsPath());
+        //        }
+
+        #region Get Build Path 
+
+        static string GetIosBuildPath()
+        {
+            return "build/Ios";
+        }
+
+        static string GetAndroidPath()
+
+        {
+            return "build/Android.apk";
+        }
+
+        static string GetWindowsPath()
+        {
+            return "build/Win/Win.exe";
+        }
+
+        static string GetMacPath()
+        {
+            return "build/mac";
+        }
+
+        #endregion
 
     }
 
