@@ -17,8 +17,17 @@ namespace Jenkins
             {
                 outPath = GetAndroidPath();
             }
-            var path = BuildPipeline.BuildPlayer(Scenes.ToArray(), outPath, BuildTarget.Android, BuildOptions.None);
-            Console.WriteLine ("Build Complete Path:" + path);
+            var error = BuildPipeline.BuildPlayer(Scenes.ToArray(), outPath, BuildTarget.Android, BuildOptions.None);
+            if (string.IsNullOrEmpty(error))
+            {
+                Console.WriteLine ("Build Complete Path:" + outPath);
+                EditorApplication.Exit(0);
+            }
+            else
+            {
+                Console.WriteLine("Build Error:" + error);
+                EditorApplication.Exit(0);
+            }
         }
 
         //        public static void CommandLineBuildIos()
