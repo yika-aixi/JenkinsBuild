@@ -158,14 +158,11 @@
           </xs:complexType>
         </xs:element>
         <xs:element name="Path">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:string">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="xs:string" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="(\w:\\)?(\w*\\)*\w+\.apk|(\w:\\)?(\w*\\)*\w+\.exe|(\w:\\)?(\w*\\)*\w*"/>
+            </xs:restriction>
+          </xs:simpleType>
         </xs:element>
       </xs:sequence>
     </xs:complexType>
