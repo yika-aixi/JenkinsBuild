@@ -32,12 +32,18 @@ namespace Jenkins
 	        {
 	            PlayerSettings.Android.forceInternetPermission = bool.Parse(Config[AndroidConfigNodeConst.InternetAccess]);
 	        }
+
 	        if (Config.ContainsKey(AndroidConfigNodeConst.AndroidBuildSystem))
 	        {
 	            EditorUserBuildSettings.androidBuildSystem = _stringToEnum<AndroidBuildSystem>(Config[AndroidConfigNodeConst.AndroidBuildSystem]);
 	        }
 
-	        _setBuildInfo(BuildTargetGroup.Android);
+	        if (Config.ContainsKey(AndroidConfigNodeConst.AndroidBuildSystem))
+	        {
+	            EditorUserBuildSettings.androidBuildSubtarget = _stringToEnum<MobileTextureSubtarget>(Config[AndroidConfigNodeConst.TextureCompression]);
+	        }
+
+            _setBuildInfo(BuildTargetGroup.Android);
 	    }
     }
 }

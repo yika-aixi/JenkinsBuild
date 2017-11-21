@@ -90,6 +90,11 @@
         /// 打包系统
         /// </summary>
         public const string AndroidBuildSystem = "AndroidBuildSystem";
+
+        /// <summary>
+        /// 贴图压缩
+        /// </summary>
+        public const string TextureCompression = "TextureCompression";
     }
 
     /// <inheritdoc />
