@@ -13,13 +13,13 @@ namespace Jenkins
         public static List<string> Scenes = new List<string>();
         public static Dictionary<string,string> Config = new Dictionary<string, string>();
 
-        [MenuItem("Jenkins/Test Xml")]
-        public static void _TestXml()
-        {
-            _getXmlVale(
-                @"E:\Project\JenkinsBuildTest\Assets\Plugins\JenkinsBuild\JenkinsBuild\Editor\Config\AndroidBuildInfo.config");
-            _setBuildAndroidInfo();
-        }
+//        [MenuItem("Jenkins/Test Xml")]
+//        public static void _TestXml()
+//        {
+//            _getXmlVale(
+//                @"E:\Project\JenkinsBuildTest\Assets\Plugins\JenkinsBuild\JenkinsBuild\Editor\Config\AndroidBuildInfo.config");
+//            _setBuildAndroidInfo();
+//        }
 
         /// <summary>
         /// 解析命令行传过来的xml
@@ -27,10 +27,10 @@ namespace Jenkins
         public static void XmlBuild()
         {
 
-            Debug.Log("命令行参数个数:"+ Environment.GetCommandLineArgs().Length);
+            Console.WriteLine("命令行参数个数:"+ Environment.GetCommandLineArgs().Length);
             foreach (var arg in Environment.GetCommandLineArgs())
             {
-                Debug.Log("参数:"+arg);
+                Console.WriteLine("参数:"+arg);
             }
             var count = Environment.GetCommandLineArgs().Length;
             _getXmlVale(Environment.GetCommandLineArgs()[count - 1]);
@@ -50,7 +50,7 @@ namespace Jenkins
             _getOther(root);
             foreach (var pair in Config)
             {
-                Debug.Log("xml配置:key=" + pair.Key + ", Value=" + pair.Value);
+                Console.WriteLine("xml配置:key=" + pair.Key + ", Value=" + pair.Value);
             }
         }
 
@@ -128,7 +128,7 @@ namespace Jenkins
             {
                 //explain="入口场景"
                 var attributes = childNode.Attributes;
-                Debug.Log("场景:" + childNode.InnerText + "描述:" +
+                Console.WriteLine("场景:" + childNode.InnerText + "描述:" +
                     (
                     attributes != null
                         ?
@@ -158,7 +158,7 @@ namespace Jenkins
                 outPath = GetAndroidPath();
             }
             var path = BuildPipeline.BuildPlayer(Scenes.ToArray(), outPath, BuildTarget.Android, BuildOptions.None);
-            Debug.Log("Build Complete Path:" + path);
+            Console.WriteLine ("Build Complete Path:" + path);
         }
 
         /// <summary>
