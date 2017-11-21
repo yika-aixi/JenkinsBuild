@@ -4,11 +4,13 @@ Jnekins使用教程:http://blog.csdn.net/yikalyosi/article/details/74616542
 
 文章对你有帮助记得点个赞噢,谢谢o(*￣▽￣*)ブ
 
+目前XML的约定文件xsd会经常变动
+
 Jenkins打包
  
  配置优先级:xml->json
  
-  xml -- 完成
+  xml -- 基本完成，在完善
   
   json -- 未开始
   
