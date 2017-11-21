@@ -71,6 +71,7 @@ namespace Jenkins
                 if (node.Name == AndroidAndIosConfigNodeConfig.TargetDevice)
                 {
                     _getTargetDevice(node);
+                    continue;
                 }
 
                 string value = node.InnerText;

@@ -11,6 +11,10 @@ namespace Jenkins
             _getXmlVale(
                 @"I:\GitHubProject\JenkinsBuildTest\Assets\Plugins\JenkinsBuild\JenkinsBuild\Editor\Config\AndroidBuildInfo.config");
             _setBuildAndroidInfo();
+            foreach (var pair in Config)
+            {
+                UnityEngine.Debug.Log("xml配置:key=" + pair.Key + ", Value=" + pair.Value);
+            }
         }
 
         static T _stringToEnum<T>(string value)
