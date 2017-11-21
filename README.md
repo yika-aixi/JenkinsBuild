@@ -37,10 +37,10 @@ Jenkisn所需插件 
 修改扩展:
   首先AndroidBuildInfo.config配置文件有1个约定格式的xsd文件名为"BuildInfo.xsd",其中还有一个是"EnumType.xsd"
    他们的关系:
-      AndroidBuildInfo.config依赖->AndroidBuildInfo.xsd
-      AndroidBuildInfo.xsd依赖-> EnumType.xsd
+      AndroidBuildInfo.config依赖->BuildInfo.xsd
+      BuildInfo.xsd依赖-> EnumType.xsd
   2个xsd负责的事情:
-    AndroidBuildInfo.xsd 负责的就是约定xxx.config文件中的规范,要增删改内容,首先需要修改AndroidBuildInfo.xsd文件,然后在修改xxx.config,这样能避免大部分的错误,但同时,如果xsd编写错误也将会带来错误~
+    BuildInfo.xsd 负责的就是约定xxx.config文件中的规范,要增删改内容,首先需要修改BuildInfo.xsd文件,然后在修改xxx.config,这样能避免大部分的错误,但同时,如果xsd编写错误也将会带来错误~
     在代码中我是通过常量来获取标签,然后取配置进行修改
         脚本分别为:ConfigNodeConst.cs,XmlAttributeConst.cs
     EnumType.xsd 负责的就是约定打包设置中必要约定的枚举类型的值,如果不约定手写太难,所以事先约定好,这样就极大的避免了枚举转换失败的问题,需要增加选择类型的打包选项可以在这里增加,语法复制我写好的一份修改就行~
