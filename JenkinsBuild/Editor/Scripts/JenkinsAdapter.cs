@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Xml;
-using Jenkins.XmlConst;
+﻿using Jenkins.XmlConst;
+using System;
 using UnityEditor;
-using UnityEngine;
 
 namespace Jenkins
 {
