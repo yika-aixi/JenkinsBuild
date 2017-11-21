@@ -107,7 +107,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="InternetAccess" default="true">
+        <xs:element name="InternetAccess" default="true" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:boolean">
