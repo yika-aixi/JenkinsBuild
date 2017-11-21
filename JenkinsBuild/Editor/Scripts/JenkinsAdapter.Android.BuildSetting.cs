@@ -43,6 +43,13 @@ namespace Jenkins
 	            EditorUserBuildSettings.androidBuildSubtarget = _stringToEnum<MobileTextureSubtarget>(Config[AndroidConfigNodeConst.TextureCompression]);
 	        }
 
+#if UNITY_2017
+	        if (Config.ContainsKey(AndroidConfigNodeConst.AndroidBuildSystem))
+	        {
+	            EditorUserBuildSettings.androidETC2Fallback = _stringToEnum<AndroidETC2Fallback>(Config[AndroidConfigNodeConst.ETC2Fallback]);
+	        }
+#endif
+
             _setBuildInfo(BuildTargetGroup.Android);
 	    }
     }

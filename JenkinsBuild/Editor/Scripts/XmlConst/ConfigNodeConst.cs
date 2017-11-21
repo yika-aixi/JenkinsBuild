@@ -95,6 +95,11 @@
         /// 贴图压缩
         /// </summary>
         public const string TextureCompression = "TextureCompression";
+
+        /// <summary>
+        /// 安卓设备不支持ETC压缩格式时的处理方式
+        /// </summary>
+        public const string ETC2Fallback = "ETC2Fallback";
     }
 
     /// <inheritdoc />

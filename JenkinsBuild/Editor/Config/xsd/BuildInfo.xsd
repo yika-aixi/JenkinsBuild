@@ -1,15 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:include schemaLocation="EnumType.xsd"/>
-  <xs:simpleType name="ApiCompatibilityLevel">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="NET_2_0"/>
-      <xs:enumeration value="NET_2_0_Subset"/>
-    </xs:restriction>
-  </xs:simpleType>
   <xs:element name="BuildInfo">
     <xs:complexType>
-      <xs:sequence>
+      <xs:all>
+        
         <xs:element name="Scences">
           <xs:complexType>
             <xs:sequence>
@@ -26,6 +21,7 @@
             <xs:attribute name="explain" type="xs:string" use="optional" />
           </xs:complexType>
         </xs:element>
+        
         <xs:element name="PackName">
           <xs:complexType>
             <xs:simpleContent>
@@ -35,6 +31,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
+        
         <xs:element name="Version">
           <xs:complexType>
             <xs:simpleContent>
@@ -44,6 +41,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
+        
         <xs:element name="BundleVersionCode">
           <xs:complexType>
             <xs:simpleContent>
@@ -53,6 +51,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
+        
         <xs:element name="SdkVersions" default="0">
           <xs:complexType>
             <xs:simpleContent>
@@ -65,6 +64,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
+        
         <xs:element name="TargetSdkVersion" default="0">
           <xs:complexType>
             <xs:simpleContent>
@@ -77,16 +77,18 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TargetDevices" default="ARMv7">
+        
+        <xs:element name="TargetDevices">
           <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="AndroidTargetDeviceEnum">
+            <xs:complexContent>
+              <xs:extension base="TargetDeviceEnum">
                 <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="AndroidTargetDeviceEnum" use="optional" default="ARMv7" />
+                <xs:attributeGroup ref="TargetDeviceEnumAttributeGroup"/>
               </xs:extension>
-            </xs:simpleContent>
+            </xs:complexContent>
           </xs:complexType>
         </xs:element>
+        
         <xs:element name="Scriptingimplementation" default="IL2CPP">
           <xs:complexType>
             <xs:simpleContent>
@@ -97,6 +99,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
+        
         <xs:element name="ApiCompatibilityLevel" default="NET_2_0_Subset">
           <xs:complexType>
             <xs:simpleContent>
@@ -107,6 +110,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
+        
         <xs:element name="InternetAccess" default="true" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
@@ -117,6 +121,18 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
+        
+        <xs:element name="TextureCompression" default="Generic" minOccurs="0">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="MobileTextureSubtargetEnum">
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="MobileTextureSubtargetEnum" use="optional" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        
         <xs:element name="AndroidBuildSystem" default="Internal" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
@@ -127,6 +143,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
+        
         <xs:element name="Development" default="false">
           <xs:complexType>
             <xs:simpleContent>
@@ -137,6 +154,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
+        
         <xs:element name="ConnectProfiler" default="false">
           <xs:complexType>
             <xs:simpleContent>
@@ -147,6 +165,7 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
+        
         <xs:element name="ScriptsDebuggers" default="false">
           <xs:complexType>
             <xs:simpleContent>
@@ -157,14 +176,29 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
+        
         <xs:element name="Path">
-          <xs:simpleType>
-            <xs:restriction base="xs:string">
-              <xs:pattern value="(\w:\\)?(\w*\\)*\w+\.apk|(\w:\\)?(\w*\\)*\w+\.exe|(\w:\\)?(\w*\\)*\w*"/>
-            </xs:restriction>
-          </xs:simpleType>
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="Path">
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
         </xs:element>
-      </xs:sequence>
+        
+        <xs:element name="ETC2Fallback" default="Quality32Bit" minOccurs="0">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="AndroidETC2FallbackEnum">
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="AndroidETC2FallbackEnum" use="optional" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        
+      </xs:all>
     </xs:complexType>
   </xs:element>
 </xs:schema>
