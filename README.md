@@ -31,9 +31,11 @@ Jenkisn所需插件 
     库中的JenkinsProjectConfig目录下的Config.xml是Jenkins测试项目,复制到"xxx\Jenkins\jobs\项目名"目录中然后在Jenkins设置中点击 "	
 读取设置" 即可看到项目
 
+使用约定：
+  用VS来编辑xml，在菜单栏的“XML”里面的“架构”，点击添加找到BuildInfo.xsd就可以使用
 
 修改扩展:
-  首先AndroidBuildInfo.config配置文件有1个约定格式的xsd文件名为"AndroidBuildInfo.xsd",其中还有一个是"EnumType.xsd"
+  首先AndroidBuildInfo.config配置文件有1个约定格式的xsd文件名为"BuildInfo.xsd",其中还有一个是"EnumType.xsd"
    他们的关系:
       AndroidBuildInfo.config依赖->AndroidBuildInfo.xsd
       AndroidBuildInfo.xsd依赖-> EnumType.xsd
