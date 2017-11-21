@@ -85,6 +85,11 @@
         /// 联网
         /// </summary>
         public const string InternetAccess = "InternetAccess";
+
+        /// <summary>
+        /// 打包系统
+        /// </summary>
+        public const string AndroidBuildSystem = "AndroidBuildSystem";
     }
 
     /// <inheritdoc />

@@ -21,4 +21,12 @@
       <xsd:enumeration value="x86" />
     </xsd:restriction>
   </xsd:simpleType>
+  <!--安卓打包系统 枚举-->
+  <xsd:simpleType name="AndroidBuildSystemEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Internal" />
+      <xsd:enumeration value="Gradle" />
+      <xsd:enumeration value="ADT" />
+    </xsd:restriction>
+  </xsd:simpleType>
 </xsd:schema>

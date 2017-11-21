@@ -145,7 +145,6 @@ namespace Jenkins
             }
         }
 
-        [MenuItem("Jenkins/JenkinsBuildAndroid")]
         public static void CommandLineXmlBuildAndroid()
         {
             //解析XML
@@ -187,6 +186,10 @@ namespace Jenkins
             if (Config.ContainsKey(AndroidConfigNodeConst.InternetAccess))
             {
                 PlayerSettings.Android.forceInternetPermission = bool.Parse(Config[AndroidConfigNodeConst.InternetAccess]);
+            }
+            if (Config.ContainsKey(AndroidConfigNodeConst.AndroidBuildSystem))
+            {
+                EditorUserBuildSettings.androidBuildSystem = _stringToEnum <AndroidBuildSystem>(Config[AndroidConfigNodeConst.AndroidBuildSystem]);
             }
 
             _setBuildInfo(BuildTargetGroup.Android);

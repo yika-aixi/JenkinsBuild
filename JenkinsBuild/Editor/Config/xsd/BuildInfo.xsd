@@ -23,14 +23,14 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="explain" type="xs:string" use="required" />
+            <xs:attribute name="explain" type="xs:string" use="optional" />
           </xs:complexType>
         </xs:element>
         <xs:element name="PackName">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:string">
-                <xs:attribute name="explain" type="xs:string" use="required" />
+                <xs:attribute name="explain" type="xs:string" use="optional" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -39,7 +39,7 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:string">
-                <xs:attribute name="explain" type="xs:string" use="required" />
+                <xs:attribute name="explain" type="xs:string" use="optional" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -48,7 +48,7 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:unsignedByte">
-                <xs:attribute name="explain" type="xs:string" use="required" />
+                <xs:attribute name="explain" type="xs:string" use="optional" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -57,7 +57,7 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:int">
-                <xs:attribute name="explain" type="xs:string" use="required" />
+                <xs:attribute name="explain" type="xs:string" use="optional" />
                 <xs:attribute name="min" type="xs:int" use="required" />
                 <xs:attribute name="max" type="xs:int" use="required" />
                 <xs:attribute name="default" type="xs:int" use="required" />
@@ -69,7 +69,7 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:int">
-                <xs:attribute name="explain" type="xs:string" use="required" />
+                <xs:attribute name="explain" type="xs:string" use="optional" />
                 <xs:attribute name="min" type="xs:int" use="required" />
                 <xs:attribute name="max" type="xs:int" use="required" />
                 <xs:attribute name="default" type="xs:int" use="required" />
@@ -81,7 +81,7 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="AndroidTargetDeviceEnum">
-                <xs:attribute name="explain" type="xs:string" use="required" />
+                <xs:attribute name="explain" type="xs:string" use="optional" />
                 <xs:attribute name="default" type="AndroidTargetDeviceEnum" use="optional" default="ARMv7" />
               </xs:extension>
             </xs:simpleContent>
@@ -91,7 +91,7 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="ScriptingImplementationEnum">
-                <xs:attribute name="explain" type="xs:string" use="required" />
+                <xs:attribute name="explain" type="xs:string" use="optional" />
                 <xs:attribute name="default" type="ScriptingImplementationEnum" use="optional" default="IL2CPP" />
               </xs:extension>
             </xs:simpleContent>
@@ -101,7 +101,7 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="ApiCompatibilityLevelEnum">
-                <xs:attribute name="explain" type="xs:string" use="required" />
+                <xs:attribute name="explain" type="xs:string" use="optional" />
                 <xs:attribute name="default" type="ApiCompatibilityLevelEnum" use="optional" default="NET_2_0_Subset" />
               </xs:extension>
             </xs:simpleContent>
@@ -111,8 +111,18 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:boolean">
-                <xs:attribute name="explain" type="xs:string" use="required" />
-                <xs:attribute name="default" type="xs:boolean" use="required" />
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="xs:boolean" use="optional" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AndroidBuildSystem" default="Internal" minOccurs="0">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="AndroidBuildSystemEnum">
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="AndroidBuildSystemEnum" use="optional" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -121,8 +131,8 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:boolean">
-                <xs:attribute name="explain" type="xs:string" use="required" />
-                <xs:attribute name="default" type="xs:boolean" use="required" />
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="xs:boolean" use="optional" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -131,8 +141,8 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:boolean">
-                <xs:attribute name="explain" type="xs:string" use="required" />
-                <xs:attribute name="default" type="xs:boolean" use="required" />
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="xs:boolean" use="optional" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -141,8 +151,8 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:boolean">
-                <xs:attribute name="explain" type="xs:string" use="required" />
-                <xs:attribute name="default" type="xs:boolean" use="required" />
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="xs:boolean" use="optional" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -151,8 +161,8 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:string">
-                <xs:attribute name="explain" type="xs:string" use="required" />
-                <xs:attribute name="default" type="xs:string" use="required" />
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="xs:string" use="optional" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
