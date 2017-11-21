@@ -67,6 +67,12 @@ namespace Jenkins
                     _getSdkVersions(node);
                     continue;
                 }
+
+                if (node.Name == AndroidAndIosConfigNodeConfig.TargetDevice)
+                {
+                    _getTargetDevice(node);
+                }
+
                 string value = node.InnerText;
                 if (string.IsNullOrEmpty(node.InnerText))
                 {
@@ -74,6 +80,11 @@ namespace Jenkins
                 }
                 Config.Add(node.Name, value);
             }
+        }
+
+        private static void _getTargetDevice(XmlElement node)
+        {
+            Config.Add(node.Name, node.ChildNodes[0].InnerText);
         }
 
         /// <summary>

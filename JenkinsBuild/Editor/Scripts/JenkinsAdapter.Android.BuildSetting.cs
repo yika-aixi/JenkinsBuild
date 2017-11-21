@@ -38,13 +38,13 @@ namespace Jenkins
 	            EditorUserBuildSettings.androidBuildSystem = _stringToEnum<AndroidBuildSystem>(Config[AndroidConfigNodeConst.AndroidBuildSystem]);
 	        }
 
-	        if (Config.ContainsKey(AndroidConfigNodeConst.AndroidBuildSystem))
+	        if (Config.ContainsKey(AndroidConfigNodeConst.TextureCompression))
 	        {
 	            EditorUserBuildSettings.androidBuildSubtarget = _stringToEnum<MobileTextureSubtarget>(Config[AndroidConfigNodeConst.TextureCompression]);
 	        }
 
-#if UNITY_2017
-	        if (Config.ContainsKey(AndroidConfigNodeConst.AndroidBuildSystem))
+#if UNITY_2017_3
+	        if (Config.ContainsKey(AndroidConfigNodeConst.ETC2Fallback))
 	        {
 	            EditorUserBuildSettings.androidETC2Fallback = _stringToEnum<AndroidETC2Fallback>(Config[AndroidConfigNodeConst.ETC2Fallback]);
 	        }

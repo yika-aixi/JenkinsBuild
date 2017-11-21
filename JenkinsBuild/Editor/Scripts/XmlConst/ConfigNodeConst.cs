@@ -100,6 +100,11 @@
         /// 安卓设备不支持ETC压缩格式时的处理方式
         /// </summary>
         public const string ETC2Fallback = "ETC2Fallback";
+
+        /// <summary>
+        /// 安卓
+        /// </summary>
+        public const string Android = "Android";
     }
 
     /// <inheritdoc />
@@ -108,6 +113,9 @@
     /// </summary>
     public class IosConfigNodeConst: AndroidAndIosConfigNodeConfig
     {
-
+        /// <summary>
+        /// IOS
+        /// </summary>
+        public const string IOS = "IOS";
     }
 }
