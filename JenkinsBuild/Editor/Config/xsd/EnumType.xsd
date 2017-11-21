@@ -19,12 +19,12 @@
       <xsd:documentation>设备架构</xsd:documentation>
     </xsd:annotation>
     <xsd:choice>
-      <xsd:element name="Android" default="FAT">
+      <xsd:element name="Android">
         <xsd:simpleType>
           <xsd:restriction base="AndroidTargetDeviceEnum"/>
         </xsd:simpleType>
       </xsd:element>
-      <xsd:element name="IOS" default="iPhoneOnly">
+      <xsd:element name="IOS">
         <xsd:simpleType>
           <xsd:restriction base="IOSTargetDeviceEnum"/>
         </xsd:simpleType>

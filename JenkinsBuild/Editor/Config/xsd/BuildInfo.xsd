@@ -85,7 +85,7 @@
           </xs:complexType>
         </xs:element>-->
 
-        <xs:element name="TargetDevices">
+        <xs:element name="TargetDevice">
           <xs:complexType>
             <xs:complexContent>
               <xs:extension base="TargetDeviceEnum">
