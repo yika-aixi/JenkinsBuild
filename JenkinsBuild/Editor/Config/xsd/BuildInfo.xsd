@@ -85,15 +85,17 @@
           </xs:complexType>
         </xs:element>-->
 
-        <xs:element name="TargetDevice">
-          <xs:complexType>
+        <xs:element name="TargetDevice" type="ChildMountainBikeSizes" />
+          <!--<xs:complexType>
             <xs:complexContent>
               <xs:extension base="TargetDeviceEnum">
+                <
                 <xs:attribute name="explain" type="xs:string" use="optional"/>
+                <xs:attribute name="default" type="TargetDeviceEnum" use="optional" />
               </xs:extension>
             </xs:complexContent>
-          </xs:complexType>
-        </xs:element>
+          </xs:complexType>-->
+        
         
         
         <xs:element name="Scriptingimplementation" default="IL2CPP">
@@ -189,6 +191,7 @@
             <xs:simpleContent>
               <xs:extension base="Path">
                 <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="AndroidETC2FallbackEnum" use="optional" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -198,6 +201,17 @@
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="AndroidETC2FallbackEnum">
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="AndroidETC2FallbackEnum" use="optional" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="ScriptingDefineSymbols" minOccurs="0">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
                 <xs:attribute name="explain" type="xs:string" use="optional" />
                 <xs:attribute name="default" type="AndroidETC2FallbackEnum" use="optional" />
               </xs:extension>

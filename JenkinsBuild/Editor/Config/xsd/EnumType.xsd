@@ -14,23 +14,32 @@
     </xsd:restriction>
   </xsd:simpleType>
 
-  <xsd:complexType name="TargetDeviceEnum">
-    <xsd:annotation >
-      <xsd:documentation>设备架构</xsd:documentation>
-    </xsd:annotation>
-    <xsd:choice>
-      <xsd:element name="Android">
+<!--  <xsd:complexType name="TargetDeviceEnum">-->
+<!--    <xsd:annotation >-->
+<!--      <xsd:documentation>设备架构</xsd:documentation>-->
+<!--    </xsd:annotation>-->
+<!--    <xsd:simpleContent>-->
+<!--      <xsd:restriction base="AndroidTargetDeviceEnum">-->
+<!--        -->
+<!--      </xsd:restriction>-->
+    <!--  <xsd:extension base="xsd:string">
+        <xsd:attribute name="Android" type="AndroidTargetDeviceEnum" default="FAT"/>
+        <xsd:attribute name="IOS" type="IOSTargetDeviceEnum" default="iPhoneOnly"/>
+      </xsd:extension>-->
+<!--    </xsd:simpleContent>-->
+   <!-- <xsd:choice>
+      <xsd:element name="Android" default="FAT">
         <xsd:simpleType>
           <xsd:restriction base="AndroidTargetDeviceEnum"/>
         </xsd:simpleType>
       </xsd:element>
-      <xsd:element name="IOS">
+      <xsd:element name="IOS" default="iPhoneOnly">
         <xsd:simpleType>
           <xsd:restriction base="IOSTargetDeviceEnum"/>
         </xsd:simpleType>
       </xsd:element>
-    </xsd:choice>
-  </xsd:complexType>
+    </xsd:choice>-->
+<!--  </xsd:complexType>-->
   <!--注释的代码，"~%?…,# *'☆&℃$︿★?"-->
 <!--  <xsd:attributeGroup name="TargetDeviceEnumAttributeGroup">
     <xsd:attribute name="Android" type="AndroidTargetDeviceEnum" default="FAT"/>
@@ -56,6 +65,33 @@
       <xsd:element name="IOS" type="IOSTargetDeviceEnum" default="iPhoneOnly"/>
     </xsd:choice>
   </xsd:complexType>-->
+  
+  
+  <xsd:complexType name="FamilyMountainBikeSizes">
+    <xsd:simpleContent>
+      <xsd:extension base="mountainbikesize">
+        <xsd:attribute name="familyMember" type="xs:string" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ChildMountainBikeSizes">
+    <xsd:simpleContent>
+      <xsd:restriction base="FamilyMountainBikeSizes" >
+        <xsd:enumeration value="small"/>
+        <xsd:enumeration value="medium"/>
+      </xsd:restriction>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  
+  
+
+  <xsd:simpleType name="TargetDeviceEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:el
+    </xsd:restriction>
+  </xsd:simpleType>
+  
   <!--安卓设备架构 枚举-->
   <xsd:simpleType name="AndroidTargetDeviceEnum">
     <xsd:restriction base="xsd:string">
@@ -72,6 +108,23 @@
       <xsd:enumeration value="iPhoneAndiPad" />
     </xsd:restriction>
   </xsd:simpleType>
+  
+ <!-- ~1~安卓设备架构 枚举@1@
+  <xsd:simpleType name="AndroidTargetDeviceEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="FAT" />
+      <xsd:enumeration value="ARMv7" />
+      <xsd:enumeration value="x86" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  ~1~IOS设备架构 枚举@1@
+  <xsd:simpleType name="IOSTargetDeviceEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="iPhoneOnly" />
+      <xsd:enumeration value="iPadOnly" />
+      <xsd:enumeration value="iPhoneAndiPad" />
+    </xsd:restriction>
+  </xsd:simpleType>-->
   <!--安卓打包系统 枚举-->
   <xsd:simpleType name="AndroidBuildSystemEnum">
     <xsd:restriction base="xsd:string">
