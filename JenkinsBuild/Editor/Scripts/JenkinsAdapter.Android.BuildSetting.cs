@@ -12,41 +12,41 @@ namespace Jenkins
 	    {
 	        if (Config.ContainsKey(AndroidConfigNodeConst.BundleVersionCode))
 	        {
-	            PlayerSettings.Android.bundleVersionCode = int.Parse(Config[ConfigNodeConst.BundleVersionCode]);
+	            PlayerSettings.Android.bundleVersionCode = int.Parse(_getNodeValue(ConfigNodeConst.BundleVersionCode));
 	        }
 	        if (Config.ContainsKey(AndroidConfigNodeConst.SdkVersions))
 	        {
-	            PlayerSettings.Android.minSdkVersion = _stringToEnum<AndroidSdkVersions>(Config[AndroidAndIosConfigNodeConfig.SdkVersions]);
+	            PlayerSettings.Android.minSdkVersion = _stringToEnum<AndroidSdkVersions>(_getNodeValue(AndroidAndIosConfigNodeConfig.SdkVersions));
 	        }
 	        if (Config.ContainsKey(AndroidConfigNodeConst.TargetSdkVersion))
 	        {
 	            PlayerSettings.Android.targetSdkVersion =
-	                _stringToEnum<AndroidSdkVersions>(Config[AndroidAndIosConfigNodeConfig.TargetSdkVersion]);
+	                _stringToEnum<AndroidSdkVersions>(_getNodeValue(AndroidAndIosConfigNodeConfig.TargetSdkVersion));
 	        }
 	        if (Config.ContainsKey(AndroidConfigNodeConst.TargetDevice))
 	        {
 	            PlayerSettings.Android.targetDevice =
-	                _stringToEnum<AndroidTargetDevice>(Config[AndroidAndIosConfigNodeConfig.TargetDevice]);
+	                _stringToEnum<AndroidTargetDevice>(_getNodeValue(AndroidAndIosConfigNodeConfig.TargetDevice));
 	        }
 	        if (Config.ContainsKey(AndroidConfigNodeConst.InternetAccess))
 	        {
-	            PlayerSettings.Android.forceInternetPermission = bool.Parse(Config[AndroidConfigNodeConst.InternetAccess]);
+	            PlayerSettings.Android.forceInternetPermission = bool.Parse(_getNodeValue(AndroidConfigNodeConst.InternetAccess));
 	        }
 
 	        if (Config.ContainsKey(AndroidConfigNodeConst.AndroidBuildSystem))
 	        {
-	            EditorUserBuildSettings.androidBuildSystem = _stringToEnum<AndroidBuildSystem>(Config[AndroidConfigNodeConst.AndroidBuildSystem]);
+	            EditorUserBuildSettings.androidBuildSystem = _stringToEnum<AndroidBuildSystem>(_getNodeValue(AndroidConfigNodeConst.AndroidBuildSystem));
 	        }
 
 	        if (Config.ContainsKey(AndroidConfigNodeConst.TextureCompression))
 	        {
-	            EditorUserBuildSettings.androidBuildSubtarget = _stringToEnum<MobileTextureSubtarget>(Config[AndroidConfigNodeConst.TextureCompression]);
+	            EditorUserBuildSettings.androidBuildSubtarget = _stringToEnum<MobileTextureSubtarget>(_getNodeValue(AndroidConfigNodeConst.TextureCompression));
 	        }
 
 #if UNITY_2017_3
 	        if (Config.ContainsKey(AndroidConfigNodeConst.ETC2Fallback))
 	        {
-	            EditorUserBuildSettings.androidETC2Fallback = _stringToEnum<AndroidETC2Fallback>(Config[AndroidConfigNodeConst.ETC2Fallback]);
+	            EditorUserBuildSettings.androidETC2Fallback = _stringToEnum<AndroidETC2Fallback>(_getNodeValue(AndroidConfigNodeConst.ETC2Fallback));
 	        }
 #endif
 

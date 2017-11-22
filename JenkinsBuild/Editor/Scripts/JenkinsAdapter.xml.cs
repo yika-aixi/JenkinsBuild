@@ -12,7 +12,7 @@ namespace Jenkins
     {
         public static List<string> Scenes = new List<string>();
 
-        public static Dictionary<string, string> Config = new Dictionary<string, string>();
+        public static Dictionary<string, XmlNodeStruct> Config = new Dictionary<string, XmlNodeStruct>();
 
         /// <summary>
         /// 解析命令行传过来的xml
@@ -62,30 +62,37 @@ namespace Jenkins
                     continue;
                 }
 
-                if (node.Attributes.GetNamedItem(XmlAttributeConst.Min) != null)
+//                if (node.Attributes.GetNamedItem(XmlAttributeConst.Min) != null)
+//                {
+//                    _getSdkVersions(node);
+//                    continue;
+//                }
+//
+//                if (node.Name == AndroidAndIosConfigNodeConfig.TargetDevice)
+//                {
+//                    _getTargetDevice(node);
+//                    continue;
+//                }
+
+                var xmlstruct = new XmlNodeStruct
                 {
-                    _getSdkVersions(node);
-                    continue;
+                    XmlAttributes = new Dictionary<string, string>(),
+                };
+
+                foreach (XmlAttribute attribute in node.Attributes)
+                {
+                    xmlstruct.XmlAttributes.Add(attribute.Name,attribute.InnerText);
                 }
 
-                if (node.Name == AndroidAndIosConfigNodeConfig.TargetDevice)
-                {
-                    _getTargetDevice(node);
-                    continue;
-                }
-
-                string value = node.InnerText;
-                if (string.IsNullOrEmpty(node.InnerText))
-                {
-                    value = node.GetAttribute(XmlAttributeConst.Default);
-                }
-                Config.Add(node.Name, value);
+                xmlstruct.Value = node.InnerText;
+                
+                Config.Add(node.Name, xmlstruct);
             }
         }
 
         private static void _getTargetDevice(XmlElement node)
         {
-            Config.Add(node.Name, node.ChildNodes[0].InnerText);
+           // Config.Add(node.Name, node.ChildNodes[0].InnerText);
         }
 
         /// <summary>
@@ -119,7 +126,7 @@ namespace Jenkins
                     currenVersions = minVersions;
                 }
             }
-            Config.Add(node.Name, currenVersions.ToString());
+           // Config.Add(node.Name, currenVersions.ToString());
         }
 
         /// <summary>
@@ -152,16 +159,42 @@ namespace Jenkins
 
         static string _getOutPath(string defaultPath)
         {
-            string outPath;
+            XmlNodeStruct outPath;
 
             Config.TryGetValue(ConfigNodeConst.Path, out outPath);
 
-            if (string.IsNullOrEmpty(outPath))
+            if (outPath == null || string.IsNullOrEmpty(outPath.Value))
             {
-                outPath = defaultPath;
+                return defaultPath;
             }
 
-            return outPath;
+            return outPath.Value;
         }
+
+        static string _getNodeValue(string nodeName)
+        {
+            if (Config.ContainsKey(nodeName))
+            {
+                if (string.IsNullOrEmpty(Config[nodeName].Value))
+                {
+                    return Config[nodeName].XmlAttributes[XmlAttributeConst.Default];
+                }
+                else
+                {
+                    return Config[nodeName].Value;
+                }
+            }
+            else
+            {
+                throw new Exception("没有找到:"+ nodeName + "节点~");
+            }
+        }
+
+        public class XmlNodeStruct
+        {
+            public Dictionary<string, string> XmlAttributes;
+            public string Value;
+        }
+
     }
 }

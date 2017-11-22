@@ -1,4 +1,5 @@
 ﻿using System;
+using Jenkins.XmlConst;
 using UnityEditor;
 
 namespace Jenkins
@@ -9,11 +10,12 @@ namespace Jenkins
         public static void _TestXml()
         {
             _getXmlVale(
-                @"I:\GitHubProject\JenkinsBuildTest\Assets\Plugins\JenkinsBuild\JenkinsBuild\Editor\Config\AndroidBuildInfo.config");
+                @"E:\Project\JenkinsBuildTest\Assets\Plugins\JenkinsBuild\JenkinsBuild\Editor\Config\AndroidBuildInfo.config");
             _setBuildAndroidInfo();
             foreach (var pair in Config)
             {
-                UnityEngine.Debug.Log("xml配置:key=" + pair.Key + ", Value=" + pair.Value);
+                UnityEngine.Debug.Log("xml配置:key=" + pair.Key + ", Value=" + pair.Value.Value
+                    +"描述："+pair.Value.XmlAttributes[XmlAttributeConst.Explain]);
             }
         }
 

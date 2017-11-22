@@ -53,6 +53,8 @@
         /// 代码版本
         /// </summary>
         public const string BundleVersionCode = "BundleVersionCode";
+
+        public const string ScriptingDefineSymbols = "ScriptingDefineSymbols";
     }
 
     /// <inheritdoc />

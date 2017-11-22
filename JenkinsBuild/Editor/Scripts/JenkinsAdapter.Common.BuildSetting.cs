@@ -13,41 +13,47 @@ namespace Jenkins
         {
             if (Config.ContainsKey(ConfigNodeConst.Version))
             {
-                PlayerSettings.bundleVersion = Config[ConfigNodeConst.Version];
+                PlayerSettings.bundleVersion = _getNodeValue(ConfigNodeConst.Version);
             }
 
             if (Config.ContainsKey(ConfigNodeConst.PackName))
             {
-                PlayerSettings.applicationIdentifier = Config[ConfigNodeConst.PackName];
+                PlayerSettings.applicationIdentifier = _getNodeValue(ConfigNodeConst.PackName);
             }
 
             if (Config.ContainsKey(ConfigNodeConst.Scriptingimplementation))
             {
                 PlayerSettings.SetScriptingBackend(target,
-                    _stringToEnum<ScriptingImplementation>(Config[ConfigNodeConst.Scriptingimplementation]));
+                    _stringToEnum<ScriptingImplementation>(_getNodeValue(ConfigNodeConst.Scriptingimplementation)));
 
             }
 
             if (Config.ContainsKey(ConfigNodeConst.ApiCompatibilityLevel))
             {
                 PlayerSettings.SetApiCompatibilityLevel(target,
-                    _stringToEnum<ApiCompatibilityLevel>(Config[ConfigNodeConst.ApiCompatibilityLevel]));
+                    _stringToEnum<ApiCompatibilityLevel>(_getNodeValue(ConfigNodeConst.ApiCompatibilityLevel)));
             }
 
             if (Config.ContainsKey(ConfigNodeConst.Development))
             {
-                EditorUserBuildSettings.development = bool.Parse(Config[ConfigNodeConst.Development]);
+                EditorUserBuildSettings.development = bool.Parse(_getNodeValue(ConfigNodeConst.Development));
             }
 
             if (Config.ContainsKey(ConfigNodeConst.ConnectProfiler))
             {
-                EditorUserBuildSettings.connectProfiler = bool.Parse(Config[ConfigNodeConst.ConnectProfiler]);
+                EditorUserBuildSettings.connectProfiler = bool.Parse(_getNodeValue(ConfigNodeConst.ConnectProfiler));
             }
 
             if (Config.ContainsKey(ConfigNodeConst.ScriptsDebuggers))
             {
-                EditorUserBuildSettings.allowDebugging = bool.Parse(Config[ConfigNodeConst.ScriptsDebuggers]);
+                EditorUserBuildSettings.allowDebugging = bool.Parse(_getNodeValue(ConfigNodeConst.ScriptsDebuggers));
             }
+
+            if (Config.ContainsKey(ConfigNodeConst.ScriptingDefineSymbols))
+            {
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(target, _getNodeValue(ConfigNodeConst.ScriptingDefineSymbols));
+            }
+
         }
     }
 }
