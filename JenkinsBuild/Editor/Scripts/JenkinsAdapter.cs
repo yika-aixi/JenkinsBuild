@@ -11,36 +11,29 @@ namespace Jenkins
             //解析XML
             XmlBuild();
             _setBuildAndroidInfo();
-            string outPath;
-            Config.TryGetValue(ConfigNodeConst.Path, out outPath);
-            if(string.IsNullOrEmpty(outPath))
-            {
-                outPath = GetAndroidPath();
-            }
-            var error = BuildPipeline.BuildPlayer(Scenes.ToArray(), outPath, BuildTarget.Android, BuildOptions.None);
-            if (string.IsNullOrEmpty(error))
-            {
-                Console.WriteLine ("Build Complete Path:" + outPath);
-                EditorApplication.Exit(0);
-            }
-            else
-            {
-                Console.WriteLine("Build Error:" + error);
-                EditorApplication.Exit(0);
-            }
+            _build(BuildTarget.Android, GetAndroidPath());
         }
 
-        //        public static void CommandLineBuildIos()
-        //        {
-        ////            BuildPipeline.BuildPlayer(_analysisLineArgs(), GetIosBuildPath(), BuildTarget.iOS, BuildOptions.None);
-        //            Debug.Log("Build Complete Path:" + GetIosBuildPath());
-        //        }
+        public static void CommandLineXmlBuildIOS()
+        {
+            //解析XML
+            XmlBuild();
+            _setBuildIosInfo();
+            _build(BuildTarget.iOS, GetIosBuildPath());
+        }
 
         //        public static void CommandLineBuildWin()
         //        {
         ////            BuildPipeline.BuildPlayer(_analysisLineArgs(), GetWindowsPath(), BuildTarget.StandaloneWindows, BuildOptions.None);
         //            Debug.Log("Build Complete Path:" + GetWindowsPath());
         //        }
+
+        static void _build(BuildTarget target,string defaultPath)
+        {
+            var outPath = _getOutPath(defaultPath);
+            var error = BuildPipeline.BuildPlayer(Scenes.ToArray(), outPath, target, BuildOptions.None);
+            _executeComplete(error, outPath);
+        }
     }
 
 }

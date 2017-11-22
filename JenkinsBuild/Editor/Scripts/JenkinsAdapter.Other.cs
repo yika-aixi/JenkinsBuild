@@ -22,6 +22,20 @@ namespace Jenkins
             return (T)Enum.Parse(typeof(T), value);
         }
 
+        static void _executeComplete(string errorMessage,string outPath)
+        {
+            if (string.IsNullOrEmpty(errorMessage))
+            {
+                Console.WriteLine("Build Complete Path:" + outPath);
+                EditorApplication.Exit(0);
+            }
+            else
+            {
+                Console.WriteLine("Build Error:" + errorMessage);
+                EditorApplication.Exit(1);
+            }
+        }
+
         #region Get Build Path 
 
         static string GetIosBuildPath()

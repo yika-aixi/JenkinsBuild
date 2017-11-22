@@ -149,5 +149,19 @@ namespace Jenkins
                 throw new Exception("配置中没有发现场景配置项，打包失败！");
             }
         }
+
+        static string _getOutPath(string defaultPath)
+        {
+            string outPath;
+
+            Config.TryGetValue(ConfigNodeConst.Path, out outPath);
+
+            if (string.IsNullOrEmpty(outPath))
+            {
+                outPath = defaultPath;
+            }
+
+            return outPath;
+        }
     }
 }
