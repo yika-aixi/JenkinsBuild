@@ -15,23 +15,23 @@ namespace Jenkins
             {
                 PlayerSettings.bundleVersion = _getNodeValue(ConfigNodeConst.Version);
             }
-
+#if UNITY_5_6_OR_NEWER
             if (Config.ContainsKey(ConfigNodeConst.PackName))
             {
                 PlayerSettings.applicationIdentifier = _getNodeValue(ConfigNodeConst.PackName);
             }
+            if (Config.ContainsKey(ConfigNodeConst.ApiCompatibilityLevel))
+            {
+                PlayerSettings.SetApiCompatibilityLevel(target,
+                    _stringToEnum<ApiCompatibilityLevel>(_getNodeValue(ConfigNodeConst.ApiCompatibilityLevel)));
+            }
+#endif
 
             if (Config.ContainsKey(ConfigNodeConst.Scriptingimplementation))
             {
                 PlayerSettings.SetScriptingBackend(target,
                     _stringToEnum<ScriptingImplementation>(_getNodeValue(ConfigNodeConst.Scriptingimplementation)));
 
-            }
-
-            if (Config.ContainsKey(ConfigNodeConst.ApiCompatibilityLevel))
-            {
-                PlayerSettings.SetApiCompatibilityLevel(target,
-                    _stringToEnum<ApiCompatibilityLevel>(_getNodeValue(ConfigNodeConst.ApiCompatibilityLevel)));
             }
 
             if (Config.ContainsKey(ConfigNodeConst.Development))

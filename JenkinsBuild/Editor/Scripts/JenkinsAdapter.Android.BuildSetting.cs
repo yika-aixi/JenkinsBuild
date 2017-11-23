@@ -18,16 +18,16 @@ namespace Jenkins
 	        {
 	            PlayerSettings.Android.minSdkVersion = _stringToEnum<AndroidSdkVersions>(_getNodeValue(AndroidAndIosConfigNodeConfig.SdkVersions));
 	        }
+	        if (Config.ContainsKey(AndroidConfigNodeConst.AndroidTargetDevice))
+	        {
+	            PlayerSettings.Android.targetDevice =
+	                _stringToEnum<AndroidTargetDevice>(_getNodeValue(AndroidConfigNodeConst.AndroidTargetDevice));
+	        }
 #if UNITY_5_6_OR_NEWER
 	        if (Config.ContainsKey(AndroidConfigNodeConst.TargetSdkVersion))
 	        {
 	            PlayerSettings.Android.targetSdkVersion =
 	                _stringToEnum<AndroidSdkVersions>(_getNodeValue(AndroidAndIosConfigNodeConfig.TargetSdkVersion));
-	        }
-	        if (Config.ContainsKey(AndroidConfigNodeConst.AndroidTargetDevice))
-	        {
-	            PlayerSettings.Android.targetDevice =
-	                _stringToEnum<AndroidTargetDevice>(_getNodeValue(AndroidConfigNodeConst.AndroidTargetDevice));
 	        }
 #endif
             if (Config.ContainsKey(AndroidConfigNodeConst.InternetAccess))
