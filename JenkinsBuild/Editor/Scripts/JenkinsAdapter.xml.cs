@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using Jenkins.XmlConst;
+using UnityEditor;
 
 namespace Jenkins
 {
@@ -13,7 +15,7 @@ namespace Jenkins
         public static List<string> Scenes = new List<string>();
 
         public static Dictionary<string, XmlNodeStruct> Config = new Dictionary<string, XmlNodeStruct>();
-
+        private const string PathParameter = "-xmlPath";
         /// <summary>
         /// 解析命令行传过来的xml
         /// </summary>
@@ -21,12 +23,24 @@ namespace Jenkins
         {
 
             Console.WriteLine("命令行参数个数:" + Environment.GetCommandLineArgs().Length);
-            foreach (var arg in Environment.GetCommandLineArgs())
+            int index = -1;
+            var args = Environment.GetCommandLineArgs().ToList();
+            foreach (var arg in args)
             {
                 Console.WriteLine("参数:" + arg);
+                if (arg == PathParameter)
+                {
+                    index = args.IndexOf(arg);
+                }
             }
-            var count = Environment.GetCommandLineArgs().Length;
-            _getXmlVale(Environment.GetCommandLineArgs()[count - 1]);
+
+            if (index < 0)
+            {
+                Console.WriteLine("没有xml发现路径参数,构建失败~退出........");
+                EditorApplication.Exit(1);
+            }
+
+            _getXmlVale(Environment.GetCommandLineArgs()[index + 1]);
 
         }
 
