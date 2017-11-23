@@ -5,7 +5,7 @@
     <xs:complexType>
       <xs:all>
         
-        <xs:element name="Scences">
+        <xs:element name="Scences" minOccurs="0">
           <xs:complexType>
             <xs:sequence>
               <xs:element maxOccurs="unbounded" name="Scence">
