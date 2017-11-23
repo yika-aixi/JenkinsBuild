@@ -58,14 +58,14 @@
   <!--场景路径约束-->
   <xsd:simpleType name="ScencePath">
     <xsd:restriction base="xsd:string">
-      <xsd:pattern value="(\w:\\)?(\w*\\)*\w+\.unity"/>
+      <xsd:pattern value="(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+\.unity"/>
     </xsd:restriction>
   </xsd:simpleType>
   
   <!--输出路径约束-->
   <xsd:simpleType name="Path">
     <xsd:restriction base="xsd:string">
-      <xsd:pattern value="(\w:\\)?(\w*\\)*\w+\.apk|(\w:\\)?(\w*\\)*\w+\.exe|(\w:\\)?(\w*\\)*\w*"/>
+      <xsd:pattern value="(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+\.apk|(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+\.exe|(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*"/>
     </xsd:restriction>
   </xsd:simpleType>
   
