@@ -85,7 +85,7 @@ namespace Jenkins
         private static void _getScene(XmlElement xml)
         {
             var scences = xml.GetElementsByTagName(ConfigNodeConst.Scences);
-            foreach (XmlNode childNode in scences[0].ChildNodes)
+            foreach (XmlNode childNode in scences)
             {
                 //explain="入口场景"
                 var attributes = childNode.Attributes;
