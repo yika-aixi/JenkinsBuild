@@ -5,13 +5,13 @@
     <xs:complexType>
       <xs:all>
         
-        <xs:element name="Scences" minOccurs="0">
+        <xs:element name="Scences">
           <xs:complexType>
             <xs:sequence>
               <xs:element maxOccurs="unbounded" name="Scence">
                 <xs:complexType>
                   <xs:simpleContent>
-                    <xs:extension base="xs:string">
+                    <xs:extension base="ScencePath">
                       <xs:attribute name="explain" type="xs:string" use="optional" />
                     </xs:extension>
                   </xs:simpleContent>

@@ -55,7 +55,14 @@
     </xsd:restriction>
   </xsd:simpleType>
   
-  <!--路径约束-->
+  <!--场景路径约束-->
+  <xsd:simpleType name="ScencePath">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="(\w:\\)?(\w*\\)*\w+\.unity"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <!--输出路径约束-->
   <xsd:simpleType name="Path">
     <xsd:restriction base="xsd:string">
       <xsd:pattern value="(\w:\\)?(\w*\\)*\w+\.apk|(\w:\\)?(\w*\\)*\w+\.exe|(\w:\\)?(\w*\\)*\w*"/>
