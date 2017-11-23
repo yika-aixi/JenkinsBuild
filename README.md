@@ -4,7 +4,7 @@ Jnekins使用教程:http://blog.csdn.net/yikalyosi/article/details/74616542
 
 文章对你有帮助记得点个赞噢,谢谢o(*￣▽￣*)ブ
 
-目前XML的约定文件xsd会经常变动
+目前Master分支会经常变动，目前1.0分支可以使用，但是能修改的不是很多~
 
 Jenkins打包
  
@@ -14,7 +14,7 @@ Jenkins打包
   
   json -- 未开始
   
-Jenkisn所需插件  	
+Jenkisn所需插件，可选的，没有插件可以写shell或bat来调用  	
    Unity3d plugin
    
 使用方法:
@@ -44,7 +44,7 @@ Jenkisn所需插件 
   2个xsd负责的事情:
     BuildInfo.xsd 负责的就是约定xxx.config文件中的规范,要增删改内容,首先需要修改BuildInfo.xsd文件,然后在修改xxx.config,这样能避免大部分的错误,但同时,如果xsd编写错误也将会带来错误~
     在代码中我是通过常量来获取标签,然后取配置进行修改
-        脚本分别为:ConfigNodeConst.cs,XmlAttributeConst.cs
+        脚本分别为:ConfigNodeConst.cs,XmlAttributeConst.cs,JenkinsAdapter[.xxx].cs
     EnumType.xsd 负责的就是约定打包设置中必要约定的枚举类型的值,如果不约定手写太难,所以事先约定好,这样就极大的避免了枚举转换失败的问题,需要增加选择类型的打包选项可以在这里增加,语法复制我写好的一份修改就行~
     
-    最后修改JenkinsAdapter.cs脚本,这个基本里的函数会被Jenkins调用,同时解析xml,然后修改打包设置,等等一系列的操作,这个类后面会被分部话,不然体积会很庞大~
+    最后修改JenkinsAdapter[.*].cs脚本
