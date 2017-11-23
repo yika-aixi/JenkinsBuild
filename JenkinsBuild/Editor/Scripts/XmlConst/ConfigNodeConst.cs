@@ -64,10 +64,6 @@
     public class AndroidAndIosConfigNodeConfig : ConfigNodeConst
     {
         /// <summary>
-        /// 设备架构
-        /// </summary>
-        public const string TargetDevice = "TargetDevice";
-        /// <summary>
         /// SDK版本
         /// </summary>
         public const string SdkVersions = "SdkVersions";
@@ -83,6 +79,11 @@
     /// </summary>
     public class AndroidConfigNodeConst: AndroidAndIosConfigNodeConfig
     {
+        /// <summary>
+        /// 设备架构
+        /// </summary>
+        public const string AndroidTargetDevice = "AndroidTargetDevice";
+
         /// <summary>
         /// 联网
         /// </summary>
@@ -115,6 +116,11 @@
     /// </summary>
     public class IosConfigNodeConst: AndroidAndIosConfigNodeConfig
     {
+        /// <summary>
+        /// 设备架构
+        /// </summary>
+        public const string IOSTargetDevice = "IOSTargetDevice";
+
         /// <summary>
         /// IOS
         /// </summary>

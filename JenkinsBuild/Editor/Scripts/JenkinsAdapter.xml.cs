@@ -62,18 +62,6 @@ namespace Jenkins
                     continue;
                 }
 
-//                if (node.Attributes.GetNamedItem(XmlAttributeConst.Min) != null)
-//                {
-//                    _getSdkVersions(node);
-//                    continue;
-//                }
-//
-//                if (node.Name == AndroidAndIosConfigNodeConfig.TargetDevice)
-//                {
-//                    _getTargetDevice(node);
-//                    continue;
-//                }
-
                 var xmlstruct = new XmlNodeStruct
                 {
                     XmlAttributes = new Dictionary<string, string>(),
@@ -88,45 +76,6 @@ namespace Jenkins
                 
                 Config.Add(node.Name, xmlstruct);
             }
-        }
-
-        private static void _getTargetDevice(XmlElement node)
-        {
-           // Config.Add(node.Name, node.ChildNodes[0].InnerText);
-        }
-
-        /// <summary>
-        /// 特殊处理的sdk版本
-        /// </summary>
-        /// <param name="node"></param>
-        private static void _getSdkVersions(XmlElement node)
-        {
-            int minVersions = int.Parse(node.GetAttribute(XmlAttributeConst.Min));
-            int maxVersions = int.Parse(node.GetAttribute(XmlAttributeConst.Max));
-            int defaultVersions = int.Parse(node.GetAttribute(XmlAttributeConst.Default));
-
-            int currenVersions = 0;
-
-            if (string.IsNullOrEmpty(node.InnerText))
-            {
-                currenVersions = int.Parse(node.GetAttribute(XmlAttributeConst.Default));
-            }
-            //如果不是等于默认值的话就进行判断
-            if (currenVersions != defaultVersions)
-            {
-                //如果大于最大的版本设置为最大
-                if (currenVersions > maxVersions)
-                {
-                    currenVersions = maxVersions;
-                }
-
-                //如果小于最小版本设置成最小
-                if (currenVersions < minVersions)
-                {
-                    currenVersions = minVersions;
-                }
-            }
-           // Config.Add(node.Name, currenVersions.ToString());
         }
 
         /// <summary>

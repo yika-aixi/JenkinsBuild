@@ -22,11 +22,12 @@
           </xs:complexType>
         </xs:element>
         
-        <xs:element name="PackName">
+        <xs:element name="PackName" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:string">
                 <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="xs:int" use="optional" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
@@ -37,22 +38,24 @@
             <xs:simpleContent>
               <xs:extension base="xs:string">
                 <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="xs:int" use="optional" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
         
-        <xs:element name="BundleVersionCode">
+        <xs:element name="BundleVersionCode" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:unsignedByte">
                 <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="xs:int" use="optional" />
               </xs:extension>
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
         
-        <xs:element name="SdkVersions" default="0">
+        <xs:element name="SdkVersions" default="0" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:int">
@@ -65,7 +68,7 @@
           </xs:complexType>
         </xs:element>
         
-        <xs:element name="TargetSdkVersion" default="0">
+        <xs:element name="TargetSdkVersion" default="0" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:int">
@@ -77,28 +80,30 @@
             </xs:simpleContent>
           </xs:complexType>
         </xs:element>
-        
-        <!--<xs:element name="TargetDevices">
-          <xs:complexType>
-            <xs:attribute name="explain" type="xs:string" use="optional" />
-            <xs:attributeGroup ref="TargetDeviceEnumAttributeGroup"/>
-          </xs:complexType>
-        </xs:element>-->
 
-        <xs:element name="TargetDevice" type="ChildMountainBikeSizes" />
-          <!--<xs:complexType>
-            <xs:complexContent>
-              <xs:extension base="TargetDeviceEnum">
-                <
-                <xs:attribute name="explain" type="xs:string" use="optional"/>
-                <xs:attribute name="default" type="TargetDeviceEnum" use="optional" />
+        <xs:element name="IOSTargetDevice" minOccurs="0">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="IOSTargetDeviceEnum">
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="IOSTargetDeviceEnum" use="optional" />
               </xs:extension>
-            </xs:complexContent>
-          </xs:complexType>-->
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="AndroidTargetDevice" minOccurs="0">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="AndroidTargetDeviceEnum">
+                <xs:attribute name="explain" type="xs:string" use="optional" />
+                <xs:attribute name="default" type="AndroidTargetDeviceEnum" use="optional" />
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
         
-        
-        
-        <xs:element name="Scriptingimplementation" default="IL2CPP">
+        <xs:element name="Scriptingimplementation" default="IL2CPP" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="ScriptingImplementationEnum">
@@ -109,7 +114,7 @@
           </xs:complexType>
         </xs:element>
         
-        <xs:element name="ApiCompatibilityLevel" default="NET_2_0_Subset">
+        <xs:element name="ApiCompatibilityLevel" default="NET_2_0_Subset" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="ApiCompatibilityLevelEnum">
@@ -153,7 +158,7 @@
           </xs:complexType>
         </xs:element>
         
-        <xs:element name="Development" default="false">
+        <xs:element name="Development" default="false" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:boolean">
@@ -164,7 +169,7 @@
           </xs:complexType>
         </xs:element>
         
-        <xs:element name="ConnectProfiler" default="false">
+        <xs:element name="ConnectProfiler" default="false" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:boolean">
@@ -175,7 +180,7 @@
           </xs:complexType>
         </xs:element>
         
-        <xs:element name="ScriptsDebuggers" default="false">
+        <xs:element name="ScriptsDebuggers" default="false" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:boolean">
@@ -186,7 +191,7 @@
           </xs:complexType>
         </xs:element>
         
-        <xs:element name="Path">
+        <xs:element name="Path" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="Path">

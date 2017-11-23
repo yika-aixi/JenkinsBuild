@@ -6,7 +6,7 @@ namespace Jenkins
 {
     public partial class JenkinsAdapter
     {
-        [MenuItem("Jenkins/Test Xml")]
+        /*[MenuItem("Jenkins/Test Xml")]
         public static void _TestXml()
         {
             _getXmlVale(
@@ -17,7 +17,7 @@ namespace Jenkins
                 UnityEngine.Debug.Log("xml配置:key=" + pair.Key + ", Value=" + pair.Value.Value
                     +"描述："+pair.Value.XmlAttributes[XmlAttributeConst.Explain]);
             }
-        }
+        }*/
 
         static T _stringToEnum<T>(string value)
         {

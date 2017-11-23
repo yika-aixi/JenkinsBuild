@@ -6,89 +6,12 @@
       <xsd:enumeration value="NET_2_0_Subset" />
     </xsd:restriction>
   </xsd:simpleType>
+  
   <!--脚本运行环境 枚举-->
   <xsd:simpleType name="ScriptingImplementationEnum">
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="Mono2x" />
       <xsd:enumeration value="IL2CPP" />
-    </xsd:restriction>
-  </xsd:simpleType>
-
-<!--  <xsd:complexType name="TargetDeviceEnum">-->
-<!--    <xsd:annotation >-->
-<!--      <xsd:documentation>设备架构</xsd:documentation>-->
-<!--    </xsd:annotation>-->
-<!--    <xsd:simpleContent>-->
-<!--      <xsd:restriction base="AndroidTargetDeviceEnum">-->
-<!--        -->
-<!--      </xsd:restriction>-->
-    <!--  <xsd:extension base="xsd:string">
-        <xsd:attribute name="Android" type="AndroidTargetDeviceEnum" default="FAT"/>
-        <xsd:attribute name="IOS" type="IOSTargetDeviceEnum" default="iPhoneOnly"/>
-      </xsd:extension>-->
-<!--    </xsd:simpleContent>-->
-   <!-- <xsd:choice>
-      <xsd:element name="Android" default="FAT">
-        <xsd:simpleType>
-          <xsd:restriction base="AndroidTargetDeviceEnum"/>
-        </xsd:simpleType>
-      </xsd:element>
-      <xsd:element name="IOS" default="iPhoneOnly">
-        <xsd:simpleType>
-          <xsd:restriction base="IOSTargetDeviceEnum"/>
-        </xsd:simpleType>
-      </xsd:element>
-    </xsd:choice>-->
-<!--  </xsd:complexType>-->
-  <!--注释的代码，"~%?…,# *'☆&℃$︿★?"-->
-<!--  <xsd:attributeGroup name="TargetDeviceEnumAttributeGroup">
-    <xsd:attribute name="Android" type="AndroidTargetDeviceEnum" default="FAT"/>
-    <xsd:attribute name="IOS" type="IOSTargetDeviceEnum" default="iPhoneOnly" />
-  </xsd:attributeGroup>
-  <xsd:group name="TargetDeviceEnum">
-    <xsd:all>
-      <xsd:element name="AndroidTargetDevice">
-        <xsd:simpleType>
-          <xsd:restriction base="AndroidTargetDeviceEnum"/>
-        </xsd:simpleType>
-      </xsd:element>
-      <xsd:element name="IOSTargetDevice">
-        <xsd:simpleType>
-          <xsd:restriction base="IOSTargetDeviceEnum"/>
-        </xsd:simpleType>
-      </xsd:element>
-    </xsd:all>
-  </xsd:group>
-  <xsd:complexType name="TargetDeviceEnum">
-    <xsd:choice>
-      <xsd:element name="Android" type="AndroidTargetDeviceEnum" default="FAT"/>
-      <xsd:element name="IOS" type="IOSTargetDeviceEnum" default="iPhoneOnly"/>
-    </xsd:choice>
-  </xsd:complexType>-->
-  
-  
-  <xsd:complexType name="FamilyMountainBikeSizes">
-    <xsd:simpleContent>
-      <xsd:extension base="mountainbikesize">
-        <xsd:attribute name="familyMember" type="xs:string" />
-      </xsd:extension>
-    </xsd:simpleContent>
-  </xsd:complexType>
-
-  <xsd:complexType name="ChildMountainBikeSizes">
-    <xsd:simpleContent>
-      <xsd:restriction base="FamilyMountainBikeSizes" >
-        <xsd:enumeration value="small"/>
-        <xsd:enumeration value="medium"/>
-      </xsd:restriction>
-    </xsd:simpleContent>
-  </xsd:complexType>
-  
-  
-
-  <xsd:simpleType name="TargetDeviceEnum">
-    <xsd:restriction base="xsd:string">
-      <xsd:el
     </xsd:restriction>
   </xsd:simpleType>
   
@@ -100,6 +23,7 @@
       <xsd:enumeration value="x86" />
     </xsd:restriction>
   </xsd:simpleType>
+  
   <!--IOS设备架构 枚举-->
   <xsd:simpleType name="IOSTargetDeviceEnum">
     <xsd:restriction base="xsd:string">
@@ -109,22 +33,6 @@
     </xsd:restriction>
   </xsd:simpleType>
   
- <!-- ~1~安卓设备架构 枚举@1@
-  <xsd:simpleType name="AndroidTargetDeviceEnum">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="FAT" />
-      <xsd:enumeration value="ARMv7" />
-      <xsd:enumeration value="x86" />
-    </xsd:restriction>
-  </xsd:simpleType>
-  ~1~IOS设备架构 枚举@1@
-  <xsd:simpleType name="IOSTargetDeviceEnum">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="iPhoneOnly" />
-      <xsd:enumeration value="iPadOnly" />
-      <xsd:enumeration value="iPhoneAndiPad" />
-    </xsd:restriction>
-  </xsd:simpleType>-->
   <!--安卓打包系统 枚举-->
   <xsd:simpleType name="AndroidBuildSystemEnum">
     <xsd:restriction base="xsd:string">
@@ -133,6 +41,7 @@
       <xsd:enumeration value="ADT" />
     </xsd:restriction>
   </xsd:simpleType>
+  
   <!--安卓打包系统 枚举-->
   <xsd:simpleType name="MobileTextureSubtargetEnum">
     <xsd:restriction base="xsd:string">
@@ -145,12 +54,14 @@
       <xsd:enumeration value="ASTC" />
     </xsd:restriction>
   </xsd:simpleType>
+  
   <!--路径约束-->
   <xsd:simpleType name="Path">
     <xsd:restriction base="xsd:string">
       <xsd:pattern value="(\w:\\)?(\w*\\)*\w+\.apk|(\w:\\)?(\w*\\)*\w+\.exe|(\w:\\)?(\w*\\)*\w*"/>
     </xsd:restriction>
   </xsd:simpleType>
+  
   <!--贴图解压模式 枚举-->
   <xsd:simpleType name="AndroidETC2FallbackEnum">
     <xsd:restriction base="xsd:string">
