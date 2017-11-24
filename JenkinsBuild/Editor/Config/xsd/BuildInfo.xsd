@@ -1,230 +1,775 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid Studio 2017 - Developer Bundle Edition (Trial) 15.1.15.7745 (https://www.liquid-technologies.com)-->
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:include schemaLocation="EnumType.xsd"/>
-  <xs:element name="BuildInfo">
-    <xs:complexType>
-      <xs:all>
-        
-        <xs:element name="Scences">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element maxOccurs="unbounded" name="Scence">
-                <xs:complexType>
-                  <xs:simpleContent>
-                    <xs:extension base="ScencePath">
-                      <xs:attribute name="explain" type="xs:string" use="optional" />
-                    </xs:extension>
-                  </xs:simpleContent>
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
-            <xs:attribute name="explain" type="xs:string" use="optional" />
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="PackName" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:string">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="xs:int" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="Version">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:string">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="xs:int" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="BundleVersionCode" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:unsignedByte">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="xs:int" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="SdkVersions" default="0" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="min" type="xs:int" use="required" />
-                <xs:attribute name="max" type="xs:int" use="required" />
-                <xs:attribute name="default" type="xs:int" use="required" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="TargetSdkVersion" default="0" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="min" type="xs:int" use="required" />
-                <xs:attribute name="max" type="xs:int" use="required" />
-                <xs:attribute name="default" type="xs:int" use="required" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-
-        <xs:element name="IOSTargetDevice" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="IOSTargetDeviceEnum">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="IOSTargetDeviceEnum" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-
-        <xs:element name="AndroidTargetDevice" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="AndroidTargetDeviceEnum">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="AndroidTargetDeviceEnum" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="Scriptingimplementation" default="IL2CPP" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="ScriptingImplementationEnum">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="ScriptingImplementationEnum" use="optional" default="IL2CPP" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="ApiCompatibilityLevel" default="NET_2_0_Subset" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="ApiCompatibilityLevelEnum">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="ApiCompatibilityLevelEnum" use="optional" default="NET_2_0_Subset" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="InternetAccess" default="true" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:boolean">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="xs:boolean" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="TextureCompression" default="Generic" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="MobileTextureSubtargetEnum">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="MobileTextureSubtargetEnum" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="AndroidBuildSystem" default="Internal" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="AndroidBuildSystemEnum">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="AndroidBuildSystemEnum" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="Development" default="false" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:boolean">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="xs:boolean" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="ConnectProfiler" default="false" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:boolean">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="xs:boolean" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="ScriptsDebuggers" default="false" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:boolean">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="xs:boolean" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="Path" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="Path">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="AndroidETC2FallbackEnum" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-        <xs:element name="ETC2Fallback" default="Quality32Bit" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="AndroidETC2FallbackEnum">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="AndroidETC2FallbackEnum" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-
-        <xs:element name="ScriptingDefineSymbols" minOccurs="0">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:string">
-                <xs:attribute name="explain" type="xs:string" use="optional" />
-                <xs:attribute name="default" type="AndroidETC2FallbackEnum" use="optional" />
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        
-      </xs:all>
-    </xs:complexType>
-  </xs:element>
+    <xs:include schemaLocation="EnumType.xsd" />
+    <xs:element name="BuildInfo">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="Scences">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Scence" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="explain" type="xs:string" use="optional" />
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="explain" type="xs:string" use="optional" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="CompanyName" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ProductName" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="CursorHotspot" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Icons" minOccurs="0">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="Android">
+                                <xs:complexType>
+                                    <xs:sequence minOccurs="6" maxOccurs="6">
+                                        <xs:element ref="Icon" />
+                                    </xs:sequence>
+                                    <xs:attribute name="explain" type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="IOS">
+                                <xs:complexType>
+                                    <xs:sequence minOccurs="9" maxOccurs="9">
+                                        <xs:element ref="Icon" />
+                                    </xs:sequence>
+                                    <xs:attribute name="explain" type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="PC">
+                                <xs:complexType>
+                                    <xs:sequence minOccurs="7" maxOccurs="7">
+                                        <xs:element ref="Icon" />
+                                    </xs:sequence>
+                                    <xs:attribute name="explain" type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:attribute name="explain" type="xs:string" use="optional" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ColorSpace" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="ZH">需要增加枚举约定</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="explain" type="xs:string" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="AutoGraphicsAPI" minOccurs="0" default="true">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:boolean">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ForcehardShadowsOnMetal" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:boolean">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="StaticBatching" minOccurs="0" default="true">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:boolean">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="DynamicBatching" minOccurs="0" default="true">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:boolean">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="GPUSkinning" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:boolean">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="GraphicsJobs" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:boolean">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="VitualRealitySupported" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:boolean">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Version" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ScriptingBackend" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>需要增加枚举约定</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="explain" type="xs:string" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="APICompatibilityLevel" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>需要增加枚举约定</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="explain" type="xs:string" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ScriptingDefineSymbols" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="PrebakeCollisionMeshes" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:boolean">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="KeepLoadedShadersAlive" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:boolean">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="PreloadedAssets" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                            <xs:element name="Assets">
+                                <xs:annotation>
+                                    <xs:documentation>需要增加资源路径约定</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:attribute name="explain" type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="StrippingLevel" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>需要增加枚举约定</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="explain" type="xs:string" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="EnableInternalProfiler" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:boolean">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="VertexCompression" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>还未增加</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="explain" type="xs:string" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="OptimizeMeshData" minOccurs="0">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:boolean">
+                                <xs:attribute name="explain" type="xs:string" />
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Logging">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="Error" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>增加StackTraceLog枚举约定--下面一样的</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:attribute name="explain" type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Assert" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:attribute name="explain" type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Warning" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:attribute name="explain" type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Log" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:attribute name="explain" type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Exception" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:attribute name="explain" type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="explain" type="xs:string" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="BuildType">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="Android">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element ref="AndroidAndIOS" minOccurs="0" />
+                                        <xs:element name="Use32-bitDisplayBuffer" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="ProtectGraphicsMemory" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="PackageName" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="BundleVersionCode" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:int">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="MinimumAPILevel" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:int">
+                                                        <xs:attribute name="Min" type="xs:int" use="required" />
+                                                        <xs:attribute name="Max" type="xs:int" use="required" />
+                                                        <xs:attribute name="explain" type="xs:string" use="optional" />
+                                                        <xs:attribute name="default" type="xs:string" use="required" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="TargetAPILevel" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:int">
+                                                        <xs:attribute name="Min" type="xs:int" use="required" />
+                                                        <xs:attribute name="Max" type="xs:int" use="required" />
+                                                        <xs:attribute name="explain" type="xs:string" use="optional" />
+                                                        <xs:attribute name="default" type="xs:string" use="required" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="PC">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element ref="PCAndIOS" />
+                                        <xs:element name="DefaultIsFullScreen" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="DefaultIsNativeResolution" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="RunInBackground" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="CaptureSingleScreen" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="UsePlayerLog" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="ResizableWindow" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="VisibleInBackground" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="AllowFullscreenSwitch" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="ForceSingleInstance" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="MacAppStoreValidation" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="DisplayResolutionDialog" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增加枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="MacFullscreenMode" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增加枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="D3D9FullscreenMode" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增加枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="D3D11FullscreenMode" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增加枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="SupportedAspectRations" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence maxOccurs="unbounded">
+                                                    <xs:element name="AspectRatio" minOccurs="0">
+                                                        <xs:annotation>
+                                                            <xs:documentation>增加枚举约定</xs:documentation>
+                                                        </xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:attribute name="explain" type="xs:string" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="Category" type="xs:string" minOccurs="0" />
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="IOS">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element ref="PCAndIOS" />
+                                        <xs:element ref="AndroidAndIOS" />
+                                        <xs:element name="UseAnimatedAutorotation" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="RequiresFullscreen" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="StatusBarHidden" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="AutomaticallySign" minOccurs="0" default="true">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="UseOnDemandResources" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="PrepareIOSForRecording" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="RequiresPersistentWifi" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="AllowDownloadsOverHttp" minOccurs="0" default="true">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="RenderExtraFrameOnPause" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="DisableHWStatistics" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="AndroidTVCompatibility" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="AndroidGame" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="AutomaticSigningTeamID" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="TargetMinimumIOSVersion" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增加约定 -- 必须是数字并且大于7.0</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="CameraUsageDescription" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="LocationUsageDescription" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="MicrophoneUsageDescription" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute name="explain" type="xs:string" />
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="StatusBarStyle" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="TargetDevice" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="TargetSdK" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="AccelerometerFrequency" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="BehaviorInBackground" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="Architecture" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="DeveiceFilter" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="InstallLocation" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="InternetAccess" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="WritePermission" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="AndroidGamepadSupportLevel" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:attribute name="explain" type="xs:string" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="SupportedURLschemes" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence maxOccurs="unbounded">
+                                                    <xs:element name="Url">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="xs:string">
+                                                                    <xs:attribute name="explain" type="xs:string" />
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
 </xs:schema>

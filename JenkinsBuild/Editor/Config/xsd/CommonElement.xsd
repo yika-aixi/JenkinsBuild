@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid Studio 2017 - Developer Bundle Edition (Trial) 15.1.15.7745 (https://www.liquid-technologies.com)-->
+<xsd:schema elementFormDefault="qualified" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <!--Api 兼容等级 枚举-->
+    <xsd:simpleType name="ApiCompatibilityLevelEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="NET_2_0" />
+            <xsd:enumeration value="NET_2_0_Subset" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--脚本运行环境 枚举-->
+    <xsd:simpleType name="ScriptingImplementationEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Mono2x" />
+            <xsd:enumeration value="IL2CPP" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--安卓设备架构 枚举-->
+    <xsd:simpleType name="AndroidTargetDeviceEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="FAT" />
+            <xsd:enumeration value="ARMv7" />
+            <xsd:enumeration value="x86" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--IOS设备架构 枚举-->
+    <xsd:simpleType name="IOSTargetDeviceEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="iPhoneOnly" />
+            <xsd:enumeration value="iPadOnly" />
+            <xsd:enumeration value="iPhoneAndiPad" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--安卓打包系统 枚举-->
+    <xsd:simpleType name="AndroidBuildSystemEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Internal" />
+            <xsd:enumeration value="Gradle" />
+            <xsd:enumeration value="ADT" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--安卓打包系统 枚举-->
+    <xsd:simpleType name="MobileTextureSubtargetEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Generic" />
+            <xsd:enumeration value="DXT" />
+            <xsd:enumeration value="PVRTC" />
+            <xsd:enumeration value="ATC" />
+            <xsd:enumeration value="ETC" />
+            <xsd:enumeration value="ETC2" />
+            <xsd:enumeration value="ASTC" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--场景路径约束-->
+    <xsd:simpleType name="ScencePath">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+\.unity" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--输出路径约束-->
+    <xsd:simpleType name="Path">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+\.apk|(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+\.exe|(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--贴图解压模式 枚举-->
+    <xsd:simpleType name="AndroidETC2FallbackEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Quality32Bit" />
+            <xsd:enumeration value="Quality16Bit" />
+            <xsd:enumeration value="Quality32BitDownscaled" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:element name="Icon">
+        <xsd:annotation>
+            <xsd:documentation>
+                Icon需要加入路径约定
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string">
+                    <xsd:attribute name="explain" type="xsd:string" use="optional" />
+                </xsd:extension>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="PCAndIOS">
+        <xsd:complexType>
+            <xsd:all>
+                <xsd:element name="BundleIdentifier" minOccurs="0">
+                    <xsd:complexType>
+                        <xsd:simpleContent>
+                            <xsd:extension base="xsd:string">
+                                <xsd:attribute name="explain" type="xsd:string" use="optional" />
+                            </xsd:extension>
+                        </xsd:simpleContent>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="Build" minOccurs="0">
+                    <xsd:complexType>
+                        <xsd:simpleContent>
+                            <xsd:extension base="xsd:int">
+                                <xsd:attribute name="explain" type="xsd:string" use="optional" />
+                            </xsd:extension>
+                        </xsd:simpleContent>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:all>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="AndroidAndIOS">
+        <xsd:complexType>
+            <xsd:all>
+                <xsd:element name="DefaultOrientation" minOccurs="0">
+                    <xsd:annotation>
+                        <xsd:documentation>增加枚举约定</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="Portrait" type="xsd:boolean" minOccurs="0" />
+                <xsd:element name="PortraitUpsideDown" type="xsd:boolean" minOccurs="0" />
+                <xsd:element name="LandscapeRight" type="xsd:boolean" minOccurs="0" />
+                <xsd:element name="LandscapeLeft" type="xsd:boolean" minOccurs="0" />
+                <xsd:element name="ShowLoadingIndicator" minOccurs="0">
+                    <xsd:annotation>
+                        <xsd:documentation>增加枚举约定</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="DisableDepthAndStencil" type="xsd:boolean" minOccurs="0" />
+                <xsd:element name="MuteOtherAudioSources" type="xsd:boolean" minOccurs="0" />
+            </xsd:all>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
