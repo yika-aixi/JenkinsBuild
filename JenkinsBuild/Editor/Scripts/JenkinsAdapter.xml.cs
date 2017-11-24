@@ -14,6 +14,7 @@ namespace Jenkins
 
         public static Dictionary<string, XmlNodeStruct> Config = new Dictionary<string, XmlNodeStruct>();
 
+        private static XmlElement _root;
         /// <summary>
         /// 解析命令行传过来的xml
         /// </summary>
@@ -38,9 +39,9 @@ namespace Jenkins
         {
             XmlDocument xml = new XmlDocument();
             xml.Load(path);
-            var root = xml.DocumentElement;
-            _getScene(root);
-            _getOther(root);
+            _root = xml.DocumentElement;
+            _getScene();
+            _getOther();
             foreach (var pair in Config)
             {
                 Console.WriteLine("xml配置:key=" + pair.Key + ", Value=" + pair.Value);
@@ -51,10 +52,10 @@ namespace Jenkins
         /// 获取除了场景外的所有配置
         /// </summary>
         /// <param name="xml"></param>
-        private static void _getOther(XmlElement xml)
+        private static void _getOther()
         {
             Config.Clear();
-            foreach (XmlElement node in xml)
+            foreach (XmlElement node in _root)
             {
                 //因为场景是单独处理所以跳过
                 if (node.Name == ConfigNodeConst.Scences)
@@ -82,27 +83,31 @@ namespace Jenkins
         /// 特殊处理的场景信息获取
         /// </summary>
         /// <param name="xml"></param>
-        private static void _getScene(XmlElement xml)
+        private static void _getScene()
         {
-            var scences = xml.GetElementsByTagName(ConfigNodeConst.Scences);
-            foreach (XmlNode childNode in scences[0].ChildNodes)
-            {
-                //explain="入口场景"
-                var attributes = childNode.Attributes;
-                Console.WriteLine("场景:" + childNode.InnerText + "描述:" +
-                                  (
-                                      attributes != null
-                                          ?
-                                          attributes.GetNamedItem(XmlAttributeConst.Explain) != null
-                                              ?
-                                              attributes.GetNamedItem(XmlAttributeConst.Explain).InnerText : "没有描述"
-                                          : "没有描述"));
-                Scenes.Add(childNode.InnerText);
-            }
-
+            var scences = _root.GetElementsByTagName(ConfigNodeConst.Scences);
+            var childNodes = scences[0].ChildNodes;
+            _addScene(childNodes);
             if (Scenes.Count == 0)
             {
                 throw new Exception("配置中没有发现场景配置项，打包失败！");
+            }
+        }
+
+        private static void _addScene(XmlNodeList childNodes)
+        {
+            foreach (XmlNode childNode in childNodes)
+            {
+                //explain="入口场景"
+                Console.WriteLine("场景:" + childNode.InnerText + "描述:" +
+                                  (
+                                      childNode.Attributes != null
+                                          ?
+                                          childNode.Attributes.GetNamedItem(XmlAttributeConst.Explain) != null
+                                              ?
+                                              childNode.Attributes.GetNamedItem(XmlAttributeConst.Explain).InnerText : "没有描述"
+                                          : "没有描述"));
+                Scenes.Add(childNode.InnerText);
             }
         }
 
