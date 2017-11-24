@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--Created with Liquid Studio 2017 - Developer Bundle Edition (Trial) 15.1.15.7745 (https://www.liquid-technologies.com)-->
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:include schemaLocation="EnumType.xsd" />
+    <xs:include schemaLocation="CommonElement.xsd" />
     <xs:element name="BuildInfo">
         <xs:complexType>
             <xs:all>
@@ -150,7 +150,7 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="Version" minOccurs="0">
+                <xs:element name="Version">
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:string">
@@ -250,7 +250,7 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="Logging">
+                <xs:element name="Logging" minOccurs="0">
                     <xs:complexType>
                         <xs:all>
                             <xs:element name="Error" minOccurs="0">
@@ -285,7 +285,7 @@
                         <xs:attribute name="explain" type="xs:string" />
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="BuildType">
+                <xs:element name="BuildType" minOccurs="0">
                     <xs:complexType>
                         <xs:choice>
                             <xs:element name="Android">
