@@ -6,6 +6,9 @@
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="NET_2_0" />
             <xsd:enumeration value="NET_2_0_Subset" />
+            <xsd:enumeration value="NET_4_6" />
+            <xsd:enumeration value="NET_Web" />
+            <xsd:enumeration value="NET_Micro" />
         </xsd:restriction>
     </xsd:simpleType>
     <!--脚本运行环境 枚举-->
@@ -13,6 +16,7 @@
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="Mono2x" />
             <xsd:enumeration value="IL2CPP" />
+            <xsd:enumeration value="WinRTDotNET" />
         </xsd:restriction>
     </xsd:simpleType>
     <!--安卓设备架构 枚举-->
@@ -161,6 +165,28 @@
             <xsd:enumeration value="Auto" />
             <xsd:enumeration value="PreferExternal" />
             <xsd:enumeration value="ForceInternal" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ColorSpaceEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Uninitialized" />
+            <xsd:enumeration value="Gamma" />
+            <xsd:enumeration value="Linear" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="StrippingLevelEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Disabled" />
+            <xsd:enumeration value="StripAssemblies" />
+            <xsd:enumeration value="StripByteCode" />
+            <xsd:enumeration value="UseMicroMSCorlib" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="StackTraceLogTypeEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="None" />
+            <xsd:enumeration value="ScriptOnly" />
+            <xsd:enumeration value="Full" />
         </xsd:restriction>
     </xsd:simpleType>
     <xsd:element name="Icon">

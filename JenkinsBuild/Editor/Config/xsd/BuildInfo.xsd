@@ -68,12 +68,7 @@
                         </xs:choice>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="ColorSpace" minOccurs="0">
-                    <xs:annotation>
-                        <xs:documentation xml:lang="ZH">需要增加枚举约定</xs:documentation>
-                    </xs:annotation>
-                    <xs:complexType />
-                </xs:element>
+                <xs:element name="ColorSpace" type="ColorSpaceEnum" minOccurs="0" />
                 <xs:element name="AutoGraphicsAPI" minOccurs="0" default="true">
                     <xs:complexType>
                         <xs:simpleContent>
@@ -130,17 +125,15 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="ScriptingBackend" minOccurs="0">
+                <xs:element name="ScriptingBackend" type="ScriptingImplementationEnum" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>需要增加枚举约定</xs:documentation>
                     </xs:annotation>
-                    <xs:complexType />
                 </xs:element>
-                <xs:element name="APICompatibilityLevel" minOccurs="0">
+                <xs:element name="APICompatibilityLevel" type="ApiCompatibilityLevelEnum" minOccurs="0">
                     <xs:annotation>
                         <xs:documentation>需要增加枚举约定</xs:documentation>
                     </xs:annotation>
-                    <xs:complexType />
                 </xs:element>
                 <xs:element name="ScriptingDefineSymbols" minOccurs="0">
                     <xs:complexType>
@@ -163,7 +156,10 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="PreloadedAssets" minOccurs="0">
+                <!--<xs:element name="PreloadedAssets" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>无法设置</xs:documentation>
+                    </xs:annotation>
                     <xs:complexType>
                         <xs:sequence minOccurs="1" maxOccurs="unbounded">
                             <xs:element name="Assets">
@@ -174,13 +170,8 @@
                             </xs:element>
                         </xs:sequence>
                     </xs:complexType>
-                </xs:element>
-                <xs:element name="StrippingLevel" minOccurs="0">
-                    <xs:annotation>
-                        <xs:documentation>需要增加枚举约定</xs:documentation>
-                    </xs:annotation>
-                    <xs:complexType />
-                </xs:element>
+                </xs:element>-->
+                <xs:element name="StrippingLevel" type="StrippingLevelEnum" minOccurs="0" />
                 <xs:element name="EnableInternalProfiler" minOccurs="0">
                     <xs:complexType>
                         <xs:simpleContent>
@@ -188,12 +179,12 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="VertexCompression" minOccurs="0">
+                <!-- <xs:element name="VertexCompression" minOccurs="0">
                     <xs:annotation>
-                        <xs:documentation>还未增加</xs:documentation>
+                        <xs:documentation>无法设置</xs:documentation>
                     </xs:annotation>
                     <xs:complexType />
-                </xs:element>
+                </xs:element> -->
                 <xs:element name="OptimizeMeshData" minOccurs="0">
                     <xs:complexType>
                         <xs:simpleContent>
@@ -204,24 +195,15 @@
                 <xs:element name="Logging" minOccurs="0">
                     <xs:complexType>
                         <xs:all>
-                            <xs:element name="Error" minOccurs="0">
+                            <xs:element name="Error" type="StackTraceLogTypeEnum" minOccurs="0">
                                 <xs:annotation>
                                     <xs:documentation>增加StackTraceLog枚举约定--下面一样的</xs:documentation>
                                 </xs:annotation>
-                                <xs:complexType />
                             </xs:element>
-                            <xs:element name="Assert" minOccurs="0">
-                                <xs:complexType />
-                            </xs:element>
-                            <xs:element name="Warning" minOccurs="0">
-                                <xs:complexType />
-                            </xs:element>
-                            <xs:element name="Log" minOccurs="0">
-                                <xs:complexType />
-                            </xs:element>
-                            <xs:element name="Exception" minOccurs="0">
-                                <xs:complexType />
-                            </xs:element>
+                            <xs:element name="Assert" type="StackTraceLogTypeEnum" minOccurs="0" />
+                            <xs:element name="Warning" type="StackTraceLogTypeEnum" minOccurs="0" />
+                            <xs:element name="Log" type="StackTraceLogTypeEnum" minOccurs="0" />
+                            <xs:element name="Exception" type="StackTraceLogTypeEnum" minOccurs="0" />
                         </xs:all>
                     </xs:complexType>
                 </xs:element>
@@ -283,22 +265,38 @@
                                             </xs:complexType>
                                         </xs:element>
                                         <xs:element name="ShowLoadingIndicator" type="AndroidShowActivityIndicatorOnLoadingEnum" minOccurs="0" />
-                                        <xs:element name="DeveiceFilter" type="AndroidTargetDeviceEnum" minOccurs="0">
-                                            <xs:annotation>
-                                                <xs:documentation>增肌枚举约定</xs:documentation>
-                                            </xs:annotation>
+                                        <xs:element name="DeveiceFilter" type="AndroidTargetDeviceEnum" minOccurs="0" />
+                                        <xs:element name="InstallLocation" type="AndroidPreferredInstallLocationEnum" minOccurs="0" />
+                                        <xs:element name="InternetAccess" type="xs:boolean" minOccurs="0" />
+                                        <xs:element name="WritePermission" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:choice>
+                                                    <xs:element name="Internet" type="xs:boolean" />
+                                                    <xs:element name="SDCard" type="xs:boolean" />
+                                                </xs:choice>
+                                            </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="InstallLocation" type="AndroidPreferredInstallLocationEnum" minOccurs="0">
-                                            <xs:annotation>
-                                                <xs:documentation>增肌枚举约定</xs:documentation>
-                                            </xs:annotation>
+                                        <xs:element name="AndroidTVCompatibility" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean" />
+                                                </xs:simpleContent>
+                                            </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="InternetAccess" minOccurs="0">
+                                        <xs:element name="AndroidGame" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:boolean" />
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <!--<xs:element name="AndroidGamepadSupportLevel" minOccurs="0">
                                             <xs:annotation>
-                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                                <xs:documentation>不能使用~</xs:documentation>
                                             </xs:annotation>
                                             <xs:complexType />
                                         </xs:element>
+                                        -->
                                     </xs:all>
                                 </xs:complexType>
                             </xs:element>
@@ -486,20 +484,6 @@
                                                 </xs:simpleContent>
                                             </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="AndroidTVCompatibility" minOccurs="0">
-                                            <xs:complexType>
-                                                <xs:simpleContent>
-                                                    <xs:extension base="xs:boolean" />
-                                                </xs:simpleContent>
-                                            </xs:complexType>
-                                        </xs:element>
-                                        <xs:element name="AndroidGame" minOccurs="0">
-                                            <xs:complexType>
-                                                <xs:simpleContent>
-                                                    <xs:extension base="xs:boolean" />
-                                                </xs:simpleContent>
-                                            </xs:complexType>
-                                        </xs:element>
                                         <xs:element name="AutomaticSigningTeamID" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:simpleContent>
@@ -580,19 +564,10 @@
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
-                                        <xs:element name="WritePermission" minOccurs="0">
+                                        <!--<xs:element name="SupportedURLSchemes" minOccurs="0">
                                             <xs:annotation>
-                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                                <xs:documentation>没有找到设置</xs:documentation>
                                             </xs:annotation>
-                                            <xs:complexType />
-                                        </xs:element>
-                                        <xs:element name="AndroidGamepadSupportLevel" minOccurs="0">
-                                            <xs:annotation>
-                                                <xs:documentation>增肌枚举约定</xs:documentation>
-                                            </xs:annotation>
-                                            <xs:complexType />
-                                        </xs:element>
-                                        <xs:element name="SupportedURLschemes" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:sequence maxOccurs="unbounded">
                                                     <xs:element name="Url">
@@ -604,7 +579,7 @@
                                                     </xs:element>
                                                 </xs:sequence>
                                             </xs:complexType>
-                                        </xs:element>
+                                        </xs:element> -->
                                         <xs:element name="ShowLoadingIndicator" type="IOSShowActivityIndicatorOnLoadingEnum" minOccurs="0" />
                                     </xs:all>
                                 </xs:complexType>
