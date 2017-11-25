@@ -71,6 +71,98 @@
             <xsd:enumeration value="Quality32BitDownscaled" />
         </xsd:restriction>
     </xsd:simpleType>
+    <!--旋转 枚举-->
+    <xsd:simpleType name="UIOrientationEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Portrait" />
+            <xsd:enumeration value="PortraitUpsideDown" />
+            <xsd:enumeration value="LandscapeRight" />
+            <xsd:enumeration value="LandscapeLeft" />
+            <xsd:enumeration value="AutoRotation" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="IOSShowActivityIndicatorOnLoadingEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="DontShow" />
+            <xsd:enumeration value="WhiteLarge" />
+            <xsd:enumeration value="White" />
+            <xsd:enumeration value="Gray" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="AndroidShowActivityIndicatorOnLoadingEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="DontShow" />
+            <xsd:enumeration value="Large" />
+            <xsd:enumeration value="InversedLarge" />
+            <xsd:enumeration value="Small" />
+            <xsd:enumeration value="InversedSmall" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ResolutionDialogSettingEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Disabled" />
+            <xsd:enumeration value="Enabled" />
+            <xsd:enumeration value="HiddenByDefault" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="MacFullscreenModeEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="CaptureDisplay" />
+            <xsd:enumeration value="FullscreenWindow" />
+            <xsd:enumeration value="FullscreenWindowWithDockAndMenuBar" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="D3D9FullscreenModeEnum">
+        <xsd:annotation>
+            <xsd:appinfo>d3d9的支持已被移除在2017.3.09中</xsd:appinfo>
+            <xsd:documentation>d3d9的支持已被移除在2017.3.09中v</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ExclusiveMode" />
+            <xsd:enumeration value="FullscreenWindow" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="D3D11FullscreenModeEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ExclusiveMode" />
+            <xsd:enumeration value="FullscreenWindow" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="IOSStatusBarStyleEnum">
+        <xsd:annotation>
+            <xsd:documentation>在2017.3中:
+	BlackTranslucentv
+	BlackOpaquev
+变为了:
+	LightContentv</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="BlackTranslucent" />
+            <xsd:enumeration value="BlackOpaque" />
+            <xsd:enumeration value="Default" />
+            <xsd:enumeration value="LightContent" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="IOSSdkVersionEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="DeviceSDK" />
+            <xsd:enumeration value="SimulatorSDK" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="IOSAppInBackgroundBehaviorEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Custom" />
+            <xsd:enumeration value="Suspend" />
+            <xsd:enumeration value="Exit" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="AndroidPreferredInstallLocationEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Auto" />
+            <xsd:enumeration value="PreferExternal" />
+            <xsd:enumeration value="ForceInternal" />
+        </xsd:restriction>
+    </xsd:simpleType>
     <xsd:element name="Icon">
         <xsd:annotation>
             <xsd:documentation>
@@ -88,44 +180,23 @@
     <xsd:element name="PCAndIOS">
         <xsd:complexType>
             <xsd:all>
-                <xsd:element name="BundleIdentifier" minOccurs="0">
-                    <xsd:complexType>
-                        <xsd:simpleContent>
-                            <xsd:extension base="xsd:string">
-                                <xsd:attribute name="explain" type="xsd:string" use="optional" />
-                            </xsd:extension>
-                        </xsd:simpleContent>
-                    </xsd:complexType>
-                </xsd:element>
-                <xsd:element name="Build" minOccurs="0">
-                    <xsd:complexType>
-                        <xsd:simpleContent>
-                            <xsd:extension base="xsd:int">
-                                <xsd:attribute name="explain" type="xsd:string" use="optional" />
-                            </xsd:extension>
-                        </xsd:simpleContent>
-                    </xsd:complexType>
-                </xsd:element>
+                <xsd:element name="BundleIdentifier" type="xsd:string" minOccurs="0" />
+                <xsd:element name="Build" type="xsd:int" minOccurs="0" />
             </xsd:all>
         </xsd:complexType>
     </xsd:element>
     <xsd:element name="AndroidAndIOS">
         <xsd:complexType>
             <xsd:all>
-                <xsd:element name="DefaultOrientation" minOccurs="0">
+                <xsd:element name="DefaultOrientation" type="UIOrientationEnum" minOccurs="0">
                     <xsd:annotation>
-                        <xsd:documentation>增加枚举约定</xsd:documentation>
+                        <xsd:appinfo>屏幕方向</xsd:appinfo>
                     </xsd:annotation>
                 </xsd:element>
                 <xsd:element name="Portrait" type="xsd:boolean" minOccurs="0" />
                 <xsd:element name="PortraitUpsideDown" type="xsd:boolean" minOccurs="0" />
                 <xsd:element name="LandscapeRight" type="xsd:boolean" minOccurs="0" />
                 <xsd:element name="LandscapeLeft" type="xsd:boolean" minOccurs="0" />
-                <xsd:element name="ShowLoadingIndicator" minOccurs="0">
-                    <xsd:annotation>
-                        <xsd:documentation>增加枚举约定</xsd:documentation>
-                    </xsd:annotation>
-                </xsd:element>
                 <xsd:element name="DisableDepthAndStencil" type="xsd:boolean" minOccurs="0" />
                 <xsd:element name="MuteOtherAudioSources" type="xsd:boolean" minOccurs="0" />
             </xsd:all>
