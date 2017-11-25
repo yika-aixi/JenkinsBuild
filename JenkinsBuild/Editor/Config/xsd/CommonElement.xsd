@@ -61,10 +61,22 @@
             <xsd:pattern value="(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+\.unity" />
         </xsd:restriction>
     </xsd:simpleType>
-    <!--输出路径约束-->
-    <xsd:simpleType name="Path">
+    <!--Image路径约束-->
+    <xsd:simpleType name="ImagePath">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+\.apk|(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+\.exe|(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*" />
+            <xsd:pattern value="(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+(\.(jpg|png))" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--输出路径约束-->
+    <xsd:simpleType name="PackOutPath">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+\.apk|(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+\.exe|(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+([^\.\w]))" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!--IOS版本约束-->
+    <xsd:simpleType name="IOSVersion">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="(([7-9]|(1[0-9]))((\.([0-9][0-9]|[0-9]))+))" />
         </xsd:restriction>
     </xsd:simpleType>
     <!--贴图解压模式 枚举-->
@@ -197,7 +209,7 @@
         </xsd:annotation>
         <xsd:complexType>
             <xsd:simpleContent>
-                <xsd:extension base="xsd:string">
+                <xsd:extension base="ImagePath">
                     <xsd:attribute name="explain" type="xsd:string" use="optional" />
                 </xsd:extension>
             </xsd:simpleContent>

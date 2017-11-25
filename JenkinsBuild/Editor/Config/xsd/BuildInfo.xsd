@@ -11,7 +11,7 @@
                             <xs:element name="Scence" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:simpleContent>
-                                        <xs:extension base="xs:string">
+                                        <xs:extension base="ScencePath">
                                             <xs:attribute name="explain" type="xs:string" use="optional" />
                                         </xs:extension>
                                     </xs:simpleContent>
@@ -125,16 +125,8 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="ScriptingBackend" type="ScriptingImplementationEnum" minOccurs="0">
-                    <xs:annotation>
-                        <xs:documentation>需要增加枚举约定</xs:documentation>
-                    </xs:annotation>
-                </xs:element>
-                <xs:element name="APICompatibilityLevel" type="ApiCompatibilityLevelEnum" minOccurs="0">
-                    <xs:annotation>
-                        <xs:documentation>需要增加枚举约定</xs:documentation>
-                    </xs:annotation>
-                </xs:element>
+                <xs:element name="ScriptingBackend" type="ScriptingImplementationEnum" minOccurs="0" />
+                <xs:element name="APICompatibilityLevel" type="ApiCompatibilityLevelEnum" minOccurs="0" />
                 <xs:element name="ScriptingDefineSymbols" minOccurs="0">
                     <xs:complexType>
                         <xs:simpleContent>
@@ -374,26 +366,10 @@
                                                 </xs:simpleContent>
                                             </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="DisplayResolutionDialog" type="ResolutionDialogSettingEnum" minOccurs="0">
-                                            <xs:annotation>
-                                                <xs:documentation>增加枚举约定</xs:documentation>
-                                            </xs:annotation>
-                                        </xs:element>
-                                        <xs:element name="MacFullscreenMode" type="MacFullscreenModeEnum" minOccurs="0">
-                                            <xs:annotation>
-                                                <xs:documentation>增加枚举约定</xs:documentation>
-                                            </xs:annotation>
-                                        </xs:element>
-                                        <xs:element name="D3D9FullscreenMode" type="D3D9FullscreenModeEnum" minOccurs="0">
-                                            <xs:annotation>
-                                                <xs:documentation>增加枚举约定</xs:documentation>
-                                            </xs:annotation>
-                                        </xs:element>
-                                        <xs:element name="D3D11FullscreenMode" type="D3D11FullscreenModeEnum" minOccurs="0">
-                                            <xs:annotation>
-                                                <xs:documentation>增加枚举约定</xs:documentation>
-                                            </xs:annotation>
-                                        </xs:element>
+                                        <xs:element name="DisplayResolutionDialog" type="ResolutionDialogSettingEnum" minOccurs="0" />
+                                        <xs:element name="MacFullscreenMode" type="MacFullscreenModeEnum" minOccurs="0" />
+                                        <xs:element name="D3D9FullscreenMode" type="D3D9FullscreenModeEnum" minOccurs="0" />
+                                        <xs:element name="D3D11FullscreenMode" type="D3D11FullscreenModeEnum" minOccurs="0" />
                                         <xs:element name="SupportedAspectRations" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:all>
@@ -491,16 +467,7 @@
                                                 </xs:simpleContent>
                                             </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="TargetMinimumIOSVersion" minOccurs="0">
-                                            <xs:annotation>
-                                                <xs:documentation>增加约定 -- 必须是数字并且大于7.0</xs:documentation>
-                                            </xs:annotation>
-                                            <xs:complexType>
-                                                <xs:simpleContent>
-                                                    <xs:extension base="xs:string" />
-                                                </xs:simpleContent>
-                                            </xs:complexType>
-                                        </xs:element>
+                                        <xs:element name="TargetMinimumIOSVersion" type="IOSVersion" minOccurs="0" />
                                         <xs:element name="CameraUsageDescription" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:simpleContent>
@@ -522,24 +489,12 @@
                                                 </xs:simpleContent>
                                             </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="StatusBarStyle" type="IOSStatusBarStyleEnum" minOccurs="0">
-                                            <xs:annotation>
-                                                <xs:documentation>增肌枚举约定</xs:documentation>
-                                            </xs:annotation>
-                                        </xs:element>
-                                        <xs:element name="TargetDevice" type="IOSTargetDeviceEnum" minOccurs="0">
-                                            <xs:annotation>
-                                                <xs:documentation>增肌枚举约定</xs:documentation>
-                                            </xs:annotation>
-                                        </xs:element>
-                                        <xs:element name="TargetSdK" type="IOSSdkVersionEnum" minOccurs="0">
-                                            <xs:annotation>
-                                                <xs:documentation>增肌枚举约定</xs:documentation>
-                                            </xs:annotation>
-                                        </xs:element>
+                                        <xs:element name="StatusBarStyle" type="IOSStatusBarStyleEnum" minOccurs="0" />
+                                        <xs:element name="TargetDevice" type="IOSTargetDeviceEnum" minOccurs="0" />
+                                        <xs:element name="TargetSdK" type="IOSSdkVersionEnum" minOccurs="0" />
                                         <xs:element name="AccelerometerFrequency" minOccurs="0">
                                             <xs:annotation>
-                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                                <xs:documentation>增肌枚举约定,目前是int限制范围约定</xs:documentation>
                                             </xs:annotation>
                                             <xs:simpleType>
                                                 <xs:restriction base="xs:int">
@@ -548,14 +503,10 @@
                                                 </xs:restriction>
                                             </xs:simpleType>
                                         </xs:element>
-                                        <xs:element name="BehaviorInBackground" type="IOSAppInBackgroundBehaviorEnum" minOccurs="0">
-                                            <xs:annotation>
-                                                <xs:documentation>增肌枚举约定</xs:documentation>
-                                            </xs:annotation>
-                                        </xs:element>
+                                        <xs:element name="BehaviorInBackground" type="IOSAppInBackgroundBehaviorEnum" minOccurs="0" />
                                         <xs:element name="Architecture" minOccurs="0">
                                             <xs:annotation>
-                                                <xs:documentation>增肌枚举约定</xs:documentation>
+                                                <xs:documentation>增肌枚举约定,目前是int限制范围约定</xs:documentation>
                                             </xs:annotation>
                                             <xs:simpleType>
                                                 <xs:restriction base="xs:int">
@@ -590,6 +541,7 @@
                 <xs:element name="Development" type="xs:boolean" minOccurs="0" default="false" />
                 <xs:element name="ConnectProfiler" type="xs:boolean" minOccurs="0" default="false" />
                 <xs:element name="ScriptsDebuggers" type="xs:boolean" minOccurs="0" default="false" />
+                <xs:element name="OutPath" type="PackOutPath" />
             </xs:all>
         </xs:complexType>
     </xs:element>
