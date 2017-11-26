@@ -10,27 +10,10 @@ namespace Jenkins
         /// 平台共有设置
         /// </summary>
         /// <param name="target"></param>
-        private static void _setBuildInfo(BuildTargetGroup target)
+        private static void _setCommonBuildInfo(BuildTargetGroup target)
         {
             
-            //安卓,IOS
-            PlayerSettings.defaultInterfaceOrientation =
-                _stringToEnum<UIOrientation>(
-                    _getBuildType<BuildInfoBuildTypeAndroid>().AndroidAndIOS.DefaultOrientation.ToString());
-
-
-            //pc
-            PlayerSettings.displayResolutionDialog = _stringToEnum<ResolutionDialogSetting>(
-                _getBuildType<BuildInfoBuildTypePC>().DisplayResolutionDialog.ToString());
-
-
-            PlayerSettings.macFullscreenMode = _stringToEnum<MacFullscreenMode>(
-                _getBuildType<BuildInfoBuildTypePC>().MacFullscreenMode.ToString());
-            PlayerSettings.d3d9FullscreenMode = _stringToEnum<D3D9FullscreenMode>(
-                _getBuildType<BuildInfoBuildTypePC>().D3D9FullscreenMode.ToString());
-
-            PlayerSettings.d3d11FullscreenMode = _stringToEnum<D3D11FullscreenMode>(
-                _getBuildType<BuildInfoBuildTypePC>().D3D11FullscreenMode.ToString());
+           
 
             //需要修改xsd
 //            PlayerSettings.SetAspectRatio(_getBuildType<BuildInfoBuildTypePC>()AspectRatio.Aspect16by10, true);
@@ -76,6 +59,16 @@ namespace Jenkins
             //todo 需要修改xsd 增加 isAdd 属性
             //PlayerSettings.SetScriptingDefineSymbolsForGroup(target, BuildInfo.ScriptingDefineSymbols.Value);
             
+        }
+
+        static void _setIOSAndAndroidCommonBuildInfo(bool isIOS)
+        {
+            var defaultOrientationValue = isIOS ? 
+                _getBuildType<BuildInfoBuildTypeIOS>().AndroidAndIOS.DefaultOrientation.ToString() 
+                : 
+                _getBuildType<BuildInfoBuildTypeAndroid>().AndroidAndIOS.DefaultOrientation.ToString();
+
+            PlayerSettings.defaultInterfaceOrientation = _stringToEnum<UIOrientation>(defaultOrientationValue);
         }
     }
 }

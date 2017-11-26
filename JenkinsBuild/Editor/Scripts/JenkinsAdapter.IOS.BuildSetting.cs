@@ -32,13 +32,8 @@ namespace Jenkins
             //ios
             PlayerSettings.SetArchitecture(BuildTargetGroup.iOS, _getBuildType<BuildInfoBuildTypeIOS>().Architecture);
 
-            if (Config.ContainsKey(IosConfigNodeConst.IOSTargetDevice))
-	        {
-	            PlayerSettings.iOS.targetDevice =
-	                _stringToEnum<iOSTargetDevice>(_getNodeValue(IosConfigNodeConst.IOSTargetDevice));
-	        }
-
-            _setBuildInfo(BuildTargetGroup.iOS);
-	    }
+            _setCommonBuildInfo(BuildTargetGroup.iOS);
+            _setIOSAndAndroidCommonBuildInfo(true);
+        }
     }
 }

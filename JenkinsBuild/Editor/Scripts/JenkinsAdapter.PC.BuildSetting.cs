@@ -10,35 +10,21 @@ namespace Jenkins
         /// </summary>
 	    private static void _setBuildPCInfo()
 	    {
-            PlayerSettings.iOS.statusBarStyle =
-                _stringToEnum<iOSStatusBarStyle>(_getBuildType<BuildInfoBuildTypeIOS>().StatusBarStyle.ToString());
+            //pc
+            PlayerSettings.displayResolutionDialog = _stringToEnum<ResolutionDialogSetting>(
+                _getBuildType<BuildInfoBuildTypePC>().DisplayResolutionDialog.ToString());
 
-            PlayerSettings.iOS.targetDevice =
-                _stringToEnum<iOSTargetDevice>(_getBuildType<BuildInfoBuildTypeIOS>().TargetDevice.ToString());
 
-            PlayerSettings.iOS.sdkVersion =
-                _stringToEnum<iOSSdkVersion>(_getBuildType<BuildInfoBuildTypeIOS>().TargetSdK.ToString());
+            PlayerSettings.macFullscreenMode = _stringToEnum<MacFullscreenMode>(
+                _getBuildType<BuildInfoBuildTypePC>().MacFullscreenMode.ToString());
 
-            PlayerSettings.iOS.appInBackgroundBehavior =
-                _stringToEnum<iOSAppInBackgroundBehavior>(
-                    _getBuildType<BuildInfoBuildTypeIOS>().BehaviorInBackground.ToString());
-            PlayerSettings.iOS.showActivityIndicatorOnLoading =
-                _stringToEnum<iOSShowActivityIndicatorOnLoading>(
-                    _getBuildType<BuildInfoBuildTypeIOS>().ShowLoadingIndicator.ToString());
+//            PlayerSettings.d3d9FullscreenMode = _stringToEnum<D3D9FullscreenMode>(
+//                _getBuildType<BuildInfoBuildTypePC>().D3D9FullscreenMode.ToString());
 
-            //ios
-            PlayerSettings.accelerometerFrequency = _getBuildType<BuildInfoBuildTypeIOS>().AccelerometerFrequency;
+            PlayerSettings.d3d11FullscreenMode = _stringToEnum<D3D11FullscreenMode>(
+                _getBuildType<BuildInfoBuildTypePC>().D3D11FullscreenMode.ToString());
 
-            //ios
-            PlayerSettings.SetArchitecture(BuildTargetGroup.iOS, _getBuildType<BuildInfoBuildTypeIOS>().Architecture);
-
-            if (Config.ContainsKey(IosConfigNodeConst.IOSTargetDevice))
-	        {
-	            PlayerSettings.iOS.targetDevice =
-	                _stringToEnum<iOSTargetDevice>(_getNodeValue(IosConfigNodeConst.IOSTargetDevice));
-	        }
-
-            _setBuildInfo(BuildTargetGroup.iOS);
+            _setCommonBuildInfo(BuildTargetGroup.Standalone);
 	    }
     }
 }

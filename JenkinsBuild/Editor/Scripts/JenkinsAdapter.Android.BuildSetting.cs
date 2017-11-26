@@ -10,56 +10,60 @@ namespace Jenkins
 	    /// </summary>
 	    private static void _setBuildAndroidInfo()
 	    {
+	        BuildInfoBuildTypeAndroid android = _getBuildType<BuildInfoBuildTypeAndroid>();
+            //todo 增加icon设置
+//            BuildInfoIconsAndroid icon = (BuildInfoIconsAndroid) BuildInfo.Icons.Item;
+//            foreach (var icon1 in icon.Icon)
+//            {
+//            }
+//            PlayerSettings.SetIconsForTargetGroup();
+
             PlayerSettings.Android.showActivityIndicatorOnLoading = AndroidShowActivityIndicatorOnLoading.DontShow;
             PlayerSettings.Android.preferredInstallLocation = AndroidPreferredInstallLocation.Auto;
-            PlayerSettings.Android.forceInternetPermission = _getBuildType<BuildInfoBuildTypeAndroid>().InternetAccess;
+            PlayerSettings.Android.forceInternetPermission = android.InternetAccess;
             //todo 修改xsd 修改为bool类型 名字改为WriteSDCard --
             //PlayerSettings.Android.forceSDCardPermission = _getBuildType<BuildInfoBuildTypeAndroid>().WritePermission.ItemElementName.;
 
+	        PlayerSettings.Android.bundleVersionCode = android.BundleVersionCode.Value;
 
-            if (Config.ContainsKey(AndroidConfigNodeConst.BundleVersionCode))
-	        {
-	            PlayerSettings.Android.bundleVersionCode = int.Parse(_getNodeValue(ConfigNodeConst.BundleVersionCode));
-	        }
-	        if (Config.ContainsKey(AndroidConfigNodeConst.SdkVersions))
-	        {
-	            PlayerSettings.Android.minSdkVersion = _stringToEnum<AndroidSdkVersions>(_getNodeValue(AndroidAndIosConfigNodeConfig.SdkVersions));
-	        }
-	        if (Config.ContainsKey(AndroidConfigNodeConst.AndroidTargetDevice))
-	        {
-	            PlayerSettings.Android.targetDevice =
-	                _stringToEnum<AndroidTargetDevice>(_getNodeValue(AndroidConfigNodeConst.AndroidTargetDevice));
-	        }
+            //todo 修改xsd 默认值是int 不是stirng
+            //PlayerSettings.Android.minSdkVersion = _stringToEnum<AndroidSdkVersions>(_getSdkVersion(android.MinimumAPILevel.@default,android.MinimumAPILevel.Min,android.MinimumAPILevel.Max,android.MinimumAPILevel.Value));
+
+	        PlayerSettings.Android.targetDevice = _stringToEnum<AndroidTargetDevice>(android.DeveiceFilter.ToString());
+
 #if UNITY_5_6_OR_NEWER
-	        if (Config.ContainsKey(AndroidConfigNodeConst.TargetSdkVersion))
-	        {
-	            PlayerSettings.Android.targetSdkVersion =
-	                _stringToEnum<AndroidSdkVersions>(_getNodeValue(AndroidAndIosConfigNodeConfig.TargetSdkVersion));
-	        }
+            //todo 修改xsd 默认值是int 不是stirng
+            //	        PlayerSettings.Android.targetSdkVersion =
+            //	            _stringToEnum<AndroidSdkVersions>(_getSdkVersion(android.TargetAPILevel.@default,
+            //	                android.TargetAPILevel.Min, android.TargetAPILevel.Max, android.TargetAPILevel.Value));
 #endif
-            if (Config.ContainsKey(AndroidConfigNodeConst.InternetAccess))
-	        {
-	            PlayerSettings.Android.forceInternetPermission = bool.Parse(_getNodeValue(AndroidConfigNodeConst.InternetAccess));
-	        }
+            //todo xsd中 忘记添加 androidBuildSystem
+            // EditorUserBuildSettings.androidBuildSystem = _stringToEnum<AndroidBuildSystem>(android.
 
-	        if (Config.ContainsKey(AndroidConfigNodeConst.AndroidBuildSystem))
-	        {
-	            EditorUserBuildSettings.androidBuildSystem = _stringToEnum<AndroidBuildSystem>(_getNodeValue(AndroidConfigNodeConst.AndroidBuildSystem));
-	        }
-
-	        if (Config.ContainsKey(AndroidConfigNodeConst.TextureCompression))
-	        {
-	            EditorUserBuildSettings.androidBuildSubtarget = _stringToEnum<MobileTextureSubtarget>(_getNodeValue(AndroidConfigNodeConst.TextureCompression));
-	        }
+            //todo xsd中 忘记添加 androidBuildSubtarget
+            // EditorUserBuildSettings.androidBuildSubtarget = _stringToEnum<MobileTextureSubtarget>(android.
 
 #if UNITY_2017_3
-	        if (Config.ContainsKey(AndroidConfigNodeConst.ETC2Fallback))
-	        {
-	            EditorUserBuildSettings.androidETC2Fallback = _stringToEnum<AndroidETC2Fallback>(_getNodeValue(AndroidConfigNodeConst.ETC2Fallback));
-	        }
+            //todo xsd中 忘记添加 androidETC2Fallback
+//            if (Config.ContainsKey(AndroidConfigNodeConst.ETC2Fallback))
+//	        {
+//	            EditorUserBuildSettings.androidETC2Fallback = _stringToEnum<AndroidETC2Fallback>(_getNodeValue(AndroidConfigNodeConst.ETC2Fallback));
+//	        }
 #endif
 
-            _setBuildInfo(BuildTargetGroup.Android);
+            _setCommonBuildInfo(BuildTargetGroup.Android);
+	        _setIOSAndAndroidCommonBuildInfo(false);
+
 	    }
-    }
+
+	    private static int _getSdkVersion(int @default, int min, int max, int value)
+	    {
+	        if (value == @default || (value >= min && value <= max))
+	        {
+	            return value;
+	        }
+
+	        return value < min ? min : max;
+	    }
+	}
 }
