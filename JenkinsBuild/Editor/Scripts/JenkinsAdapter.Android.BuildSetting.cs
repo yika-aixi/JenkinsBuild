@@ -1,16 +1,23 @@
-﻿using Jenkins.XmlConst;
+﻿using JenkinsBuild;
 using UnityEditor;
 
 namespace Jenkins
 {
-	public partial class JenkinsAdapter
+    public partial class JenkinsAdapter
 	{
 	    /// <summary>
 	    /// 安卓打包设置
 	    /// </summary>
 	    private static void _setBuildAndroidInfo()
 	    {
-	        if (Config.ContainsKey(AndroidConfigNodeConst.BundleVersionCode))
+            PlayerSettings.Android.showActivityIndicatorOnLoading = AndroidShowActivityIndicatorOnLoading.DontShow;
+            PlayerSettings.Android.preferredInstallLocation = AndroidPreferredInstallLocation.Auto;
+            PlayerSettings.Android.forceInternetPermission = _getBuildType<BuildInfoBuildTypeAndroid>().InternetAccess;
+            //todo 修改xsd 修改为bool类型 名字改为WriteSDCard --
+            //PlayerSettings.Android.forceSDCardPermission = _getBuildType<BuildInfoBuildTypeAndroid>().WritePermission.ItemElementName.;
+
+
+            if (Config.ContainsKey(AndroidConfigNodeConst.BundleVersionCode))
 	        {
 	            PlayerSettings.Android.bundleVersionCode = int.Parse(_getNodeValue(ConfigNodeConst.BundleVersionCode));
 	        }

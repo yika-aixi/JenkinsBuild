@@ -6,9 +6,9 @@ namespace Jenkins
     public partial class JenkinsAdapter
 	{
         /// <summary>
-        /// IOS打包设置
+        /// PC打包设置
         /// </summary>
-	    private static void _setBuildIosInfo()
+	    private static void _setBuildPCInfo()
 	    {
             PlayerSettings.iOS.statusBarStyle =
                 _stringToEnum<iOSStatusBarStyle>(_getBuildType<BuildInfoBuildTypeIOS>().StatusBarStyle.ToString());

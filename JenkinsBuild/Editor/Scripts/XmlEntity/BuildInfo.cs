@@ -687,7 +687,8 @@ namespace JenkinsBuild {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    public partial class BuildInfoBuildTypeAndroid {
+    public partial class BuildInfoBuildTypeAndroid: IBuildType
+    {
         
         /// <remarks/>
         public AndroidAndIOS AndroidAndIOS;
@@ -966,7 +967,8 @@ namespace JenkinsBuild {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    public partial class BuildInfoBuildTypeIOS {
+    public partial class BuildInfoBuildTypeIOS: IBuildType
+    {
         
         /// <remarks/>
         public PCAndIOS PCAndIOS;
@@ -1339,7 +1341,8 @@ namespace JenkinsBuild {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    public partial class BuildInfoBuildTypePC {
+    public partial class BuildInfoBuildTypePC: IBuildType
+    {
         
         /// <remarks/>
         public PCAndIOS PCAndIOS;

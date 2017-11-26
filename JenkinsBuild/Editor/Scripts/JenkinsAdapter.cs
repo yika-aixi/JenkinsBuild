@@ -1,17 +1,18 @@
-﻿using Jenkins.XmlConst;
-using System;
+﻿using System.Linq;
 using UnityEditor;
 
 namespace Jenkins
 {
     public partial class JenkinsAdapter
     {
+        #region CommandLine call function
+
         public static void CommandLineXmlBuildAndroid()
         {
             //解析XML
             XmlBuild();
             _setBuildAndroidInfo();
-            _build(BuildTarget.Android, GetAndroidPath());
+            _build(BuildTarget.Android);
         }
 
         public static void CommandLineXmlBuildIOS()
@@ -19,21 +20,50 @@ namespace Jenkins
             //解析XML
             XmlBuild();
             _setBuildIosInfo();
-            _build(BuildTarget.iOS, GetIosBuildPath());
+            _build(BuildTarget.iOS);
         }
 
-        //        public static void CommandLineBuildWin()
-        //        {
-        ////            BuildPipeline.BuildPlayer(_analysisLineArgs(), GetWindowsPath(), BuildTarget.StandaloneWindows, BuildOptions.None);
-        //            Debug.Log("Build Complete Path:" + GetWindowsPath());
-        //        }
-
-        static void _build(BuildTarget target,string defaultPath)
+        public static void CommandLineXmlBuildWin32()
         {
-            var outPath = _getOutPath(defaultPath);
-            var error = BuildPipeline.BuildPlayer(Scenes.ToArray(), outPath, target, BuildOptions.None);
-            _executeComplete(error, outPath);
+            _buildPC(BuildTarget.StandaloneWindows);
         }
+
+        public static void CommandLineXmlBuildWin64()
+        {
+            _buildPC(BuildTarget.StandaloneWindows64);
+        }
+
+        public static void CommandLineXmlBuildMac()
+        {
+            _buildPC(BuildTarget.StandaloneOSX);
+        }
+
+        #endregion
+
+
+
+        #region Private funation
+
+        static void _buildPC(BuildTarget target)
+        {
+            //解析XML
+            XmlBuild();
+            _setBuildPCInfo();
+            _build(target);
+        }
+
+        static void _build(BuildTarget target)
+        {
+            BuildPlayerOptions buildPlayer = new BuildPlayerOptions();
+            buildPlayer.scenes = BuildInfo.Scences.Select(x => x.Value).ToArray();
+            buildPlayer.locationPathName = BuildInfo.OutPath;
+            buildPlayer.target = target;
+            buildPlayer.options = BuildOptions.None;
+            var error = BuildPipeline.BuildPlayer(buildPlayer);
+            _executeComplete(error, buildPlayer.locationPathName);
+        }
+
+        #endregion
     }
 
 }
