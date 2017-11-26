@@ -12,13 +12,6 @@ namespace Jenkins
         /// <param name="target"></param>
         private static void _setCommonBuildInfo(BuildTargetGroup target)
         {
-            
-           
-
-            //需要修改xsd
-//            PlayerSettings.SetAspectRatio(_getBuildType<BuildInfoBuildTypePC>()AspectRatio.Aspect16by10, true);
-
-            
 
             PlayerSettings.colorSpace = _stringToEnum<ColorSpace>(BuildInfo.ColorSpace.ToString());
 
@@ -31,23 +24,16 @@ namespace Jenkins
 
             PlayerSettings.bundleVersion = BuildInfo.Version.Value;
 
-            //需要修改xsd
-            //PlayerSettings.SetStackTraceLogType(LogType.Log, StackTraceLogType.Full);
-
-
-            //            if (Config.ContainsKey(ConfigNodeConst.Version))
-            //            {
-            //                PlayerSettings.bundleVersion = _getNodeValue(ConfigNodeConst.Version);
-            //            }
+            foreach (var loggingType in BuildInfo.Logging.Type)
+            {
+                PlayerSettings.SetStackTraceLogType(_stringToEnum<LogType>(loggingType.Value.ToString()),
+                    _stringToEnum<StackTraceLogType>(loggingType.StackType.ToString()));
+            }
+ 
 #if UNITY_5_6_OR_NEWER
 
-            //todo 根据平台设置 或者 修改xsd吧报名抽出来
-            //            if (Config.ContainsKey(ConfigNodeConst.PackName))
-            //            {
-            //                PlayerSettings.applicationIdentifier = _getNodeValue(ConfigNodeConst.PackName);
-            //            }
-
-            //
+            PlayerSettings.applicationIdentifier = BuildInfo.PackNname;
+           
             PlayerSettings.SetApiCompatibilityLevel(target,
                 _stringToEnum<ApiCompatibilityLevel>(BuildInfo.APICompatibilityLevel.ToString()));
 
@@ -56,8 +42,16 @@ namespace Jenkins
             EditorUserBuildSettings.connectProfiler = BuildInfo.ConnectProfiler;
             EditorUserBuildSettings.allowDebugging = BuildInfo.ScriptsDebuggers;
 
-            //todo 需要修改xsd 增加 isAdd 属性
-            //PlayerSettings.SetScriptingDefineSymbolsForGroup(target, BuildInfo.ScriptingDefineSymbols.Value);
+            if (BuildInfo.ScriptingDefineSymbols.IsAdd)
+            {
+                var oldScripting = PlayerSettings.GetScriptingDefineSymbolsForGroup(target);
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(target,
+                    oldScripting + ";" + BuildInfo.ScriptingDefineSymbols.Value);
+            }
+            else
+            {
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(target, BuildInfo.ScriptingDefineSymbols.Value);
+            }
             
         }
 

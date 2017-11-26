@@ -64,7 +64,7 @@
     <!--Image路径约束-->
     <xsd:simpleType name="ImagePath">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|]):(\\|/))?(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+(\.(jpg|png))" />
+            <xsd:pattern value="(Assets(\\|/))(([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])*(\\|/))*([^/|\\|:|\*|\?|\&quot;|\&lt;|\&gt;|\|])+(\.(jpg|png))" />
         </xsd:restriction>
     </xsd:simpleType>
     <!--输出路径约束-->
@@ -201,11 +201,27 @@
             <xsd:enumeration value="Full" />
         </xsd:restriction>
     </xsd:simpleType>
+    <xsd:simpleType name="AspectRatioEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AspectOthers" />
+            <xsd:enumeration value="Aspect4by3" />
+            <xsd:enumeration value="Aspect5by4" />
+            <xsd:enumeration value="Aspect16by10" />
+            <xsd:enumeration value="Aspect16by9" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="LogTypeEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Error" />
+            <xsd:enumeration value="Assert" />
+            <xsd:enumeration value="Warning" />
+            <xsd:enumeration value="Log" />
+            <xsd:enumeration value="Exception" />
+        </xsd:restriction>
+    </xsd:simpleType>
     <xsd:element name="Icon">
         <xsd:annotation>
-            <xsd:documentation>
-                Icon需要加入路径约定
-            </xsd:documentation>
+            <xsd:documentation>目前只允许加载Assets目录下的图片</xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
             <xsd:simpleContent>
@@ -218,7 +234,6 @@
     <xsd:element name="PCAndIOS">
         <xsd:complexType>
             <xsd:all>
-                <xsd:element name="BundleIdentifier" type="xsd:string" minOccurs="0" />
                 <xsd:element name="Build" type="xsd:int" minOccurs="0" />
             </xsd:all>
         </xsd:complexType>

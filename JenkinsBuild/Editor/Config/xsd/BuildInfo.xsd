@@ -130,7 +130,9 @@
                 <xs:element name="ScriptingDefineSymbols" minOccurs="0">
                     <xs:complexType>
                         <xs:simpleContent>
-                            <xs:extension base="xs:string" />
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="IsAdd" default="true" type="xs:boolean" />
+                            </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
@@ -186,17 +188,17 @@
                 </xs:element>
                 <xs:element name="Logging" minOccurs="0">
                     <xs:complexType>
-                        <xs:all>
-                            <xs:element name="Error" type="StackTraceLogTypeEnum" minOccurs="0">
-                                <xs:annotation>
-                                    <xs:documentation>增加StackTraceLog枚举约定--下面一样的</xs:documentation>
-                                </xs:annotation>
+                        <xs:sequence maxOccurs="5">
+                            <xs:element name="Type">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="LogTypeEnum">
+                                            <xs:attribute name="StackType" type="StackTraceLogTypeEnum" />
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
                             </xs:element>
-                            <xs:element name="Assert" type="StackTraceLogTypeEnum" minOccurs="0" />
-                            <xs:element name="Warning" type="StackTraceLogTypeEnum" minOccurs="0" />
-                            <xs:element name="Log" type="StackTraceLogTypeEnum" minOccurs="0" />
-                            <xs:element name="Exception" type="StackTraceLogTypeEnum" minOccurs="0" />
-                        </xs:all>
+                        </xs:sequence>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="BuildType" minOccurs="0">
@@ -240,7 +242,7 @@
                                                     <xs:extension base="xs:int">
                                                         <xs:attribute name="Min" type="xs:int" use="required" />
                                                         <xs:attribute name="Max" type="xs:int" use="required" />
-                                                        <xs:attribute name="default" type="xs:string" use="required" />
+                                                        <xs:attribute name="default" type="xs:int" use="required" />
                                                     </xs:extension>
                                                 </xs:simpleContent>
                                             </xs:complexType>
@@ -251,7 +253,7 @@
                                                     <xs:extension base="xs:int">
                                                         <xs:attribute name="Min" type="xs:int" use="required" />
                                                         <xs:attribute name="Max" type="xs:int" use="required" />
-                                                        <xs:attribute name="default" type="xs:string" use="required" />
+                                                        <xs:attribute name="default" type="xs:int" use="required" />
                                                     </xs:extension>
                                                 </xs:simpleContent>
                                             </xs:complexType>
@@ -260,14 +262,7 @@
                                         <xs:element name="DeveiceFilter" type="AndroidTargetDeviceEnum" minOccurs="0" />
                                         <xs:element name="InstallLocation" type="AndroidPreferredInstallLocationEnum" minOccurs="0" />
                                         <xs:element name="InternetAccess" type="xs:boolean" minOccurs="0" />
-                                        <xs:element name="WritePermission" minOccurs="0">
-                                            <xs:complexType>
-                                                <xs:choice>
-                                                    <xs:element name="Internet" type="xs:boolean" />
-                                                    <xs:element name="SDCard" type="xs:boolean" />
-                                                </xs:choice>
-                                            </xs:complexType>
-                                        </xs:element>
+                                        <xs:element name="WriteSDCard" type="xs:boolean" minOccurs="0" default="true" />
                                         <xs:element name="AndroidTVCompatibility" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:simpleContent>
@@ -289,6 +284,9 @@
                                             <xs:complexType />
                                         </xs:element>
                                         -->
+                                        <xs:element name="BuildSystem" type="AndroidBuildSystemEnum" minOccurs="0" />
+                                        <xs:element name="BuildSubtarget" type="MobileTextureSubtargetEnum" minOccurs="0" />
+                                        <xs:element name="ETC2Fallback" type="AndroidETC2FallbackEnum" minOccurs="0" />
                                     </xs:all>
                                 </xs:complexType>
                             </xs:element>
@@ -372,13 +370,17 @@
                                         <xs:element name="D3D11FullscreenMode" type="D3D11FullscreenModeEnum" minOccurs="0" />
                                         <xs:element name="SupportedAspectRations" minOccurs="0">
                                             <xs:complexType>
-                                                <xs:all>
-                                                    <xs:element name="AspectOthers" type="xs:boolean" />
-                                                    <xs:element name="Aspect4by3" type="xs:boolean" />
-                                                    <xs:element name="Aspect5by4" type="xs:boolean" />
-                                                    <xs:element name="Aspect16by10" type="xs:boolean" />
-                                                    <xs:element name="Aspect16by9" type="xs:boolean" />
-                                                </xs:all>
+                                                <xs:sequence maxOccurs="5">
+                                                    <xs:element name="AspectRatio">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="AspectRatioEnum">
+                                                                    <xs:attribute name="enable" type="xs:boolean" />
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
                                         <xs:element name="Category" type="xs:string" minOccurs="0" />
@@ -542,6 +544,7 @@
                 <xs:element name="ConnectProfiler" type="xs:boolean" minOccurs="0" default="false" />
                 <xs:element name="ScriptsDebuggers" type="xs:boolean" minOccurs="0" default="false" />
                 <xs:element name="OutPath" type="PackOutPath" />
+                <xs:element name="PackNname" type="xs:string" minOccurs="0" />
             </xs:all>
         </xs:complexType>
     </xs:element>

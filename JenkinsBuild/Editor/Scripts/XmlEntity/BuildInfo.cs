@@ -43,9 +43,6 @@ namespace JenkinsBuild {
     public partial class PCAndIOS {
         
         /// <remarks/>
-        public string BundleIdentifier;
-        
-        /// <remarks/>
         public int Build;
         
         /// <remarks/>
@@ -251,6 +248,9 @@ namespace JenkinsBuild {
         
         /// <remarks/>
         public string OutPath;
+        
+        /// <remarks/>
+        public string PackNname;
         
         public BuildInfo() {
             this.Development = false;
@@ -533,8 +533,17 @@ namespace JenkinsBuild {
     public partial class BuildInfoScriptingDefineSymbols {
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(true)]
+        public bool IsAdd;
+        
+        /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
+        
+        public BuildInfoScriptingDefineSymbols() {
+            this.IsAdd = true;
+        }
     }
     
     /// <remarks/>
@@ -616,39 +625,29 @@ namespace JenkinsBuild {
     public partial class BuildInfoLogging {
         
         /// <remarks/>
-        public StackTraceLogTypeEnum Error;
+        [System.Xml.Serialization.XmlElementAttribute("Type")]
+        public BuildInfoLoggingType[] Type;
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    public partial class BuildInfoLoggingType {
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public StackTraceLogTypeEnum StackType;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool ErrorSpecified;
+        public bool StackTypeSpecified;
         
         /// <remarks/>
-        public StackTraceLogTypeEnum Assert;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool AssertSpecified;
-        
-        /// <remarks/>
-        public StackTraceLogTypeEnum Warning;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool WarningSpecified;
-        
-        /// <remarks/>
-        public StackTraceLogTypeEnum Log;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool LogSpecified;
-        
-        /// <remarks/>
-        public StackTraceLogTypeEnum Exception;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool ExceptionSpecified;
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public LogTypeEnum Value;
     }
     
     /// <remarks/>
@@ -664,6 +663,27 @@ namespace JenkinsBuild {
         
         /// <remarks/>
         Full,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+    [System.SerializableAttribute()]
+    public enum LogTypeEnum {
+        
+        /// <remarks/>
+        Error,
+        
+        /// <remarks/>
+        Assert,
+        
+        /// <remarks/>
+        Warning,
+        
+        /// <remarks/>
+        Log,
+        
+        /// <remarks/>
+        Exception,
     }
     
     /// <remarks/>
@@ -741,13 +761,39 @@ namespace JenkinsBuild {
         public bool InternetAccessSpecified;
         
         /// <remarks/>
-        public BuildInfoBuildTypeAndroidWritePermission WritePermission;
+        [System.ComponentModel.DefaultValueAttribute(true)]
+        public bool WriteSDCard;
         
         /// <remarks/>
         public BuildInfoBuildTypeAndroidAndroidTVCompatibility AndroidTVCompatibility;
         
         /// <remarks/>
         public BuildInfoBuildTypeAndroidAndroidGame AndroidGame;
+        
+        /// <remarks/>
+        public AndroidBuildSystemEnum BuildSystem;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool BuildSystemSpecified;
+        
+        /// <remarks/>
+        public MobileTextureSubtargetEnum BuildSubtarget;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool BuildSubtargetSpecified;
+        
+        /// <remarks/>
+        public AndroidETC2FallbackEnum ETC2Fallback;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool ETC2FallbackSpecified;
+        
+        public BuildInfoBuildTypeAndroid() {
+            this.WriteSDCard = true;
+        }
     }
     
     /// <remarks/>
@@ -820,7 +866,7 @@ namespace JenkinsBuild {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string @default;
+        public int @default;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
@@ -845,7 +891,7 @@ namespace JenkinsBuild {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string @default;
+        public int @default;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlTextAttribute()]
@@ -909,38 +955,6 @@ namespace JenkinsBuild {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    public partial class BuildInfoBuildTypeAndroidWritePermission {
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Internet", typeof(bool))]
-        [System.Xml.Serialization.XmlElementAttribute("SDCard", typeof(bool))]
-        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
-        public bool Item;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemChoiceType ItemElementName;
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(IncludeInSchema=false)]
-    public enum ItemChoiceType {
-        
-        /// <remarks/>
-        Internet,
-        
-        /// <remarks/>
-        SDCard,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeAndroidAndroidTVCompatibility {
         
         /// <remarks/>
@@ -964,11 +978,67 @@ namespace JenkinsBuild {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
     [System.SerializableAttribute()]
+    public enum AndroidBuildSystemEnum {
+        
+        /// <remarks/>
+        Internal,
+        
+        /// <remarks/>
+        Gradle,
+        
+        /// <remarks/>
+        ADT,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+    [System.SerializableAttribute()]
+    public enum MobileTextureSubtargetEnum {
+        
+        /// <remarks/>
+        Generic,
+        
+        /// <remarks/>
+        DXT,
+        
+        /// <remarks/>
+        PVRTC,
+        
+        /// <remarks/>
+        ATC,
+        
+        /// <remarks/>
+        ETC,
+        
+        /// <remarks/>
+        ETC2,
+        
+        /// <remarks/>
+        ASTC,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+    [System.SerializableAttribute()]
+    public enum AndroidETC2FallbackEnum {
+        
+        /// <remarks/>
+        Quality32Bit,
+        
+        /// <remarks/>
+        Quality16Bit,
+        
+        /// <remarks/>
+        Quality32BitDownscaled,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+    [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    public partial class BuildInfoBuildTypeIOS: IBuildType
-    {
+    public partial class BuildInfoBuildTypeIOS:IBuildType {
         
         /// <remarks/>
         public PCAndIOS PCAndIOS;
@@ -1605,18 +1675,49 @@ namespace JenkinsBuild {
     public partial class BuildInfoBuildTypePCSupportedAspectRations {
         
         /// <remarks/>
-        public bool AspectOthers;
+        [System.Xml.Serialization.XmlElementAttribute("AspectRatio")]
+        public BuildInfoBuildTypePCSupportedAspectRationsAspectRatio[] AspectRatio;
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    public partial class BuildInfoBuildTypePCSupportedAspectRationsAspectRatio {
         
         /// <remarks/>
-        public bool Aspect4by3;
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public bool enable;
         
         /// <remarks/>
-        public bool Aspect5by4;
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool enableSpecified;
         
         /// <remarks/>
-        public bool Aspect16by10;
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public AspectRatioEnum Value;
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+    [System.SerializableAttribute()]
+    public enum AspectRatioEnum {
         
         /// <remarks/>
-        public bool Aspect16by9;
+        AspectOthers,
+        
+        /// <remarks/>
+        Aspect4by3,
+        
+        /// <remarks/>
+        Aspect5by4,
+        
+        /// <remarks/>
+        Aspect16by10,
+        
+        /// <remarks/>
+        Aspect16by9,
     }
 }

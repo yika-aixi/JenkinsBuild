@@ -1,4 +1,5 @@
-﻿using JenkinsBuild;
+﻿using System.Linq;
+using JenkinsBuild;
 using UnityEditor;
 
 namespace Jenkins
@@ -9,28 +10,33 @@ namespace Jenkins
         /// IOS打包设置
         /// </summary>
 	    private static void _setBuildIosInfo()
-	    {
+        {
+            BuildInfoBuildTypeIOS ios = _getBuildType<BuildInfoBuildTypeIOS>();
+
             PlayerSettings.iOS.statusBarStyle =
-                _stringToEnum<iOSStatusBarStyle>(_getBuildType<BuildInfoBuildTypeIOS>().StatusBarStyle.ToString());
+                _stringToEnum<iOSStatusBarStyle>(ios.StatusBarStyle.ToString());
 
             PlayerSettings.iOS.targetDevice =
-                _stringToEnum<iOSTargetDevice>(_getBuildType<BuildInfoBuildTypeIOS>().TargetDevice.ToString());
+                _stringToEnum<iOSTargetDevice>(ios.TargetDevice.ToString());
 
             PlayerSettings.iOS.sdkVersion =
-                _stringToEnum<iOSSdkVersion>(_getBuildType<BuildInfoBuildTypeIOS>().TargetSdK.ToString());
+                _stringToEnum<iOSSdkVersion>(ios.TargetSdK.ToString());
 
             PlayerSettings.iOS.appInBackgroundBehavior =
                 _stringToEnum<iOSAppInBackgroundBehavior>(
-                    _getBuildType<BuildInfoBuildTypeIOS>().BehaviorInBackground.ToString());
+                    ios.BehaviorInBackground.ToString());
             PlayerSettings.iOS.showActivityIndicatorOnLoading =
                 _stringToEnum<iOSShowActivityIndicatorOnLoading>(
-                    _getBuildType<BuildInfoBuildTypeIOS>().ShowLoadingIndicator.ToString());
+                    ios.ShowLoadingIndicator.ToString());
 
             //ios
-            PlayerSettings.accelerometerFrequency = _getBuildType<BuildInfoBuildTypeIOS>().AccelerometerFrequency;
+            PlayerSettings.accelerometerFrequency = ios.AccelerometerFrequency;
 
             //ios
-            PlayerSettings.SetArchitecture(BuildTargetGroup.iOS, _getBuildType<BuildInfoBuildTypeIOS>().Architecture);
+            PlayerSettings.SetArchitecture(BuildTargetGroup.iOS, ios.Architecture);
+
+            var iconPaths = ((BuildInfoIconsIOS)BuildInfo.Icons.Item).Icon.Select(x => x.Value).ToArray();
+            _setIcons(BuildTargetGroup.iOS, iconPaths);
 
             _setCommonBuildInfo(BuildTargetGroup.iOS);
             _setIOSAndAndroidCommonBuildInfo(true);

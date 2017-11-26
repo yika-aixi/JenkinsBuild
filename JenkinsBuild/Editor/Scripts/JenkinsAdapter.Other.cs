@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine;
 
 namespace Jenkins
 {
@@ -39,6 +41,24 @@ namespace Jenkins
                 Console.WriteLine("Build Error:" + errorMessage);
                 EditorApplication.Exit(1);
             }
+        }
+
+        static void _setIcons(BuildTargetGroup target,string[] paths)
+        {
+            PlayerSettings.SetIconsForTargetGroup(target,_loadTexture2Ds(paths));
+        }
+
+
+        static Texture2D[] _loadTexture2Ds(string[] paths)
+        {
+            List<Texture2D> texture2Ds = new List<Texture2D>();
+
+            foreach (var path in paths)
+            {
+                texture2Ds.Add(AssetDatabase.LoadAssetAtPath<Texture2D>(path));
+            }
+
+            return texture2Ds.ToArray();
         }
     }
 }
