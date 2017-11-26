@@ -23,7 +23,7 @@ namespace JenkinsBuild
                 Console.WriteLine("参数:" + arg);
             }
             var count = Environment.GetCommandLineArgs().Length;
-            _getXmlVale(Environment.GetCommandLineArgs()[count - 1]);
+            SerializerXml(Environment.GetCommandLineArgs()[count - 1]);
 
         }
 
@@ -31,10 +31,13 @@ namespace JenkinsBuild
         /// 序列化xml
         /// </summary>
         /// <param name="path">xml所在路径</param>
-        private static void _getXmlVale(string path)
+        public static void SerializerXml(string path)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(BuildInfo));
-            BuildInfo = (BuildInfo) serializer.Deserialize(File.Open(path, FileMode.Open));
+            using (var config = File.Open(path, FileMode.Open))
+            {
+                BuildInfo = (BuildInfo)serializer.Deserialize(config);
+            }
         }
 
 
