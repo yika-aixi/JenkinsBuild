@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Xml;
 using System.Xml.Serialization;
-using JenkinsBuild;
+using JenkinsBuild.XmlEntity;
 
-namespace Jenkins
+namespace JenkinsBuild
 {
     /// <summary>
     /// Xml处理分部

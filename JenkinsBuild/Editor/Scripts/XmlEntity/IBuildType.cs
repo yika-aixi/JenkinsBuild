@@ -1,4 +1,4 @@
-﻿namespace JenkinsBuild
+﻿namespace JenkinsBuild.XmlEntity
 {
     public interface IBuildType
     {

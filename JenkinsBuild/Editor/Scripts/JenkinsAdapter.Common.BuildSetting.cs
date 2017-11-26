@@ -1,8 +1,8 @@
-﻿using JenkinsBuild;
+﻿using JenkinsBuild.XmlEntity;
 using UnityEditor;
 using UnityEngine;
 
-namespace Jenkins
+namespace JenkinsBuild
 {
     public partial class JenkinsAdapter
     {

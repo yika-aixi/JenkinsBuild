@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEditor;
 
-namespace Jenkins
+namespace JenkinsBuild
 {
     public partial class JenkinsAdapter
     {

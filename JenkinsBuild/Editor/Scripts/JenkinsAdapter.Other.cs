@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Jenkins
+namespace JenkinsBuild
 {
     public partial class JenkinsAdapter
     {
