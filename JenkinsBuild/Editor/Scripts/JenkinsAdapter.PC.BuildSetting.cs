@@ -13,22 +13,31 @@ namespace JenkinsBuild
         {
             BuildInfoBuildTypePC pc = _getBuildType<BuildInfoBuildTypePC>();
 
-            PlayerSettings.displayResolutionDialog = _stringToEnum<ResolutionDialogSetting>(
-                pc.DisplayResolutionDialog.ToString());
+            if (pc.DisplayResolutionDialogSpecified)
+            {
+                PlayerSettings.displayResolutionDialog = _stringToEnum<ResolutionDialogSetting>(
+                    pc.DisplayResolutionDialog.ToString());
+            }
 
+            if (pc.MacFullscreenModeSpecified)
+            {
+                PlayerSettings.macFullscreenMode = _stringToEnum<MacFullscreenMode>(
+                    pc.MacFullscreenMode.ToString());
+            }
 
-            PlayerSettings.macFullscreenMode = _stringToEnum<MacFullscreenMode>(
-                pc.MacFullscreenMode.ToString());
+            //            PlayerSettings.d3d9FullscreenMode = _stringToEnum<D3D9FullscreenMode>(
+            //                _getBuildType<BuildInfoBuildTypePC>().D3D9FullscreenMode.ToString());
 
-//            PlayerSettings.d3d9FullscreenMode = _stringToEnum<D3D9FullscreenMode>(
-//                _getBuildType<BuildInfoBuildTypePC>().D3D9FullscreenMode.ToString());
-
-            PlayerSettings.d3d11FullscreenMode = _stringToEnum<D3D11FullscreenMode>(
-                pc.D3D11FullscreenMode.ToString());
-
+            if (pc.D3D11FullscreenModeSpecified)
+            {
+                PlayerSettings.d3d11FullscreenMode = _stringToEnum<D3D11FullscreenMode>(
+                    pc.D3D11FullscreenMode.ToString());
+            }
+            
             foreach (var aspectRatio in pc.SupportedAspectRations.AspectRatio)
             {
-                PlayerSettings.SetAspectRatio(_stringToEnum <AspectRatio>(aspectRatio.Value.ToString()), aspectRatio.enable);
+                PlayerSettings.SetAspectRatio(_stringToEnum<AspectRatio>(aspectRatio.Value.ToString()),
+                    aspectRatio.enable);
             }
 
             var iconPaths = ((BuildInfoIconsPC)BuildInfo.Icons.Item).Icon.Select(x => x.Value).ToArray();

@@ -28,6 +28,10 @@ namespace JenkinsBuild
 
         static void _setIcons(BuildTargetGroup target,string[] paths)
         {
+            if (paths.Length == 0)
+            {
+                return;
+            }
             PlayerSettings.SetIconsForTargetGroup(target,_loadTexture2Ds(paths));
         }
 

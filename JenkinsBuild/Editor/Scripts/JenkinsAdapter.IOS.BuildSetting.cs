@@ -13,27 +13,46 @@ namespace JenkinsBuild
         {
             BuildInfoBuildTypeIOS ios = _getBuildType<BuildInfoBuildTypeIOS>();
 
-            PlayerSettings.iOS.statusBarStyle =
-                _stringToEnum<iOSStatusBarStyle>(ios.StatusBarStyle.ToString());
+            if (ios.StatusBarStyleSpecified)
+            {
+                PlayerSettings.iOS.statusBarStyle =
+                    _stringToEnum<iOSStatusBarStyle>(ios.StatusBarStyle.ToString());
+            }
 
-            PlayerSettings.iOS.targetDevice =
-                _stringToEnum<iOSTargetDevice>(ios.TargetDevice.ToString());
 
-            PlayerSettings.iOS.sdkVersion =
-                _stringToEnum<iOSSdkVersion>(ios.TargetSdK.ToString());
+            if (ios.TargetDeviceSpecified)
+            {
+                PlayerSettings.iOS.targetDevice =
+                    _stringToEnum<iOSTargetDevice>(ios.TargetDevice.ToString());
+            }
 
-            PlayerSettings.iOS.appInBackgroundBehavior =
-                _stringToEnum<iOSAppInBackgroundBehavior>(
-                    ios.BehaviorInBackground.ToString());
-            PlayerSettings.iOS.showActivityIndicatorOnLoading =
-                _stringToEnum<iOSShowActivityIndicatorOnLoading>(
-                    ios.ShowLoadingIndicator.ToString());
+            if (ios.TargetSdKSpecified)
+            {
+                PlayerSettings.iOS.sdkVersion =
+                    _stringToEnum<iOSSdkVersion>(ios.TargetSdK.ToString());
+            }
 
-            //ios
-            PlayerSettings.accelerometerFrequency = ios.AccelerometerFrequency;
+            if (ios.BehaviorInBackgroundSpecified)
+            {
+                PlayerSettings.iOS.appInBackgroundBehavior =
+                    _stringToEnum<iOSAppInBackgroundBehavior>(
+                        ios.BehaviorInBackground.ToString());
+            }
+            if (ios.ShowLoadingIndicatorSpecified)
+            {
+                PlayerSettings.iOS.showActivityIndicatorOnLoading =
+                    _stringToEnum<iOSShowActivityIndicatorOnLoading>(
+                        ios.ShowLoadingIndicator.ToString());
+            }
+            if (ios.AccelerometerFrequencySpecified)
+            {
+                PlayerSettings.accelerometerFrequency = ios.AccelerometerFrequency;
+            }
 
-            //ios
-            PlayerSettings.SetArchitecture(BuildTargetGroup.iOS, ios.Architecture);
+            if (ios.ArchitectureSpecified)
+            {
+                PlayerSettings.SetArchitecture(BuildTargetGroup.iOS, ios.Architecture);
+            }
 
             var iconPaths = ((BuildInfoIconsIOS)BuildInfo.Icons.Item).Icon.Select(x => x.Value).ToArray();
             _setIcons(BuildTargetGroup.iOS, iconPaths);
