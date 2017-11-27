@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using JenkinsBuild.XmlEntity;
 using UnityEditor;
 
 namespace JenkinsBuild
@@ -12,13 +11,12 @@ namespace JenkinsBuild
 	    private static void _setBuildIosInfo()
         {
             BuildInfoBuildTypeIOS ios = _getBuildType<BuildInfoBuildTypeIOS>();
-
+            PlayerSettings.iOS.forceHardShadowsOnMetal = ios.ForcehardShadowsOnMetal;
             if (ios.StatusBarStyleSpecified)
             {
                 PlayerSettings.iOS.statusBarStyle =
                     _stringToEnum<iOSStatusBarStyle>(ios.StatusBarStyle.ToString());
             }
-
 
             if (ios.TargetDeviceSpecified)
             {

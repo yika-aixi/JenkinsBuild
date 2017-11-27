@@ -1,7 +1,6 @@
-﻿using System;
-using JenkinsBuild;
-using JenkinsBuild.XmlEntity;
+﻿using JenkinsBuild;
 using NUnit.Framework;
+using System;
 using UnityEngine;
 
 public class XmlSerializeTest {

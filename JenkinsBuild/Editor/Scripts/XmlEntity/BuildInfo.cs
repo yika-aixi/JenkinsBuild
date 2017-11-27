@@ -11,25 +11,25 @@
 // 
 // 此源代码由 xsd 自动生成, Version=4.6.81.0。
 // 
-
-using System.Xml.Serialization;
-
-namespace JenkinsBuild.XmlEntity {
+namespace JenkinsBuild {
+    using System.Xml.Serialization;
+    
+    
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
-    [XmlRoot(Namespace="", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class Icon {
         
         /// <remarks/>
-        [XmlAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string explain;
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
     }
     
@@ -38,15 +38,15 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
-    [XmlRoot(Namespace="", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class PCAndIOS {
         
         /// <remarks/>
         public int Build;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool BuildSpecified;
     }
     
@@ -55,57 +55,57 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
-    [XmlRoot(Namespace="", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class AndroidAndIOS {
         
         /// <remarks/>
         public UIOrientationEnum DefaultOrientation;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool DefaultOrientationSpecified;
         
         /// <remarks/>
         public bool Portrait;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool PortraitSpecified;
         
         /// <remarks/>
         public bool PortraitUpsideDown;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool PortraitUpsideDownSpecified;
         
         /// <remarks/>
         public bool LandscapeRight;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool LandscapeRightSpecified;
         
         /// <remarks/>
         public bool LandscapeLeft;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool LandscapeLeftSpecified;
         
         /// <remarks/>
         public bool DisableDepthAndStencil;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool DisableDepthAndStencilSpecified;
         
         /// <remarks/>
         public bool MuteOtherAudioSources;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool MuteOtherAudioSourcesSpecified;
     }
     
@@ -135,18 +135,22 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
-    [XmlRoot(Namespace="", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class BuildInfo {
         
         /// <remarks/>
-        [XmlArrayItem("Scence", IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Scence", IsNullable=false)]
         public BuildInfoScence[] Scences;
         
         /// <remarks/>
+        // CODEGEN 警告: 此版本的 .Net Framework 不支持 BuildInfoCompanyName 类型成员的 DefaultValue 特性。
+        // CODEGEN 警告: 只有基元类型支持“default”特性。忽略 default='DefaultCompany' 特性。
         public BuildInfoCompanyName CompanyName;
         
         /// <remarks/>
+        // CODEGEN 警告: 此版本的 .Net Framework 不支持 BuildInfoProductName 类型成员的 DefaultValue 特性。
+        // CODEGEN 警告: 只有基元类型支持“default”特性。忽略 default='DefaultProduct' 特性。
         public BuildInfoProductName ProductName;
         
         /// <remarks/>
@@ -159,16 +163,13 @@ namespace JenkinsBuild.XmlEntity {
         public ColorSpaceEnum ColorSpace;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ColorSpaceSpecified;
         
         /// <remarks/>
         // CODEGEN 警告: 此版本的 .Net Framework 不支持 BuildInfoAutoGraphicsAPI 类型成员的 DefaultValue 特性。
         // CODEGEN 警告: 只有基元类型支持“default”特性。忽略 default='true' 特性。
         public BuildInfoAutoGraphicsAPI AutoGraphicsAPI;
-        
-        /// <remarks/>
-        public BuildInfoForcehardShadowsOnMetal ForcehardShadowsOnMetal;
         
         /// <remarks/>
         // CODEGEN 警告: 此版本的 .Net Framework 不支持 BuildInfoStaticBatching 类型成员的 DefaultValue 特性。
@@ -196,14 +197,14 @@ namespace JenkinsBuild.XmlEntity {
         public ScriptingImplementationEnum ScriptingBackend;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ScriptingBackendSpecified;
         
         /// <remarks/>
         public ApiCompatibilityLevelEnum APICompatibilityLevel;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool APICompatibilityLevelSpecified;
         
         /// <remarks/>
@@ -219,7 +220,7 @@ namespace JenkinsBuild.XmlEntity {
         public StrippingLevelEnum StrippingLevel;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool StrippingLevelSpecified;
         
         /// <remarks/>
@@ -264,15 +265,15 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoScence {
         
         /// <remarks/>
-        [XmlAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string explain;
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
     }
     
@@ -281,11 +282,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoCompanyName {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
     }
     
@@ -294,11 +295,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoProductName {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
     }
     
@@ -307,11 +308,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoCursorHotspot {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
     }
     
@@ -320,13 +321,13 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoIcons {
         
         /// <remarks/>
-        [XmlElement("Android", typeof(BuildInfoIconsAndroid))]
-        [XmlElement("IOS", typeof(BuildInfoIconsIOS))]
-        [XmlElement("PC", typeof(BuildInfoIconsPC))]
+        [System.Xml.Serialization.XmlElementAttribute("Android", typeof(BuildInfoIconsAndroid))]
+        [System.Xml.Serialization.XmlElementAttribute("IOS", typeof(BuildInfoIconsIOS))]
+        [System.Xml.Serialization.XmlElementAttribute("PC", typeof(BuildInfoIconsPC))]
         public object Item;
     }
     
@@ -335,11 +336,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoIconsAndroid {
         
         /// <remarks/>
-        [XmlElement("Icon")]
+        [System.Xml.Serialization.XmlElementAttribute("Icon")]
         public Icon[] Icon;
     }
     
@@ -348,11 +349,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoIconsIOS {
         
         /// <remarks/>
-        [XmlElement("Icon")]
+        [System.Xml.Serialization.XmlElementAttribute("Icon")]
         public Icon[] Icon;
     }
     
@@ -361,11 +362,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoIconsPC {
         
         /// <remarks/>
-        [XmlElement("Icon")]
+        [System.Xml.Serialization.XmlElementAttribute("Icon")]
         public Icon[] Icon;
     }
     
@@ -375,10 +376,10 @@ namespace JenkinsBuild.XmlEntity {
     public enum ColorSpaceEnum {
         
         /// <remarks/>
-        Uninitialized,
+        Gamma,
         
         /// <remarks/>
-        Gamma,
+        Uninitialized,
         
         /// <remarks/>
         Linear,
@@ -389,11 +390,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoAutoGraphicsAPI {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -402,24 +403,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
-    public partial class BuildInfoForcehardShadowsOnMetal {
-        
-        /// <remarks/>
-        [XmlText()]
-        public bool Value;
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoStaticBatching {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -428,11 +416,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoDynamicBatching {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -441,11 +429,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoGPUSkinning {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -454,11 +442,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoGraphicsJobs {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -467,11 +455,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoVitualRealitySupported {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -480,11 +468,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoVersion {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
     }
     
@@ -509,10 +497,10 @@ namespace JenkinsBuild.XmlEntity {
     public enum ApiCompatibilityLevelEnum {
         
         /// <remarks/>
-        NET_2_0,
+        NET_2_0_Subset,
         
         /// <remarks/>
-        NET_2_0_Subset,
+        NET_2_0,
         
         /// <remarks/>
         NET_4_6,
@@ -529,16 +517,16 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoScriptingDefineSymbols {
         
         /// <remarks/>
-        [XmlAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         [System.ComponentModel.DefaultValueAttribute(true)]
         public bool IsAdd;
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
         
         public BuildInfoScriptingDefineSymbols() {
@@ -551,11 +539,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoPrebakeCollisionMeshes {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -564,11 +552,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoKeepLoadedShadersAlive {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -595,11 +583,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoEnableInternalProfiler {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -608,11 +596,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoOptimizeMeshData {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -621,11 +609,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoLogging {
         
         /// <remarks/>
-        [XmlElement("Type")]
+        [System.Xml.Serialization.XmlElementAttribute("Type")]
         public BuildInfoLoggingType[] Type;
     }
     
@@ -634,19 +622,19 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoLoggingType {
         
         /// <remarks/>
-        [XmlAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public StackTraceLogTypeEnum StackType;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool StackTypeSpecified;
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public LogTypeEnum Value;
     }
     
@@ -691,13 +679,13 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildType {
         
         /// <remarks/>
-        [XmlElement("Android", typeof(BuildInfoBuildTypeAndroid))]
-        [XmlElement("IOS", typeof(BuildInfoBuildTypeIOS))]
-        [XmlElement("PC", typeof(BuildInfoBuildTypePC))]
+        [System.Xml.Serialization.XmlElementAttribute("Android", typeof(BuildInfoBuildTypeAndroid))]
+        [System.Xml.Serialization.XmlElementAttribute("IOS", typeof(BuildInfoBuildTypeIOS))]
+        [System.Xml.Serialization.XmlElementAttribute("PC", typeof(BuildInfoBuildTypePC))]
         public object Item;
     }
     
@@ -706,58 +694,62 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
-    public partial class BuildInfoBuildTypeAndroid: IBuildType
-    {
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    public partial class BuildInfoBuildTypeAndroid {
         
         /// <remarks/>
         public AndroidAndIOS AndroidAndIOS;
         
         /// <remarks/>
-        [XmlElement("Use32-bitDisplayBuffer")]
+        [System.Xml.Serialization.XmlElementAttribute("Use32-bitDisplayBuffer")]
         public BuildInfoBuildTypeAndroidUse32bitDisplayBuffer Use32bitDisplayBuffer;
         
         /// <remarks/>
         public BuildInfoBuildTypeAndroidProtectGraphicsMemory ProtectGraphicsMemory;
         
         /// <remarks/>
-        public BuildInfoBuildTypeAndroidPackageName PackageName;
-        
-        /// <remarks/>
         public BuildInfoBuildTypeAndroidBundleVersionCode BundleVersionCode;
         
         /// <remarks/>
-        public BuildInfoBuildTypeAndroidMinimumAPILevel MinimumAPILevel;
+        public int MinimumAPILevel;
         
         /// <remarks/>
-        public BuildInfoBuildTypeAndroidTargetAPILevel TargetAPILevel;
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool MinimumAPILevelSpecified;
+        
+        /// <remarks/>
+        public int TargetAPILevel;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool TargetAPILevelSpecified;
         
         /// <remarks/>
         public AndroidShowActivityIndicatorOnLoadingEnum ShowLoadingIndicator;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ShowLoadingIndicatorSpecified;
         
         /// <remarks/>
         public AndroidTargetDeviceEnum DeveiceFilter;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool DeveiceFilterSpecified;
         
         /// <remarks/>
         public AndroidPreferredInstallLocationEnum InstallLocation;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool InstallLocationSpecified;
         
         /// <remarks/>
         public bool InternetAccess;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool InternetAccessSpecified;
         
         /// <remarks/>
@@ -774,21 +766,21 @@ namespace JenkinsBuild.XmlEntity {
         public AndroidBuildSystemEnum BuildSystem;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool BuildSystemSpecified;
         
         /// <remarks/>
         public MobileTextureSubtargetEnum BuildSubtarget;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool BuildSubtargetSpecified;
         
         /// <remarks/>
         public AndroidETC2FallbackEnum ETC2Fallback;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ETC2FallbackSpecified;
         
         public BuildInfoBuildTypeAndroid() {
@@ -801,11 +793,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeAndroidUse32bitDisplayBuffer {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -814,11 +806,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeAndroidProtectGraphicsMemory {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -827,74 +819,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
-    public partial class BuildInfoBuildTypeAndroidPackageName {
-        
-        /// <remarks/>
-        [XmlText()]
-        public string Value;
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeAndroidBundleVersionCode {
         
         /// <remarks/>
-        [XmlText()]
-        public int Value;
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
-    public partial class BuildInfoBuildTypeAndroidMinimumAPILevel {
-        
-        /// <remarks/>
-        [XmlAttribute()]
-        public int Min;
-        
-        /// <remarks/>
-        [XmlAttribute()]
-        public int Max;
-        
-        /// <remarks/>
-        [XmlAttribute()]
-        public int @default;
-        
-        /// <remarks/>
-        [XmlText()]
-        public int Value;
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
-    public partial class BuildInfoBuildTypeAndroidTargetAPILevel {
-        
-        /// <remarks/>
-        [XmlAttribute()]
-        public int Min;
-        
-        /// <remarks/>
-        [XmlAttribute()]
-        public int Max;
-        
-        /// <remarks/>
-        [XmlAttribute()]
-        public int @default;
-        
-        /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public int Value;
     }
     
@@ -954,11 +883,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeAndroidAndroidTVCompatibility {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -967,11 +896,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeAndroidAndroidGame {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1037,8 +966,8 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
-    public partial class BuildInfoBuildTypeIOS:IBuildType {
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    public partial class BuildInfoBuildTypeIOS {
         
         /// <remarks/>
         public PCAndIOS PCAndIOS;
@@ -1099,50 +1028,58 @@ namespace JenkinsBuild.XmlEntity {
         public IOSStatusBarStyleEnum StatusBarStyle;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool StatusBarStyleSpecified;
         
         /// <remarks/>
         public IOSTargetDeviceEnum TargetDevice;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool TargetDeviceSpecified;
         
         /// <remarks/>
         public IOSSdkVersionEnum TargetSdK;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool TargetSdKSpecified;
         
         /// <remarks/>
         public int AccelerometerFrequency;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool AccelerometerFrequencySpecified;
         
         /// <remarks/>
         public IOSAppInBackgroundBehaviorEnum BehaviorInBackground;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool BehaviorInBackgroundSpecified;
         
         /// <remarks/>
         public int Architecture;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ArchitectureSpecified;
         
         /// <remarks/>
         public IOSShowActivityIndicatorOnLoadingEnum ShowLoadingIndicator;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool ShowLoadingIndicatorSpecified;
+        
+        /// <remarks/>
+        [System.ComponentModel.DefaultValueAttribute(false)]
+        public bool ForcehardShadowsOnMetal;
+        
+        public BuildInfoBuildTypeIOS() {
+            this.ForcehardShadowsOnMetal = false;
+        }
     }
     
     /// <remarks/>
@@ -1150,11 +1087,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSUseAnimatedAutorotation {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1163,11 +1100,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSRequiresFullscreen {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1176,11 +1113,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSStatusBarHidden {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1189,11 +1126,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSAutomaticallySign {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1202,11 +1139,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSUseOnDemandResources {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1215,11 +1152,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSPrepareIOSForRecording {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1228,11 +1165,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSRequiresPersistentWifi {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1241,11 +1178,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSAllowDownloadsOverHttp {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1254,11 +1191,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSRenderExtraFrameOnPause {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1267,11 +1204,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSDisableHWStatistics {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1280,11 +1217,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSAutomaticSigningTeamID {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
     }
     
@@ -1293,11 +1230,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSCameraUsageDescription {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
     }
     
@@ -1306,11 +1243,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSLocationUsageDescription {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
     }
     
@@ -1319,11 +1256,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypeIOSMicrophoneUsageDescription {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public string Value;
     }
     
@@ -1351,13 +1288,13 @@ namespace JenkinsBuild.XmlEntity {
     public enum IOSTargetDeviceEnum {
         
         /// <remarks/>
+        iPhoneAndiPad,
+        
+        /// <remarks/>
         iPhoneOnly,
         
         /// <remarks/>
         iPadOnly,
-        
-        /// <remarks/>
-        iPhoneAndiPad,
     }
     
     /// <remarks/>
@@ -1410,9 +1347,8 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
-    public partial class BuildInfoBuildTypePC: IBuildType
-    {
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    public partial class BuildInfoBuildTypePC {
         
         /// <remarks/>
         public PCAndIOS PCAndIOS;
@@ -1451,28 +1387,28 @@ namespace JenkinsBuild.XmlEntity {
         public ResolutionDialogSettingEnum DisplayResolutionDialog;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool DisplayResolutionDialogSpecified;
         
         /// <remarks/>
         public MacFullscreenModeEnum MacFullscreenMode;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool MacFullscreenModeSpecified;
         
         /// <remarks/>
         public D3D9FullscreenModeEnum D3D9FullscreenMode;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool D3D9FullscreenModeSpecified;
         
         /// <remarks/>
         public D3D11FullscreenModeEnum D3D11FullscreenMode;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool D3D11FullscreenModeSpecified;
         
         /// <remarks/>
@@ -1487,11 +1423,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypePCDefaultIsFullScreen {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1500,11 +1436,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypePCDefaultIsNativeResolution {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1513,11 +1449,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypePCRunInBackground {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1526,11 +1462,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypePCCaptureSingleScreen {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1539,11 +1475,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypePCUsePlayerLog {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1552,11 +1488,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypePCResizableWindow {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1565,11 +1501,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypePCVisibleInBackground {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1578,11 +1514,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypePCAllowFullscreenSwitch {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1591,11 +1527,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypePCForceSingleInstance {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1604,11 +1540,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypePCMacAppStoreValidation {
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public bool Value;
     }
     
@@ -1671,11 +1607,11 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypePCSupportedAspectRations {
         
         /// <remarks/>
-        [XmlElement("AspectRatio")]
+        [System.Xml.Serialization.XmlElementAttribute("AspectRatio")]
         public BuildInfoBuildTypePCSupportedAspectRationsAspectRatio[] AspectRatio;
     }
     
@@ -1684,19 +1620,19 @@ namespace JenkinsBuild.XmlEntity {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [XmlType(AnonymousType=true)]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     public partial class BuildInfoBuildTypePCSupportedAspectRationsAspectRatio {
         
         /// <remarks/>
-        [XmlAttribute()]
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool enable;
         
         /// <remarks/>
-        [XmlIgnore()]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
         public bool enableSpecified;
         
         /// <remarks/>
-        [XmlText()]
+        [System.Xml.Serialization.XmlTextAttribute()]
         public AspectRatioEnum Value;
     }
     

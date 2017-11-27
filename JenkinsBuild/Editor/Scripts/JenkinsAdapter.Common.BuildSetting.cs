@@ -1,5 +1,4 @@
-﻿using JenkinsBuild.XmlEntity;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace JenkinsBuild
@@ -17,6 +16,10 @@ namespace JenkinsBuild
             EditorUserBuildSettings.development = BuildInfo.Development;
             EditorUserBuildSettings.connectProfiler = BuildInfo.ConnectProfiler;
             EditorUserBuildSettings.allowDebugging = BuildInfo.ScriptsDebuggers;
+
+            PlayerSettings.companyName = BuildInfo.CompanyName.Value;
+
+            PlayerSettings.productName = BuildInfo.ProductName.Value;
 
             if (BuildInfo.ColorSpaceSpecified)
             {
@@ -53,8 +56,6 @@ namespace JenkinsBuild
                     _stringToEnum<ApiCompatibilityLevel>(BuildInfo.APICompatibilityLevel.ToString()));
             }
 #endif
-
-
             if (BuildInfo.ScriptingDefineSymbols.IsAdd)
             {
                 var oldScripting = PlayerSettings.GetScriptingDefineSymbolsForGroup(target);

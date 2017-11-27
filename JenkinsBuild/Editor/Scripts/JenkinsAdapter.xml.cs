@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
-using JenkinsBuild.XmlEntity;
 
 namespace JenkinsBuild
 {
@@ -46,7 +45,7 @@ namespace JenkinsBuild
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        private static T _getBuildType<T>() where T : IBuildType
+        private static T _getBuildType<T>()
         {
             return (T) BuildInfo.BuildType.Item;
         }

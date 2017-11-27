@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using JenkinsBuild.XmlEntity;
 using UnityEditor;
 
 namespace JenkinsBuild
@@ -33,7 +32,7 @@ namespace JenkinsBuild
                 PlayerSettings.d3d11FullscreenMode = _stringToEnum<D3D11FullscreenMode>(
                     pc.D3D11FullscreenMode.ToString());
             }
-            
+
             foreach (var aspectRatio in pc.SupportedAspectRations.AspectRatio)
             {
                 PlayerSettings.SetAspectRatio(_stringToEnum<AspectRatio>(aspectRatio.Value.ToString()),
