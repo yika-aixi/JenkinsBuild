@@ -14,7 +14,9 @@ namespace JenkinsBuild
         {
             PlayerSettings.bundleVersion = BuildInfo.Version.Value;
             PlayerSettings.applicationIdentifier = BuildInfo.PackNname;
-
+            EditorUserBuildSettings.development = BuildInfo.Development;
+            EditorUserBuildSettings.connectProfiler = BuildInfo.ConnectProfiler;
+            EditorUserBuildSettings.allowDebugging = BuildInfo.ScriptsDebuggers;
 
             if (BuildInfo.ColorSpaceSpecified)
             {
@@ -51,9 +53,7 @@ namespace JenkinsBuild
                     _stringToEnum<ApiCompatibilityLevel>(BuildInfo.APICompatibilityLevel.ToString()));
             }
 #endif
-            EditorUserBuildSettings.development = BuildInfo.Development;
-            EditorUserBuildSettings.connectProfiler = BuildInfo.ConnectProfiler;
-            EditorUserBuildSettings.allowDebugging = BuildInfo.ScriptsDebuggers;
+
 
             if (BuildInfo.ScriptingDefineSymbols.IsAdd)
             {
