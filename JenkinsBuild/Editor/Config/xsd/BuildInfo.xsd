@@ -20,14 +20,14 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="CompanyName" minOccurs="0">
+                <xs:element name="CompanyName" minOccurs="0" default="DefaultCompany">
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:string" />
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="ProductName" minOccurs="0">
+                <xs:element name="ProductName" minOccurs="0" default="DefaultProduct">
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:string" />
@@ -45,6 +45,9 @@
                     <xs:complexType>
                         <xs:choice>
                             <xs:element name="Android">
+                                <xs:annotation>
+                                    <xs:appinfo>安卓需要6个子元素</xs:appinfo>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence minOccurs="6" maxOccurs="6">
                                         <xs:element ref="Icon" />
@@ -52,6 +55,9 @@
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="IOS">
+                                <xs:annotation>
+                                    <xs:appinfo>IOS需要9个子元素</xs:appinfo>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence minOccurs="9" maxOccurs="9">
                                         <xs:element ref="Icon" />
@@ -59,6 +65,9 @@
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="PC">
+                                <xs:annotation>
+                                    <xs:appinfo>PC需要7个子元素</xs:appinfo>
+                                </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence minOccurs="7" maxOccurs="7">
                                         <xs:element ref="Icon" />
@@ -70,13 +79,6 @@
                 </xs:element>
                 <xs:element name="ColorSpace" type="ColorSpaceEnum" minOccurs="0" />
                 <xs:element name="AutoGraphicsAPI" minOccurs="0" default="true">
-                    <xs:complexType>
-                        <xs:simpleContent>
-                            <xs:extension base="xs:boolean" />
-                        </xs:simpleContent>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="ForcehardShadowsOnMetal" minOccurs="0">
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:boolean" />
@@ -222,13 +224,6 @@
                                                 </xs:simpleContent>
                                             </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="PackageName" minOccurs="0">
-                                            <xs:complexType>
-                                                <xs:simpleContent>
-                                                    <xs:extension base="xs:string" />
-                                                </xs:simpleContent>
-                                            </xs:complexType>
-                                        </xs:element>
                                         <xs:element name="BundleVersionCode" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:simpleContent>
@@ -236,27 +231,15 @@
                                                 </xs:simpleContent>
                                             </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="MinimumAPILevel" minOccurs="0">
-                                            <xs:complexType>
-                                                <xs:simpleContent>
-                                                    <xs:extension base="xs:int">
-                                                        <xs:attribute name="Min" type="xs:int" use="required" />
-                                                        <xs:attribute name="Max" type="xs:int" use="required" />
-                                                        <xs:attribute name="default" type="xs:int" use="required" />
-                                                    </xs:extension>
-                                                </xs:simpleContent>
-                                            </xs:complexType>
+                                        <xs:element name="MinimumAPILevel" type="xs:int" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:appinfo>当给的值大于了MAx或小于了Min就会使用默认值</xs:appinfo>
+                                            </xs:annotation>
                                         </xs:element>
-                                        <xs:element name="TargetAPILevel" minOccurs="0">
-                                            <xs:complexType>
-                                                <xs:simpleContent>
-                                                    <xs:extension base="xs:int">
-                                                        <xs:attribute name="Min" type="xs:int" use="required" />
-                                                        <xs:attribute name="Max" type="xs:int" use="required" />
-                                                        <xs:attribute name="default" type="xs:int" use="required" />
-                                                    </xs:extension>
-                                                </xs:simpleContent>
-                                            </xs:complexType>
+                                        <xs:element name="TargetAPILevel" type="xs:int" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:appinfo>当给的值大于了MAx或小于了Min就会使用默认值</xs:appinfo>
+                                            </xs:annotation>
                                         </xs:element>
                                         <xs:element name="ShowLoadingIndicator" type="AndroidShowActivityIndicatorOnLoadingEnum" minOccurs="0" />
                                         <xs:element name="DeveiceFilter" type="AndroidTargetDeviceEnum" minOccurs="0" />
@@ -293,7 +276,7 @@
                             <xs:element name="PC">
                                 <xs:complexType>
                                     <xs:all>
-                                        <xs:element ref="PCAndIOS" />
+                                        <xs:element ref="PCAndIOS" minOccurs="0" />
                                         <xs:element name="DefaultIsFullScreen" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:simpleContent>
@@ -390,8 +373,8 @@
                             <xs:element name="IOS">
                                 <xs:complexType>
                                     <xs:all>
-                                        <xs:element ref="PCAndIOS" />
-                                        <xs:element ref="AndroidAndIOS" />
+                                        <xs:element ref="PCAndIOS" minOccurs="0" />
+                                        <xs:element ref="AndroidAndIOS" minOccurs="0" />
                                         <xs:element name="UseAnimatedAutorotation" minOccurs="0">
                                             <xs:complexType>
                                                 <xs:simpleContent>
@@ -534,6 +517,7 @@
                                             </xs:complexType>
                                         </xs:element> -->
                                         <xs:element name="ShowLoadingIndicator" type="IOSShowActivityIndicatorOnLoadingEnum" minOccurs="0" />
+                                        <xs:element name="ForcehardShadowsOnMetal" type="xs:boolean" minOccurs="0" default="false" />
                                     </xs:all>
                                 </xs:complexType>
                             </xs:element>

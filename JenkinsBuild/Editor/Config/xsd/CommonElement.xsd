@@ -4,8 +4,8 @@
     <!--Api 兼容等级 枚举-->
     <xsd:simpleType name="ApiCompatibilityLevelEnum">
         <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="NET_2_0" />
             <xsd:enumeration value="NET_2_0_Subset" />
+            <xsd:enumeration value="NET_2_0" />
             <xsd:enumeration value="NET_4_6" />
             <xsd:enumeration value="NET_Web" />
             <xsd:enumeration value="NET_Micro" />
@@ -30,9 +30,9 @@
     <!--IOS设备架构 枚举-->
     <xsd:simpleType name="IOSTargetDeviceEnum">
         <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="iPhoneAndiPad" />
             <xsd:enumeration value="iPhoneOnly" />
             <xsd:enumeration value="iPadOnly" />
-            <xsd:enumeration value="iPhoneAndiPad" />
         </xsd:restriction>
     </xsd:simpleType>
     <!--安卓打包系统 枚举-->
@@ -181,8 +181,8 @@
     </xsd:simpleType>
     <xsd:simpleType name="ColorSpaceEnum">
         <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="Uninitialized" />
             <xsd:enumeration value="Gamma" />
+            <xsd:enumeration value="Uninitialized" />
             <xsd:enumeration value="Linear" />
         </xsd:restriction>
     </xsd:simpleType>
