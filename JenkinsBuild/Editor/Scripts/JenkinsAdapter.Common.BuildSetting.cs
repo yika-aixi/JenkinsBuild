@@ -12,31 +12,44 @@ namespace JenkinsBuild
         /// <param name="target"></param>
         private static void _setCommonBuildInfo(BuildTargetGroup target)
         {
-
-            PlayerSettings.colorSpace = _stringToEnum<ColorSpace>(BuildInfo.ColorSpace.ToString());
-
-            PlayerSettings.SetScriptingBackend(target,
-                _stringToEnum<ScriptingImplementation>(BuildInfo.ScriptingBackend.ToString()));
-
-            PlayerSettings.SetApiCompatibilityLevel(target, _stringToEnum<ApiCompatibilityLevel>(BuildInfo.APICompatibilityLevel.ToString()));
-
-            PlayerSettings.strippingLevel = _stringToEnum<StrippingLevel>(BuildInfo.StrippingLevel.ToString());
-
             PlayerSettings.bundleVersion = BuildInfo.Version.Value;
+            PlayerSettings.applicationIdentifier = BuildInfo.PackNname;
+
+
+            if (BuildInfo.ColorSpaceSpecified)
+            {
+                PlayerSettings.colorSpace = _stringToEnum<ColorSpace>(BuildInfo.ColorSpace.ToString());
+            }
+
+            if (BuildInfo.ScriptingBackendSpecified)
+            {
+                PlayerSettings.SetScriptingBackend(target,
+                    _stringToEnum<ScriptingImplementation>(BuildInfo.ScriptingBackend.ToString()));
+            }
+
+            if (BuildInfo.APICompatibilityLevelSpecified)
+            {
+                PlayerSettings.SetApiCompatibilityLevel(target, _stringToEnum<ApiCompatibilityLevel>(BuildInfo.APICompatibilityLevel.ToString()));
+            }
+
+            if (BuildInfo.StrippingLevelSpecified)
+            {
+                PlayerSettings.strippingLevel = _stringToEnum<StrippingLevel>(BuildInfo.StrippingLevel.ToString());
+            }
+
 
             foreach (var loggingType in BuildInfo.Logging.Type)
             {
                 PlayerSettings.SetStackTraceLogType(_stringToEnum<LogType>(loggingType.Value.ToString()),
                     _stringToEnum<StackTraceLogType>(loggingType.StackType.ToString()));
             }
- 
+
 #if UNITY_5_6_OR_NEWER
-
-            PlayerSettings.applicationIdentifier = BuildInfo.PackNname;
-           
-            PlayerSettings.SetApiCompatibilityLevel(target,
-                _stringToEnum<ApiCompatibilityLevel>(BuildInfo.APICompatibilityLevel.ToString()));
-
+            if (BuildInfo.APICompatibilityLevelSpecified)
+            {
+                PlayerSettings.SetApiCompatibilityLevel(target,
+                    _stringToEnum<ApiCompatibilityLevel>(BuildInfo.APICompatibilityLevel.ToString()));
+            }
 #endif
             EditorUserBuildSettings.development = BuildInfo.Development;
             EditorUserBuildSettings.connectProfiler = BuildInfo.ConnectProfiler;
@@ -52,14 +65,17 @@ namespace JenkinsBuild
             {
                 PlayerSettings.SetScriptingDefineSymbolsForGroup(target, BuildInfo.ScriptingDefineSymbols.Value);
             }
-            
+
         }
 
         static void _setIOSAndAndroidCommonBuildInfo(bool isIOS)
         {
-            var defaultOrientationValue = isIOS ? 
-                _getBuildType<BuildInfoBuildTypeIOS>().AndroidAndIOS.DefaultOrientation.ToString() 
-                : 
+            if (!_getBuildType<BuildInfoBuildTypeIOS>().AndroidAndIOS.DefaultOrientationSpecified &&
+                !_getBuildType<BuildInfoBuildTypeAndroid>().AndroidAndIOS.DefaultOrientationSpecified) return;
+
+            var defaultOrientationValue = isIOS ?
+                _getBuildType<BuildInfoBuildTypeIOS>().AndroidAndIOS.DefaultOrientation.ToString()
+                :
                 _getBuildType<BuildInfoBuildTypeAndroid>().AndroidAndIOS.DefaultOrientation.ToString();
 
             PlayerSettings.defaultInterfaceOrientation = _stringToEnum<UIOrientation>(defaultOrientationValue);

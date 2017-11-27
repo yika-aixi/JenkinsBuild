@@ -35,14 +35,18 @@ namespace JenkinsBuild
 
         public static void CommandLineXmlBuildMac()
         {
+#if UNITY_2017
             _buildPC(BuildTarget.StandaloneOSX);
+#else
+            _buildPC(BuildTarget.StandaloneOSXUniversal);
+#endif
         }
 
-        #endregion
+#endregion
 
 
 
-        #region Private funation
+#region Private funation
 
         static void _buildPC(BuildTarget target)
         {
@@ -63,7 +67,7 @@ namespace JenkinsBuild
             _executeComplete(error, buildPlayer.locationPathName);
         }
 
-        #endregion
+#endregion
     }
 
 }
