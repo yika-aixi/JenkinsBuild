@@ -17,9 +17,13 @@ namespace JenkinsBuild
             EditorUserBuildSettings.connectProfiler = BuildInfo.ConnectProfiler;
             EditorUserBuildSettings.allowDebugging = BuildInfo.ScriptsDebuggers;
 
-            PlayerSettings.companyName = BuildInfo.CompanyName.Value;
+            PlayerSettings.companyName = string.IsNullOrEmpty(BuildInfo.CompanyName.Value)
+                ? PlayerSettings.companyName
+                : BuildInfo.CompanyName.Value;
 
-            PlayerSettings.productName = BuildInfo.ProductName.Value;
+            PlayerSettings.productName = string.IsNullOrEmpty(BuildInfo.ProductName.Value)
+                ? PlayerSettings.productName
+                : BuildInfo.ProductName.Value;
 
             if (BuildInfo.ColorSpaceSpecified)
             {

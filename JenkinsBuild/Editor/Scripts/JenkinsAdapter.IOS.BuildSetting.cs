@@ -11,7 +11,7 @@ namespace JenkinsBuild
 	    private static void _setBuildIosInfo()
         {
             BuildInfoBuildTypeIOS ios = _getBuildType<BuildInfoBuildTypeIOS>();
-            PlayerSettings.iOS.forceHardShadowsOnMetal = ios.ForcehardShadowsOnMetal;
+            //PlayerSettings.iOS.forceHardShadowsOnMetal = ios.ForcehardShadowsOnMetal;
             if (ios.StatusBarStyleSpecified)
             {
                 PlayerSettings.iOS.statusBarStyle =
